@@ -46,7 +46,7 @@ In short, they are responsible for using frontend technologies (HTML, CSS, JavaS
 
 In preparation for this project, not only the usual user experience design is used, but also generally formulated project goals, which are brought together directly with the user stories in the kanban board. 
 
-In the following, the project goals(bold statements) are listed with the corresponding user stories(bullet points): 
+In the following, the project goals (bold statements) are listed with the corresponding user stories (bullet points): 
 
 **The project should provide a platform for users to upload their instruments and offer them for sale.**
 
@@ -145,28 +145,6 @@ Google Fonts was used for the typography. The font "" is used for headlines and 
 ## Development
 
 The entire project was developed in an agile manner. Particularly noteworthy is the sprint board (git hub project), on which the user stories and their status were recorded. For better traceability, the project was set to public. 
-
-To make it clearer, the user stories were divided into epics (unfortunately not visible in the sprint). For the sake of completeness, the epics with the corresponding stories are listed here once again. 
-
-### Admin Epic:
-**Introduction:**
-
-
-
-**Goals & Outcomes:**
-
-
-
-
-### User Epic:
-**Introduction:**
-
-
-
-
-**Goals & Outcomes:**
-
-
 
 
 Down below, you can see the sprint board in action during development.
