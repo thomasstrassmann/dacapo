@@ -86,6 +86,10 @@ The **UXD - User Experience Design** includes the 5 panels *strategy, scope, str
 ### Strategy 
 What makes DaCapo special? 
 
+The application is basically like ebay, only specialized in musical instruments. 
+DaCapo should present the user with an almost infinite range of musical instruments and still be able to quickly and conveniently find the desired items (either by text search, or by a filter). 
+
+So, in short, the USP is: find the instrument you want, in good condition, at a low price, as fast as you can. And maybe find other items that might also be exciting for you, that you haven't thought of before.
 
 ---
 ### Scope 
