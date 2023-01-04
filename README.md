@@ -111,9 +111,9 @@ components  --> according user story...
 --- 
 ### Structure 
 
-The structure of the app is kept very simple and is illustrated here for the sake of completeness. This results in a simple, clear and intuitive navigation for the user. 
+The structure of the app is kept very simple and is illustrated here, resulting in a simple, clear and intuitive navigation. Due to the time constraints, the navigation levels are not deep, but this also leads to a clear navigation. If the project is continued, more levels could of course be added.  
 
-![Structure of DaCapo](./ "Structure of DaCapo")
+![Structure of DaCapo](./src/assets/documentation/structure.png "Structure of DaCapo")
 
 ---
 ### Skeleton 
