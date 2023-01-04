@@ -152,7 +152,10 @@ The entire project was developed in an agile manner. Particularly noteworthy is 
 
 
 Down below, you can see the sprint board in action during development.
-![Agile development](./ "Agile development")
+![Agile development](./src/assets/documentation/agile-board.png "Agile development")
+
+
+
 
 
 
