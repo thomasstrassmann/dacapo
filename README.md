@@ -53,6 +53,7 @@ In the following, the project goals (bold statements) are listed with the corres
 * As a user I can list and create instruments, as well as bookmark them, so that I can buy and keep track of my favorite instruments.
 * As a user I want the ability to contact the seller on the instruments detail view, so that I can purchase the item quickly, or get extra information about it.
 * As an item owner I can update any instruments, so that I can correct mistakes, make the instruments more attractive and keep them up to date.
+* As a user I want to be able to view and edit my wanted items, so that I can attract attention, when a desired instrument is not in the database.
 
 
 
@@ -71,6 +72,7 @@ In the following, the project goals (bold statements) are listed with the corres
 * As a user I can see the avatar of the profiles, so that I can personalize my own account and relate to other users, improving the UX.
 * As a user I can see my own and other profiles, so that I know who the seller is, view their instruments and activity.
 * As a user I can edit my own profile, so that I can keep my details up to date.
+* As a user I want to rate sellers as well as edit my rating so that I can voice my opinion on a shopping experience and get more intel as to how credible a seller is.
 
 
 
