@@ -118,19 +118,19 @@ The structure of the app is kept very simple and is illustrated here for the sak
 ---
 ### Skeleton 
 
-In order to implement the pages safer, faster and more efficiently, wireframe models were created in advance. Excluded from this are the pages login, signup and logout, as these are simple pages with either a form element or a feedback display. Wireframe models are therefore only created for more complex pages. 
+In order to implement the pages safer, faster and more efficiently, wireframe models were created in advance. Excluded from this are the pages login, signup and logout, as these are simple pages with either a form element or a feedback display. Wireframe models for Bookmarks and Wanted were left out because they are very similar in structure to Instruments and only differ somewhat in content. Due to the reusable components in React, it is not necessary to make a wireframe of every page anyway. 
+
+However, the Index, Instruments, Instrument Detail and Profile pages use fundamentally different components, which is why wireframes are more worthwhile here. 
+
+![Wireframe of index page](./src/assets/documentation/wireframe-index.png "Wireframe of index page")
+
+![Wireframe of instruments page](./src/assets/documentation/wireframe-instruments.png "Wireframe of instruments page")
+
+![Wireframe of instruments detail page](./src/assets/documentation/wireframe-instrument-detail.png "Wireframe of instruments detail page")
+
+![Wireframe of profile](./src/assets/documentation/wireframe-profile.png "Wireframe of profile")
 
 
-
-![Wireframe of index page](./ "Wireframe of index page")
-
-![Wireframe of instruments page](./ "Wireframe of instruments page")
-
-![Wireframe of instruments detail page](./ "Wireframe of instruments detail page")
-
-![Wireframe of profile](./ "Wireframe of profile")
-
-![Wireframe of bookmark feed](./ "Wireframe of bookmark feed")
 
 ---
 ### Surface
