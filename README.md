@@ -130,21 +130,19 @@ However, the Index, Instruments, Instrument Detail and Profile pages use fundame
 
 ![Wireframe of profile](./src/assets/documentation/wireframe-profile.png "Wireframe of profile")
 
-
-
 ---
 ### Surface
 
 In terms of visual language, the main points that remain are colors, logo and fonts.
-The color palette consists of the main color # and some according compound colors. Down below you can see an abstract of the Adobe Color Wheel.
+The color palette consists of the main color #FA3750 (a slightly pale red on the outside of the spectrum) and some according compound colors. Down below you can see an abstract of the Adobe Color Wheel.
 
-![Color palette](./ "Color palette")
+![Color palette](./src/assets/documentation/colors.png "Color palette")
 
-The app logo was created with the Adobe Express. 
+The app logo was created with the Adobe Express. The slightly playful, yet present font with a built-in clef is intended to bridge the gap between a relaxed appearance and a strong brand.
 
-![Logo](./ "Logo")
+![Logo](./src/assets/dacapo-logo.png "Logo")
 
-Google Fonts was used for the typography. The font "" is used for headlines and titles, the font "" is used for everything else. The icons in the app are also from Google (Google Icons). The icons from Google are not provided via a CDN, but they have been downloaded. 
+Google Fonts was used for the typography. The font "Seymour One" is used for headlines, titles and important textareas, the font "Cormorant Garamond" is used for everything else (sub-text). The icons in the app are also from Google (Google Icons), but downloaded, not delivered via CDN.
 
 ## Development
 
