@@ -1,9 +1,10 @@
-import './App.css';
+import "./App.css";
+import Button from 'react-bootstrap/Button';
 
 function App() {
   return (
     <div className="App">
-      <h1>Inital commit</h1>
+      <Button variant="success">Success</Button>
     </div>
   );
 }
