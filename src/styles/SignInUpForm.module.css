@@ -1,0 +1,41 @@
+.Row {
+    height: calc(100vh - 81px);
+}
+
+.Input {
+    background: #ffffff;
+    border: 2px solid #5c8294;
+    box-sizing: border-box;
+    border-radius: 4px;
+    color: black;
+    text-align: center;
+    padding: 10px;
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 1.5 rem;
+    font-weight: bold;
+}
+
+
+.Header {
+    text-align: center;
+    color: #FA3750;
+}
+
+.Link {
+    text-decoration: none;
+    text-align: center;
+    display: block;
+    margin: auto;
+}
+
+.Container {
+    padding: 30px 10px;
+}
+
+.SignInCol {
+    height: 320px;
+}
+
+.SignUpCol {
+    height: 375px;
+}
