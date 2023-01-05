@@ -1,3 +1,15 @@
 .NavBar {
     border-bottom: 2px solid #FA3750;
+    position: relative;
+    z-index: 5;
 }
+
+.Active {
+    color: #FA3750;
+    filter: invert(50%) sepia(52%) saturate(6690%) hue-rotate(328deg) brightness(94%) contrast(110%);
+  }
+
+.NavLink {
+    padding: 10px;
+}
+  
