@@ -5,11 +5,60 @@ import login from "../assets/icons/login.svg";
 import signup from "../assets/icons/signup.svg";
 import styles from "../styles/NavBar.module.css";
 import { NavLink } from "react-router-dom";
-import { useUser } from "../contexts/UserContext";
+import { useSetUser, useUser } from "../contexts/UserContext";
+
+import piano from "../assets/icons/piano.svg";
+import bookmarks from "../assets/icons/bookmarks.svg";
+import wanted from "../assets/icons/wanted.svg";
+import logout from "../assets/icons/logout.svg";
+import axios from "axios";
+import Avatar from "./Avatar";
 
 const NavBar = () => {
   const user = useUser();
-  const loggedInNav = <>Hello {user?.username}</>
+  const setUser = useSetUser();
+
+  const handleSignOut = async () => {
+    try {
+      await axios.post("dj-rest-auth/logout/");
+      setUser(null);
+    } catch (err) {
+      console.log(err);
+    }
+  };
+
+  const loggedInNav = (<>
+        <NavLink
+        className={styles.NavLink}
+        activeClassName={styles.Active}
+        to="/instruments">
+        <img src={piano} alt="Instruments" height="30" />Instruments
+      </NavLink>
+
+      <NavLink
+        className={styles.NavLink}
+        activeClassName={styles.Active}
+        to="/bookmarks">
+        <img src={bookmarks} alt="Bookmarks" height="30"/>Bookmarks
+      </NavLink>
+
+      <NavLink
+        className={styles.NavLink}
+        activeClassName={styles.Active}
+        to="/wanted">
+        <img src={wanted} alt="Wanted" height="30"/>Wanted
+      </NavLink>
+
+      <NavLink
+        className={styles.NavLinkProfile}
+        to={`/profiles/${user?.profile_id}`}>
+        <Avatar src={user?.profile_avatar} text="Profile" height={30} />
+      </NavLink>
+
+      <NavLink className={styles.NavLink} to="/" onClick={handleSignOut}>
+        <img src={logout} alt="Logout" height="30" />Logout
+      </NavLink>
+  </>)
   const loggedOutNav = (
     <>
       <NavLink

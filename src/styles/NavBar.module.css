@@ -1,15 +1,29 @@
 .NavBar {
-    border-bottom: 2px solid #FA3750;
-    position: relative;
-    z-index: 5;
+  border-bottom: 2px solid #fa3750;
+  position: relative;
+  z-index: 5;
 }
 
 .Active {
-    color: #FA3750;
-    filter: invert(50%) sepia(52%) saturate(6690%) hue-rotate(328deg) brightness(94%) contrast(110%);
-  }
-
-.NavLink {
-    padding: 10px;
+  color: #fa3750;
+  filter: invert(50%) sepia(52%) saturate(6690%) hue-rotate(328deg)
+    brightness(94%) contrast(110%);
 }
-  
+
+.NavLink, .NavLinkProfile {
+  padding: 10px;
+}
+
+.NavLink:hover {
+  filter: invert(50%) sepia(52%) saturate(6690%) hue-rotate(328deg)
+    brightness(94%) contrast(110%);
+  transition: color ease-in-out 0.2s;
+  color: #fa3750;
+  cursor: pointer;
+}
+
+.NavLinkProfile:hover {
+    transition: color ease-in-out 0.2s;
+    color: #fa3750;
+    cursor: pointer;
+}

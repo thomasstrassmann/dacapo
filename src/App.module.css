@@ -24,22 +24,6 @@ a {
   transition: color ease-in-out 0.2s;
 }
 
-a:hover {
-  color: #FA3750;
-}
-
-
-a:hover img {
-  filter: invert(50%) sepia(52%) saturate(6690%) hue-rotate(328deg) brightness(94%) contrast(110%);
-  transition: color ease-in-out 0.2s;
-}
-
-img:hover {
-  cursor: pointer;
-  transition: color ease-in-out 0.2s;
-  color: #FA3750;
-}
-
 .Content {
   background-color: #ffffff;
   padding: 10px;
