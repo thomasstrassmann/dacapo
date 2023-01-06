@@ -1,14 +1,14 @@
-import React, { useContext } from "react";
+import React from "react";
 import { Container, Navbar, Nav } from "react-bootstrap";
 import logo from "../assets/dacapo-logo.png";
 import login from "../assets/icons/login.svg";
 import signup from "../assets/icons/signup.svg";
 import styles from "../styles/NavBar.module.css";
 import { NavLink } from "react-router-dom";
-import { UserContext } from "../App";
+import { useUser } from "../contexts/UserContext";
 
 const NavBar = () => {
-  const user = useContext(UserContext);
+  const user = useUser();
   const loggedInNav = <>Hello {user?.username}</>
   const loggedOutNav = (
     <>
