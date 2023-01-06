@@ -13,10 +13,13 @@ import wanted from "../assets/icons/wanted.svg";
 import logout from "../assets/icons/logout.svg";
 import axios from "axios";
 import Avatar from "./Avatar";
+import useToggle from "../hooks/useToggle";
 
 const NavBar = () => {
   const user = useUser();
   const setUser = useSetUser();
+
+  const { expanded, setExpanded, ref } = useToggle();
 
   const handleSignOut = async () => {
     try {
@@ -81,7 +84,7 @@ const NavBar = () => {
   );
 
   return (
-    <Navbar className={styles.NavBar} fixed="top" expand="md">
+    <Navbar className={styles.NavBar} fixed="top" expand="md" expanded={expanded}>
       <Container>
         <NavLink to="/" exact>
           <Navbar.Brand>
@@ -89,7 +92,7 @@ const NavBar = () => {
           </Navbar.Brand>
         </NavLink>
 
-        <Navbar.Toggle aria-controls="basic-navbar-nav" />
+        <Navbar.Toggle onClick={() => setExpanded(!expanded)} ref={ref} aria-controls="basic-navbar-nav" />
 
         <Navbar.Collapse id="basic-navbar-nav">
           <Nav className="ml-auto">
