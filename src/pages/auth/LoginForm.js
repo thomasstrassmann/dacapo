@@ -23,14 +23,14 @@ function LoginForm() {
   });
 
   const { username, password } = loginData;
-  const { errors, setErrors } = useState({});
+  const [ errors, setErrors ] = useState({});
   const history = useHistory();
 
   const handleChange = (event) => {
     setLoginData({
       ...loginData,
       [event.target.name]: event.target.value,
-    })
+    });
   };
 
   const handleSubmit = async (event) => {
@@ -43,6 +43,7 @@ function LoginForm() {
     }
   };
 
+
   return (
     <Row className={styles.Row}>
       <Col className="my-auto p-0 p-md-2" md={6}>
@@ -52,7 +53,8 @@ function LoginForm() {
           <Form onSubmit={handleSubmit}>
             <Form.Group controlId="username">
               <Form.Label className="d-none">Username</Form.Label>
-              <Form.Control className={styles.Input} type="text" name="username" placeholder="Username" onChange={handleChange} value={username} />
+              <Form.Control className={styles.Input} type="text" name="username" value={username} placeholder="Username" 
+              onChange={handleChange} />
             </Form.Group>
 
             {errors.username?.map((message, idx) => (
@@ -63,7 +65,8 @@ function LoginForm() {
 
             <Form.Group controlId="password">
               <Form.Label className="d-none">Password</Form.Label>
-              <Form.Control className={styles.Input} type="password" name="password" placeholder="Password" onChange={handleChange} value={password} />
+              <Form.Control className={styles.Input} type="password" name="password" placeholder="Password" 
+              onChange={handleChange} value= {password} />
             </Form.Group>
 
             {errors.password?.map((message, idx) => (
