@@ -40,7 +40,7 @@ function LoginForm() {
     event.preventDefault();
     try {
       const {data} = await axios.post("/dj-rest-auth/login/", loginData);
-      setUser(data.username);
+      setUser(data.user);
       history.push("/");
     } catch (err) {
       setErrors(err.response?.data);
