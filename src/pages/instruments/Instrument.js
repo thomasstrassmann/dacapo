@@ -1,9 +1,12 @@
 import React from "react";
 import Avatar from "../../components/Avatar";
 import { Link } from "react-router-dom";
-import { Card, Media, OverlayTrigger, Tooltip } from "react-bootstrap";
+import { Card, Media } from "react-bootstrap";
 import { useUser } from "../../contexts/UserContext";
+import { axiosRes } from "../../api/axiosDefaults";
 
+import bookmarks from "../../assets/icons/bookmarks.svg";
+import removeBookmarks from "../../assets/icons/bookmark_remove.svg";
 
 const Instrument = (props) => {
   const {
@@ -22,10 +25,43 @@ const Instrument = (props) => {
     created,
     updated,
     instrumentPage,
+    setInstruments,
   } = props;
 
   const user = useUser();
   const is_owner = user?.username === owner;
+
+  const handleBookmark = async () => {
+    try {
+      const { data } = await axiosRes.post("/bookmarks/", { instrument: id });
+      setInstruments((prevInstruments) => ({
+        ...prevInstruments,
+        results: prevInstruments.results.map((instrument) => {
+          return instrument.id === id
+            ? { ...instrument, bookmarks_count: instrument.bookmarks_count + 1, bookmark_id: data.id }
+            : instrument;
+        }),
+      }));
+    } catch (err) {
+      console.log(err);
+    }
+  };
+
+  const handleRemoveBookmark = async () => {
+    try {
+      await axiosRes.delete(`/bookmarks/${bookmark_id}/`);
+      setInstruments((prevInstruments) => ({
+        ...prevInstruments,
+        results: prevInstruments.results.map((instrument) => {
+          return instrument.id === id
+            ? { ...instrument, bookmarks_count: instrument.bookmarks_count - 1, bookmark_id: null }
+            : instrument;
+        }),
+      }));
+    } catch (err) {
+      console.log(err);
+    }
+  };
 
   return (
     <Card>
@@ -49,41 +85,28 @@ const Instrument = (props) => {
 
     <Card.Body>
       {title && <Card.Title>{title}</Card.Title>}
-      {category && <Card.Text>{category}</Card.Text>}
-
+      {category && <Card.Text>Category: {category}</Card.Text>}
+      {brand && <Card.Text>Brand: {brand}</Card.Text>}
       {description && <Card.Text>{description}</Card.Text>}
-      {brand && <Card.Text>{brand}</Card.Text>}
-
-      {price && <Card.Text>{price}</Card.Text>}
-
-      {description && <Card.Text>{description}</Card.Text>}
+      {price && <Card.Text>Price: {price}</Card.Text>}
 
       <div>
-        {is_owner ? (
-          <OverlayTrigger
-            placement="top"
-            overlay={<Tooltip>You can not bookmark your own instrument!</Tooltip>}>
-          </OverlayTrigger>
-        ) : bookmark_id ? (
-          <span onClick={() => {}}>
-            Bookmark
+          {bookmark_id ? (
+          <span onClick={handleRemoveBookmark}>
+            <img src={removeBookmarks} alt="Remove Bookmark" /><span>Remove Bookmark</span>
           </span>
         ) : user ? (
-          <span onClick={() => {}}>
-            Bookmark
+          <span onClick={handleBookmark}>
+            <img src={bookmarks} alt="Bookmark" /><span>Bookmark instrument</span>
           </span>
         ) : (
-          <OverlayTrigger
-            placement="top"
-            overlay={<Tooltip>Log in to bookmark an instrument!</Tooltip>}>
-          </OverlayTrigger>
+            <p>Log in to bookmark an instrument!</p>
         )}
-        {bookmarks_count}
+        <p>Bookmarked in total: {bookmarks_count}</p>
       </div>
     </Card.Body>
   </Card>
 );
 };
-
 
 export default Instrument;
