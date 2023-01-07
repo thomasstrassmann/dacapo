@@ -8,6 +8,7 @@ import Container from "react-bootstrap/Container";
 
 import upload from "../../assets/icons/upload.svg";
 
+import btnStyles from "../../styles/Button.module.css"
 import styles from "../../styles/InstrumentCreateEditForm.module.css";
 import appStyles from "../../App.module.css";
 
@@ -73,7 +74,7 @@ function InstrumentCreateForm() {
 
   const inputFields = (
     <div className="text-center">
-      <Form.Group>
+      <Form.Group className={styles.FormGroup}>
         <Form.Label>Title</Form.Label>
         <Form.Control
           type="text"
@@ -88,7 +89,7 @@ function InstrumentCreateForm() {
         </Alert>
       ))}
 
-      <Form.Group>
+      <Form.Group className={styles.FormGroup}>
         <Form.Label>Brand</Form.Label>
         <Form.Control
           type="text"
@@ -103,7 +104,7 @@ function InstrumentCreateForm() {
         </Alert>
       ))}
 
-      <Form.Group>
+      <Form.Group className={styles.FormGroup}>
         <Form.Label>Category</Form.Label>
         <Form.Control
           as="select"
@@ -127,7 +128,7 @@ function InstrumentCreateForm() {
         </Alert>
       ))}
 
-      <Form.Group>
+      <Form.Group className={styles.FormGroup}>
         <Form.Label>Description</Form.Label>
         <Form.Control
           as="textarea"
@@ -143,14 +144,14 @@ function InstrumentCreateForm() {
         </Alert>
       ))}
 
-      <Form.Group>
+      <Form.Group className={`${styles.Price} ${styles.FormGroup}`}>
         <Form.Label>Price</Form.Label>
         <Form.Control
           type="text"
           name="price"
           value={price}
           onChange={handleChange}
-        />
+        /> <span className={styles.Currency}>Euro</span>
       </Form.Group>
       {errors?.price?.map((message, idx) => (
         <Alert variant="warning" key={idx}>
@@ -158,14 +159,10 @@ function InstrumentCreateForm() {
         </Alert>
       ))}
 
-      <Button
-        onClick={() => {
-          history.goBack();
-        }}
-      >
+      <Button className={btnStyles.CreateFormButton} onClick={() => {history.goBack();}}>
         cancel
       </Button>
-      <Button type="submit">
+      <Button className={btnStyles.CreateFormButton} type="submit">
         create
       </Button>
     </div>
@@ -174,11 +171,12 @@ function InstrumentCreateForm() {
   return (
     <Form onSubmit={handleSubmit}>
       <Row>
-        <Col className="py-2 p-0 p-md-2" md={7} lg={8}>
+        <Col className="p-0 p-md-2" md={4} lg={5}>
           <Container
-            className={`${appStyles.Content} ${styles.Container} d-flex flex-column justify-content-center`}
+            className={`${appStyles.Content} ${styles.ImageWindow} d-flex flex-column justify-content-center`}
           >
-            <Form.Group className="text-center">
+            
+            <Form.Group className={`text-center ${styles.ImageWindow}`}>
               {image ? (
                 <>
                   <figure>
@@ -221,7 +219,7 @@ function InstrumentCreateForm() {
             <div className="d-md-none">{inputFields}</div>
           </Container>
         </Col>
-        <Col md={5} lg={4} className="d-none d-md-block p-0 p-md-2">
+        <Col md={6} lg={7} className="d-none d-md-block p-0 p-md-2">
           <Container className={appStyles.Content}>{inputFields}</Container>
         </Col>
       </Row>
