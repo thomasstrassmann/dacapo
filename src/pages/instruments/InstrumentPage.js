@@ -10,8 +10,8 @@ import Container from "react-bootstrap/Container";
 import Instrument from "./Instrument";
 
 function InstrumentPage() {
-  const [instrument, setInstrument] = useState({ results: [] });
   const { id } = useParams();
+  const [instrument, setInstrument] = useState({ results: [] });
 
   useEffect(() => {
     const handleMount = async () => {
@@ -22,9 +22,10 @@ function InstrumentPage() {
         setInstrument({ results: [instrument] });
         console.log(instrument);
       } catch (err) {
-        console.log(instrument);
+        console.log(err);
       }
     };
+
     handleMount();
   }, [id]);
 

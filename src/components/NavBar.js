@@ -101,7 +101,7 @@ const NavBar = () => {
             <img src={logo} alt="DaCapo Logo" height="55" />
           </Navbar.Brand>
         </NavLink>
-        {user && addPostIcon}
+        {user && addInstrumentIcon}
         <Navbar.Toggle onClick={() => setExpanded(!expanded)} ref={ref} aria-controls="basic-navbar-nav" />
 
         <Navbar.Collapse id="basic-navbar-nav">

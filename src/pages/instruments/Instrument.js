@@ -15,6 +15,7 @@ const Instrument = (props) => {
     bookmark_id,
     title,
     description,
+    brand,
     image,
     price,
     category,

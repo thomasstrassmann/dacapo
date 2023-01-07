@@ -8,10 +8,11 @@ import Container from "react-bootstrap/Container";
 
 import upload from "../../assets/icons/upload.svg";
 
-import styles from "../../styles/PostCreateEditForm.module.css";
+import styles from "../../styles/InstrumentCreateEditForm.module.css";
 import appStyles from "../../App.module.css";
-import btnStyles from "../../styles/Button.module.css";
+
 import Asset from "../../components/Asset";
+import { axiosReq } from "../../api/axiosDefaults";
 import { Alert, Image } from "react-bootstrap";
 import { useHistory } from "react-router";
 
@@ -104,7 +105,8 @@ function InstrumentCreateForm() {
 
       <Form.Group>
         <Form.Label>Category</Form.Label>
-        <Form.Select
+        <Form.Control
+          as="select"
           name="category"
           value={category}
           onChange={handleChange}
@@ -117,7 +119,7 @@ function InstrumentCreateForm() {
           <option value="piano">Piano</option>
           <option value="brass instruments">Brass instruments</option>
           <option value="other">Other</option>
-        </Form.Select>
+        </Form.Control>
       </Form.Group>
       {errors?.category?.map((message, idx) => (
         <Alert variant="warning" key={idx}>
@@ -157,14 +159,13 @@ function InstrumentCreateForm() {
       ))}
 
       <Button
-        className={`${btnStyles.Button} ${btnStyles.Blue}`}
         onClick={() => {
           history.goBack();
         }}
       >
         cancel
       </Button>
-      <Button className={`${btnStyles.Button} ${btnStyles.Blue}`} type="submit">
+      <Button type="submit">
         create
       </Button>
     </div>
@@ -185,7 +186,6 @@ function InstrumentCreateForm() {
                   </figure>
                   <div>
                     <Form.Label
-                      className={`${btnStyles.Button} ${btnStyles.Blue} btn`}
                       htmlFor="image-upload"
                     >
                       Change the image
