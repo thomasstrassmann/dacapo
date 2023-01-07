@@ -29,6 +29,8 @@ const Instrument = (props) => {
   const is_owner = user?.username === owner;
 
   return (
+    <>
+    </>
   );
 };
 
