@@ -62,6 +62,7 @@ const NavBar = () => {
         <img src={logout} alt="Logout" height="30" />Logout
       </NavLink>
   </>)
+  
   const loggedOutNav = (
     <>
       <NavLink
