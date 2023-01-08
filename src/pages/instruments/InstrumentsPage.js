@@ -15,10 +15,10 @@ import appStyles from "../../App.module.css";
 import styles from "../../styles/InstrumentsPage.module.css";
 import { useLocation } from "react-router";
 import { axiosReq } from "../../api/axiosDefaults";
-
+import InfiniteScroll from "react-infinite-scroll-component";
+import { fetchMore } from "../../utils/utils";
 
 function InstrumentsPage({ feedback, filter = "" }) {
-
   const [instruments, setInstruments] = useState({ results: [] });
   const [hasLoaded, setHasLoaded] = useState(false);
   const [query, setQuery] = useState("");
@@ -28,7 +28,9 @@ function InstrumentsPage({ feedback, filter = "" }) {
   useEffect(() => {
     const fetchInstruments = async () => {
       try {
-        const { data } = await axiosReq.get(`/instruments/?${filter}search=${query}`);
+        const { data } = await axiosReq.get(
+          `/instruments/?${filter}search=${query}`
+        );
         setInstruments(data);
         setHasLoaded(true);
       } catch (err) {
@@ -46,13 +48,12 @@ function InstrumentsPage({ feedback, filter = "" }) {
     };
   }, [query, pathname, filter]);
 
-
   return (
     <Row className="h-100">
       <Col className="py-2 p-0 p-lg-2" lg={8}>
         <p>Popular profiles mobile</p>
 
-        <img src={search} className={styles.SearchIcon} alt="Search"/>
+        <img src={search} className={styles.SearchIcon} alt="Search" />
         <Form
           className={styles.SearchBar}
           onSubmit={(event) => event.preventDefault()}
@@ -69,9 +70,19 @@ function InstrumentsPage({ feedback, filter = "" }) {
         {hasLoaded ? (
           <>
             {instruments.results.length ? (
-              instruments.results.map((instrument) => (
-                <Instrument key={instrument.id} {...instrument} setInstruments={setInstruments} />
-              ))
+              <InfiniteScroll
+                children={instruments.results.map((instrument) => (
+                  <Instrument
+                    key={instrument.id}
+                    {...instrument}
+                    setInstruments={setInstruments}
+                  />
+                ))}
+                dataLength={instruments.results.length}
+                loader={<Asset spinner />}
+                hasMore={!!instruments.next}
+                next={() => fetchMore(instruments, setInstruments)}
+              />
             ) : (
               <Container className={appStyles.Content}>
                 <Asset src={searchNull} feedback={feedback} />
