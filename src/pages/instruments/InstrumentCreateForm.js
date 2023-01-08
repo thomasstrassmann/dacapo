@@ -197,7 +197,7 @@ function InstrumentCreateForm() {
                 >
                   <Asset
                     src={upload}
-                    message="Click here to upload an image of your instrument"
+                    feedback="Click here to upload an image of your instrument"
                   />
                 </Form.Label>
               )}

@@ -2,12 +2,12 @@ import React from "react";
 import styles from "../styles/Asset.module.css";
 import { Spinner } from "react-bootstrap";
 
-const Asset = ({ spinner, src, message }) => {
+const Asset = ({ spinner, src, feedback }) => {
   return (
     <div className={`${styles.Asset} p-4`}>
       {spinner && <Spinner animation="grow" variant="danger" />}
-      {src && <img src={src} alt={message} />}
-      {message && <p className="mt-4">{message}</p>}
+      {src && <img src={src} alt={feedback} />}
+      {feedback && <p className="mt-4">{feedback}</p>}
     </div>
   );
 };

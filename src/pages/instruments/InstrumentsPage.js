@@ -15,7 +15,7 @@ import { useLocation } from "react-router";
 import { axiosReq } from "../../api/axiosDefaults";
 
 
-function InstrumentsPage({ message, filter = "" }) {
+function InstrumentsPage({ feedback, filter = "" }) {
 
   const [instruments, setInstruments] = useState({ results: [] });
   const [hasLoaded, setHasLoaded] = useState(false);
@@ -49,7 +49,7 @@ function InstrumentsPage({ message, filter = "" }) {
               ))
             ) : (
               <Container className={appStyles.Content}>
-                <Asset src={searchNull} message={message} />
+                <Asset src={searchNull} feedback={feedback} />
               </Container>
             )}
           </>
