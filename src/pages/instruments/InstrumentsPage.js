@@ -9,6 +9,8 @@ import Instrument from "./Instrument";
 import Asset from "../../components/Asset";
 
 import searchNull from "../../assets/icons/search_null.svg";
+import search from "../../assets/icons/search.svg";
+
 import appStyles from "../../App.module.css";
 import styles from "../../styles/InstrumentsPage.module.css";
 import { useLocation } from "react-router";
@@ -19,12 +21,14 @@ function InstrumentsPage({ feedback, filter = "" }) {
 
   const [instruments, setInstruments] = useState({ results: [] });
   const [hasLoaded, setHasLoaded] = useState(false);
+  const [query, setQuery] = useState("");
+
   const { pathname } = useLocation();
 
   useEffect(() => {
     const fetchInstruments = async () => {
       try {
-        const { data } = await axiosReq.get(`/instruments/?${filter}`);
+        const { data } = await axiosReq.get(`/instruments/?${filter}search=${query}`);
         setInstruments(data);
         setHasLoaded(true);
       } catch (err) {
@@ -33,14 +37,35 @@ function InstrumentsPage({ feedback, filter = "" }) {
     };
 
     setHasLoaded(false);
-    fetchInstruments();
-  }, [pathname, filter]);
+    const timeout = setTimeout(() => {
+      fetchInstruments();
+    }, 800);
+
+    return () => {
+      clearTimeout(timeout);
+    };
+  }, [query, pathname, filter]);
 
 
   return (
     <Row className="h-100">
       <Col className="py-2 p-0 p-lg-2" lg={8}>
         <p>Popular profiles mobile</p>
+
+        <img src={search} className={styles.SearchIcon} alt="Search"/>
+        <Form
+          className={styles.SearchBar}
+          onSubmit={(event) => event.preventDefault()}
+        >
+          <Form.Control
+            value={query}
+            onChange={(event) => setQuery(event.target.value)}
+            type="text"
+            className="mr-sm-2"
+            placeholder="Search for instruments or members"
+          />
+        </Form>
+
         {hasLoaded ? (
           <>
             {instruments.results.length ? (
