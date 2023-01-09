@@ -7,6 +7,8 @@ import { axiosRes } from "../../api/axiosDefaults";
 
 import bookmarks from "../../assets/icons/bookmarks.svg";
 import removeBookmarks from "../../assets/icons/bookmark_remove.svg";
+import { useHistory } from "react-router-dom/cjs/react-router-dom";
+import { EditDropdown } from "../../components/EditDropdown";
 
 const Instrument = (props) => {
   const {
@@ -29,7 +31,25 @@ const Instrument = (props) => {
   } = props;
 
   const user = useUser();
+  const history = useHistory();
   const is_owner = user?.username === owner;
+
+
+  const handleDelete = async () => {
+    try {
+      await axiosRes.delete(`/instruments/${id}/`);
+      history.goBack();
+    } catch (err) {
+      console.log(err);
+    }
+  };
+
+  const handleEdit = () => {
+    history.push(`/instruments/${id}/edit`);
+  };
+
+
+
 
   const handleBookmark = async () => {
     try {
@@ -74,7 +94,8 @@ const Instrument = (props) => {
         <div>
          <span>Created:{created}</span>
           <span>Updated:{updated}</span>
-          {is_owner && instrumentPage && "..."}
+          {is_owner && instrumentPage && 
+          <EditDropdown handleEdit={handleEdit} handleDelete={handleDelete} /> }
         </div>
       </Media>
     </Card.Body>

@@ -23,11 +23,11 @@ function App() {
           <Route exact path="/login" render={() => <LoginForm />} />
           <Route exact path="/signup" render={() => <SignUpForm />} />
           <Route exact path="/instruments" render={() => 
-            <InstrumentsPage feedback="There are no results for you serach. 
-            Try another keyword, please!"/>} />
+            <InstrumentsPage feedback="There are no results for you search. 
+            Try another keyword..."/>} />
           <Route exact path="/bookmarks" render={() => 
-            <InstrumentsPage feedback="There are no results for you serach. 
-            Try another keyword or bookmark an instrument, please!"
+            <InstrumentsPage feedback="There are no results for you search. 
+            Try another keyword or bookmark an instrument..."
             filter={`bookmarks__owner__profile=${profile_id}&ordering=-bookmarks__created&`}/>} />
           <Route exact path="/instruments/create" render={() => <InstrumentCreateForm />} />
           <Route exact path="/instruments/:id" render={() => <InstrumentPage />} />
