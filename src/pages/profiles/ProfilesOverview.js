@@ -4,6 +4,7 @@ import { axiosReq } from "../../api/axiosDefaults";
 import appStyles from "../../App.module.css";
 import Asset from "../../components/Asset";
 import { useUser } from "../../contexts/UserContext";
+import Profile from "./Profile";
 
 
 const ProfilesOverview = ({mobile}) => {
@@ -45,12 +46,12 @@ const ProfilesOverview = ({mobile}) => {
           {mobile ? (
             <div className="d-flex justify-content-around">
               {followedProfiles.results.slice(0, 3).map((profile) => (
-                <p key={profile.id}>{profile.owner}</p>
+                 <Profile key={profile.id} profile={profile} mobile />
               ))}
             </div>
           ) : (
             followedProfiles.results.map((profile) => (
-              <p key={profile.id}>{profile.owner}</p>
+              <Profile key={profile.id} profile={profile} />
             ))
           )}
           <p>Most popular profiles by rating</p>
