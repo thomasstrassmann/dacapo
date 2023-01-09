@@ -9,6 +9,7 @@ import InstrumentPage from "./pages/instruments/InstrumentPage";
 import InstrumentCreateForm from "./pages/instruments/InstrumentCreateForm"
 import InstrumentsPage from "./pages/instruments/InstrumentsPage";
 import { useUser } from "./contexts/UserContext";
+import InstrumentEditForm from "./pages/instruments/InstrumentEditForm";
 
 function App() {
   const user = useUser();
@@ -30,6 +31,7 @@ function App() {
             Try another keyword or bookmark an instrument..."
             filter={`bookmarks__owner__profile=${profile_id}&ordering=-bookmarks__created&`}/>} />
           <Route exact path="/instruments/create" render={() => <InstrumentCreateForm />} />
+          <Route exact path="/instruments/:id/edit" render={() => <InstrumentEditForm />} />
           <Route exact path="/instruments/:id" render={() => <InstrumentPage />} />
           <Route render={() => <h1>Page does not exist!</h1>} />
         </Switch>

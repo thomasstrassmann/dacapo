@@ -11,6 +11,7 @@ const Settings = React.forwardRef(({ onClick }, ref) => (
   <img
     src={settings}
     ref={ref}
+    alt="Settings"
     onClick={(e) => {
       e.preventDefault();
       onClick(e);

@@ -1,4 +1,4 @@
-import React, { useRef, useState } from "react";
+import React, { useEffect, useRef, useState } from "react";
 
 import Form from "react-bootstrap/Form";
 import Button from "react-bootstrap/Button";
@@ -6,16 +6,15 @@ import Row from "react-bootstrap/Row";
 import Col from "react-bootstrap/Col";
 import Container from "react-bootstrap/Container";
 
-import upload from "../../assets/icons/upload.svg";
 
 import btnStyles from "../../styles/Button.module.css"
 import styles from "../../styles/InstrumentCreateEditForm.module.css";
 import appStyles from "../../App.module.css";
 
-import Asset from "../../components/Asset";
 import { axiosReq } from "../../api/axiosDefaults";
 import { Alert, Image } from "react-bootstrap";
 import { useHistory } from "react-router";
+import { useParams } from "react-router-dom/cjs/react-router-dom";
 
 function InstrumentEditForm() {
   const [errors, setErrors] = useState({});
@@ -31,7 +30,24 @@ function InstrumentEditForm() {
   const { title, description, image, brand, price, category } = instrumentData;
 
   const history = useHistory();
+  const { id } = useParams();
   const imageUpload = useRef(null);
+
+  useEffect(() => {
+    const handleMount = async () => {
+      try {
+        const { data } = await axiosReq.get(`/instruments/${id}/`);
+        const { title, description, image, brand, price, category, is_owner } = data;
+
+        is_owner ? setInstrumentData({ title, description, image, brand, price, category }) 
+        : history.push("/");
+      } catch (err) {
+        console.log(err);
+      }
+    };
+
+    handleMount();
+  }, [history, id]);
 
   const handleChange = (event) => {
     setInstrumentData({
@@ -56,14 +72,16 @@ function InstrumentEditForm() {
 
     formData.append("title", title);
     formData.append("description", description);
-    formData.append("image", imageUpload.current.files[0]);
+    if (imageUpload?.current?.files[0]) {
+      formData.append("image", imageUpload.current.files[0]);
+    }
     formData.append("brand", brand);
     formData.append("price", price);
     formData.append("category", category);
 
     try {
-      const { data } = await axiosReq.post("/instruments/", formData);
-      history.push(`/instruments/${data.id}`);
+      await axiosReq.put(`/instruments/${id}`, formData);
+      history.push(`/instruments/${id}`);
     } catch (err) {
       console.log(err);
       if (err.response?.status !== 401) {
@@ -163,7 +181,7 @@ function InstrumentEditForm() {
         cancel
       </Button>
       <Button className={btnStyles.CreateFormButton} type="submit">
-        create
+        update
       </Button>
     </div>
   );
@@ -177,8 +195,6 @@ function InstrumentEditForm() {
           >
             
             <Form.Group className={`text-center ${styles.ImageWindow}`}>
-              {image ? (
-                <>
                   <figure>
                     <Image className={appStyles.Image} src={image} rounded />
                   </figure>
@@ -189,19 +205,7 @@ function InstrumentEditForm() {
                       Change the image
                     </Form.Label>
                   </div>
-                </>
-              ) : (
-                <Form.Label
-                  className="d-flex justify-content-center"
-                  htmlFor="image-upload"
-                >
-                  <Asset
-                    src={upload}
-                    feedback="Click here to upload an image of your instrument"
-                  />
-                </Form.Label>
-              )}
-
+              
               <Form.File
                 id="image-upload"
                 accept="image/*"
