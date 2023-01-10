@@ -17,7 +17,6 @@ import { useLocation } from "react-router";
 import { axiosReq } from "../../api/axiosDefaults";
 import InfiniteScroll from "react-infinite-scroll-component";
 import { fetchMore } from "../../utils/utils";
-import ProfilesOverview from "../profiles/ProfilesOverview";
 
 function InstrumentsPage({ feedback, filter = "" }) {
   const [instruments, setInstruments] = useState({ results: [] });
@@ -52,8 +51,6 @@ function InstrumentsPage({ feedback, filter = "" }) {
   return (
     <Row className="h-100">
       <Col className="py-2 p-0 p-lg-2" lg={8}>
-        <ProfilesOverview mobile />
-
         <img src={search} className={styles.SearchIcon} alt="Search" />
         <Form
           className={styles.SearchBar}
@@ -98,7 +95,7 @@ function InstrumentsPage({ feedback, filter = "" }) {
       </Col>
       
       <Col md={4} className="d-none d-lg-block p-0 p-lg-2">
-        <ProfilesOverview />
+    
       </Col>
     </Row>
   );

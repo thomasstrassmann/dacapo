@@ -5,7 +5,9 @@ import Row from "react-bootstrap/Row";
 import Container from "react-bootstrap/Container";
 
 import Asset from "../../components/Asset";
+import Instrument from "../instruments/Instrument";
 
+import search_null from "../../assets/icons/search_null.svg"
 import styles from "../../styles/ProfilePage.module.css";
 import appStyles from "../../App.module.css";
 import btnStyles from "../../styles/Button.module.css";
@@ -16,9 +18,13 @@ import { useProfile, useSetProfile } from "../../contexts/ProfileContext";
 import { useParams } from "react-router";
 import { axiosReq } from "../../api/axiosDefaults";
 import { Button, Image } from "react-bootstrap";
+import { fetchMore } from "../../utils/utils";
+
+import InfiniteScroll from "react-infinite-scroll-component";
 
 function ProfilePage() {
   const [hasLoaded, setHasLoaded] = useState(false);
+  const [profileInstruments, setProfileInstruments] = useState({ results: [] });
   const user = useUser();
   const { id } = useParams();
 
@@ -30,13 +36,15 @@ function ProfilePage() {
   useEffect(() => {
     const fetchData = async () => {
       try {
-        const [{ data: pageProfile }] = await Promise.all([
+        const [{ data: pageProfile }, { data: profileInstruments }] = await Promise.all([
           axiosReq.get(`/profiles/${id}/`),
+          axiosReq.get(`/instruments/?owner__profile=${id}`),
         ]);
         setProfile((prevState) => ({
           ...prevState,
           pageProfile: { results: [pageProfile] },
         }));
+        setProfileInstruments(profileInstruments);
         setHasLoaded(true);
       } catch (err) {
         console.log(err);
@@ -100,6 +108,22 @@ function ProfilePage() {
       <hr />
       <p className="text-center">Instruments of {profile?.owner}</p>
       <hr />
+      {profileInstruments.results.length ? (
+        <InfiniteScroll
+          children={profileInstruments.results.map((instrument) => (
+            <Instrument key={instrument.id} {...instrument} setInstruments={setProfileInstruments} />
+          ))}
+          dataLength={profileInstruments.results.length}
+          loader={<Asset spinner />}
+          hasMore={!!profileInstruments.next}
+          next={() => fetchMore(profileInstruments, setProfileInstruments)}
+        />
+      ) : (
+        <Asset
+          src={search_null}
+          message={`${profile?.owner} has no instruments to sell at this point.`}
+        />
+      )}
     </>
   );
 
