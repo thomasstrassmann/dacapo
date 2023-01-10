@@ -10,6 +10,7 @@ import InstrumentCreateForm from "./pages/instruments/InstrumentCreateForm"
 import InstrumentsPage from "./pages/instruments/InstrumentsPage";
 import { useUser } from "./contexts/UserContext";
 import InstrumentEditForm from "./pages/instruments/InstrumentEditForm";
+import ProfilePage from "./pages/profiles/ProfilePage";
 
 function App() {
   const user = useUser();
@@ -33,6 +34,8 @@ function App() {
           <Route exact path="/instruments/create" render={() => <InstrumentCreateForm />} />
           <Route exact path="/instruments/:id/edit" render={() => <InstrumentEditForm />} />
           <Route exact path="/instruments/:id" render={() => <InstrumentPage />} />
+          <Route exact path="/profiles/:id" render={() => <ProfilePage />} />
+
           <Route render={() => <h1>Page does not exist!</h1>} />
         </Switch>
       </Container>

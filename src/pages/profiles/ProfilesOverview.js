@@ -1,38 +1,15 @@
-import React, { useEffect, useState } from "react";
+import React from "react";
 import { Container } from "react-bootstrap";
-import { axiosReq } from "../../api/axiosDefaults";
 import appStyles from "../../App.module.css";
 import Asset from "../../components/Asset";
-import { useUser } from "../../contexts/UserContext";
+import { useProfile } from "../../contexts/ProfileContext";
+
 import Profile from "./Profile";
 
 
 const ProfilesOverview = ({mobile}) => {
-  const [profileData, setProfileData] = useState({
-    // profiles rating to be implemented here
-    pageProfile: { results: [] },
-    followedProfiles: { results: [] },
-  });
-  const { followedProfiles } = profileData;
-  const user = useUser();
+  const { followedProfiles } = useProfile();
 
-  useEffect(() => {
-    const handleMount = async () => {
-      try {
-        const { data } = await axiosReq.get(
-          "/profiles/?ordering=-followers_count"
-        );
-        setProfileData((prevState) => ({
-          ...prevState,
-          followedProfiles: data,
-        }));
-      } catch (err) {
-        console.log(err);
-      }
-    };
-
-    handleMount();
-  }, [user]);
 
   return (
     <Container
