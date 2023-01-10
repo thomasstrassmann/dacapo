@@ -5,12 +5,14 @@ import { Link } from "react-router-dom";
 import Avatar from "../../components/Avatar";
 import { useUser } from "../../contexts/UserContext";
 import { Button } from "react-bootstrap";
+import { useSetProfile } from "../../contexts/ProfileContext";
 
 const Profile = (props) => {
   const { profile, mobile, imageSize = 50 } = props;
   const { id, following_id, avatar, owner } = profile;
 
   const user = useUser(); 
+  const { handleFollow } = useSetProfile();
   const is_owner = user?.username === owner;
 
   return (
@@ -39,7 +41,7 @@ const Profile = (props) => {
           ) : (
             <Button
               className={btnStyles.Button}
-              onClick={() => {}}
+              onClick={() => handleFollow(profile)}
             >
               follow
             </Button>

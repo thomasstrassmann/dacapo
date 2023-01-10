@@ -29,7 +29,7 @@ function ProfilePage() {
   const { id } = useParams();
 
   const { pageProfile } = useProfile();
-  const setProfile = useSetProfile();
+  const { handleFollow, setProfile } = useSetProfile();
   const [profile] = pageProfile.results;
   const is_owner = user?.username === profile?.owner;
 
@@ -93,7 +93,7 @@ function ProfilePage() {
             ) : (
               <Button
                 className={btnStyles.Button}
-                onClick={() => {}}
+                onClick={() => handleFollow(profile)}
               >
                 follow
               </Button>
@@ -121,7 +121,7 @@ function ProfilePage() {
       ) : (
         <Asset
           src={search_null}
-          message={`${profile?.owner} has no instruments to sell at this point.`}
+          feedback={`${profile?.owner} has no instruments to sell at this point.`}
         />
       )}
     </>
