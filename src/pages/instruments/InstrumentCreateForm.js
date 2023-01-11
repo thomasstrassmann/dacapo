@@ -16,8 +16,11 @@ import Asset from "../../components/Asset";
 import { axiosReq } from "../../api/axiosDefaults";
 import { Alert, Image } from "react-bootstrap";
 import { useHistory } from "react-router";
+import { useRedirect } from "../../hooks/useRedirect";
 
 function InstrumentCreateForm() {
+  useRedirect("loggedOut");
+
   const [errors, setErrors] = useState({});
 
   const [instrumentData, setInstrumentData] = useState({
