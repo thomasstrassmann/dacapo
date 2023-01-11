@@ -14,6 +14,8 @@ import ProfilePage from "./pages/profiles/ProfilePage";
 import UsernameForm from "./pages/profiles/UsernameForm";
 import UserPasswordForm from "./pages/profiles/UserPasswordForm";
 import ProfileEditForm from "./pages/profiles/ProfileEditForm";
+import WantedListPage from "./pages/wanted/WantedListPage";
+import WantedDetailPage from "./pages/wanted/WantedDetailPage";
 
 function App() {
   const user = useUser();
@@ -30,6 +32,8 @@ function App() {
           <Route exact path="/instruments" render={() => 
             <InstrumentsPage feedback="There are no results for you search. 
             Try another keyword..." instrumentsPage />}/>
+          <Route exact path="/wanted" render={() => <WantedListPage 
+          feedback="There are no wanted items for you search. Try another keyword..."/>} /> 
           <Route exact path="/bookmarks" render={() => 
             <InstrumentsPage feedback="There are no results for you search. 
             Try another keyword or bookmark an instrument..."
@@ -37,6 +41,9 @@ function App() {
           <Route exact path="/instruments/create" render={() => <InstrumentCreateForm />} />
           <Route exact path="/instruments/:id/edit" render={() => <InstrumentEditForm />} />
           <Route exact path="/instruments/:id" render={() => <InstrumentPage />} />
+          {/* <Route exact path="/wanted/create" render={()=> <WantedCreateForm />} />
+          <Route exact path="/wanted/:id/edit" render={()=> <WantedEditForm />} /> */}
+          <Route exact path="/wanted/:id" render={()=> <WantedDetailPage />} />
           <Route exact path="/profiles/:id" render={() => <ProfilePage />} />
           <Route exact path="/profiles/:id/edit/username" render={() => <UsernameForm />} />
           <Route exact path="/profiles/:id/edit/password" render={() => <UserPasswordForm />} />
