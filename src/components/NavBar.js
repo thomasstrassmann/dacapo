@@ -30,15 +30,6 @@ const NavBar = () => {
     }
   };
 
-  const addInstrumentIcon = (
-    <NavLink
-      className={styles.NavLink}
-      activeClassName={styles.Active}
-      to="/instruments/create"
-    >Add Instrument
-    </NavLink>
-  );
-
   const loggedInNav = (<>
         <NavLink
         className={styles.NavLink}
@@ -101,7 +92,6 @@ const NavBar = () => {
             <img src={logo} alt="DaCapo Logo" height="55" />
           </Navbar.Brand>
         </NavLink>
-        {user && addInstrumentIcon}
         <Navbar.Toggle onClick={() => setExpanded(!expanded)} ref={ref} aria-controls="basic-navbar-nav" />
 
         <Navbar.Collapse id="basic-navbar-nav">

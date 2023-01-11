@@ -17,10 +17,13 @@ import { useLocation } from "react-router";
 import { axiosReq } from "../../api/axiosDefaults";
 import InfiniteScroll from "react-infinite-scroll-component";
 import { fetchMore } from "../../utils/utils";
+import { Link } from "react-router-dom";
+import { useUser } from "../../contexts/UserContext";
 
 function InstrumentsPage({ feedback, filter = "" }) {
   const [instruments, setInstruments] = useState({ results: [] });
   const [hasLoaded, setHasLoaded] = useState(false);
+  const user = useUser();
   const [query, setQuery] = useState("");
 
   const { pathname } = useLocation();
@@ -47,6 +50,15 @@ function InstrumentsPage({ feedback, filter = "" }) {
       clearTimeout(timeout);
     };
   }, [query, pathname, filter]);
+
+  const addInstrumentIcon = (
+    <Link 
+      className={styles.NavLink}
+      activeClassName={styles.Active}
+      to="/instruments/create"
+    >Add Instrument
+    </Link>
+  );
 
   return (
     <Row className="h-100">
@@ -92,6 +104,9 @@ function InstrumentsPage({ feedback, filter = "" }) {
             <Asset spinner />
           </Container>
         )}
+      </Col>
+      <Col lg={4}>
+        {user && addInstrumentIcon}
       </Col>
       
       <Col md={4} className="d-none d-lg-block p-0 p-lg-2">
