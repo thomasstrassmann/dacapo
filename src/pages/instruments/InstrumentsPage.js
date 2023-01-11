@@ -20,7 +20,7 @@ import { fetchMore } from "../../utils/utils";
 import { Link } from "react-router-dom";
 import { useUser } from "../../contexts/UserContext";
 
-function InstrumentsPage({ feedback, filter = "" }) {
+function InstrumentsPage({ feedback, filter = "", instrumentsPage }) {
   const [instruments, setInstruments] = useState({ results: [] });
   const [hasLoaded, setHasLoaded] = useState(false);
   const user = useUser();
@@ -52,31 +52,15 @@ function InstrumentsPage({ feedback, filter = "" }) {
   }, [query, pathname, filter]);
 
   const addInstrumentIcon = (
-    <Link 
-      className={styles.NavLink}
-      activeClassName={styles.Active}
-      to="/instruments/create"
-    >Add Instrument
+    <Link className={styles.AddInstrument} to="/instruments/create">
+      Add Instrument
     </Link>
   );
 
   return (
+    <Container>
     <Row className="h-100">
-      <Col className="py-2 p-0 p-lg-2" lg={8}>
-        <img src={search} className={styles.SearchIcon} alt="Search" />
-        <Form
-          className={styles.SearchBar}
-          onSubmit={(event) => event.preventDefault()}
-        >
-          <Form.Control
-            value={query}
-            onChange={(event) => setQuery(event.target.value)}
-            type="text"
-            className="mr-sm-2"
-            placeholder="Search for instruments or members"
-          />
-        </Form>
-
+      <Col lg={7}>
         {hasLoaded ? (
           <>
             {instruments.results.length ? (
@@ -105,14 +89,26 @@ function InstrumentsPage({ feedback, filter = "" }) {
           </Container>
         )}
       </Col>
-      <Col lg={4}>
-        {user && addInstrumentIcon}
+
+      <Col lg={5} className={styles.fixedNavigation}>
+      <img src={search} className={styles.SearchIcon} alt="Search" />
+        <Form
+          className={styles.SearchBar}
+          onSubmit={(event) => event.preventDefault()}
+        >
+          <Form.Control
+            value={query}
+            onChange={(event) => setQuery(event.target.value)}
+            type="text"
+            className="mr-sm-2"
+            placeholder="Search for instruments or members"
+          />
+        </Form>
+        {user && instrumentsPage && addInstrumentIcon}
       </Col>
-      
-      <Col md={4} className="d-none d-lg-block p-0 p-lg-2">
-    
-      </Col>
+      <Col md={4} className="d-none d-lg-block p-0 p-lg-2"></Col>
     </Row>
+    </Container>
   );
 }
 

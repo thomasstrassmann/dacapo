@@ -29,7 +29,7 @@ function App() {
           <Route exact path="/signup" render={() => <SignUpForm />} />
           <Route exact path="/instruments" render={() => 
             <InstrumentsPage feedback="There are no results for you search. 
-            Try another keyword..."/>} />
+            Try another keyword..." instrumentsPage />}/>
           <Route exact path="/bookmarks" render={() => 
             <InstrumentsPage feedback="There are no results for you search. 
             Try another keyword or bookmark an instrument..."
