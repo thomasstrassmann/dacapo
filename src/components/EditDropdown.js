@@ -1,9 +1,14 @@
 import React from "react";
+import { useHistory } from "react-router-dom";
 import Dropdown from "react-bootstrap/Dropdown";
 
 import settings from "../assets/icons/settings.svg";
 import edit from "../assets/icons/edit.svg";
 import delete_forever from "../assets/icons/delete_forever.svg";
+import settings_account from "../assets/icons/settings_account.svg";
+import badge from "../assets/icons/badge.svg";
+import lock from "../assets/icons/lock.svg";
+
 import styles from "../styles/EditDropdown.module.css";
 
 
@@ -46,3 +51,36 @@ export const EditDropdown = ({ handleEdit, handleDelete }) => {
     </Dropdown>
   );
 };
+
+export function ProfileEditDropdown({ id }) {
+  const history = useHistory();
+  return (
+    <Dropdown className={`ml-auto px-3 ${styles.Absolute}`} drop="left">
+      <Dropdown.Toggle as={Settings} />
+      <Dropdown.Menu>
+        <Dropdown.Item
+          onClick={() => history.push(`/profiles/${id}/edit`)}
+          aria-label="change profile"
+        >
+          <img src={settings_account} alt="Edit"/> Edit profile
+        </Dropdown.Item>
+
+        <Dropdown.Item
+          onClick={() => history.push(`/profiles/${id}/edit/username`)}
+          aria-label="change username"
+        >
+          <img src={badge} alt="Change username"/>
+          Change username
+        </Dropdown.Item>
+
+        <Dropdown.Item
+          onClick={() => history.push(`/profiles/${id}/edit/password`)}
+          aria-label="change password"
+        >
+          <img src={lock} alt="Change password"/>
+          Change password
+        </Dropdown.Item>
+      </Dropdown.Menu>
+    </Dropdown>
+  );
+}

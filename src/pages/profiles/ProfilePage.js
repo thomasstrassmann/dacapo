@@ -7,16 +7,20 @@ import Container from "react-bootstrap/Container";
 import Asset from "../../components/Asset";
 import Instrument from "../instruments/Instrument";
 
-import search_null from "../../assets/icons/search_null.svg"
+import search_null from "../../assets/icons/search_null.svg";
 import styles from "../../styles/ProfilePage.module.css";
 import appStyles from "../../App.module.css";
 import btnStyles from "../../styles/Button.module.css";
 
 import ProfilesOverview from "./ProfilesOverview";
+import { ProfileEditDropdown } from "../../components/EditDropdown";
+
 import { useUser } from "../../contexts/UserContext";
 import { useProfile, useSetProfile } from "../../contexts/ProfileContext";
 import { useParams } from "react-router";
+
 import { axiosReq } from "../../api/axiosDefaults";
+
 import { Button, Image } from "react-bootstrap";
 import { fetchMore } from "../../utils/utils";
 
@@ -36,10 +40,11 @@ function ProfilePage() {
   useEffect(() => {
     const fetchData = async () => {
       try {
-        const [{ data: pageProfile }, { data: profileInstruments }] = await Promise.all([
-          axiosReq.get(`/profiles/${id}/`),
-          axiosReq.get(`/instruments/?owner__profile=${id}`),
-        ]);
+        const [{ data: pageProfile }, { data: profileInstruments }] =
+          await Promise.all([
+            axiosReq.get(`/profiles/${id}/`),
+            axiosReq.get(`/instruments/?owner__profile=${id}`),
+          ]);
         setProfile((prevState) => ({
           ...prevState,
           pageProfile: { results: [pageProfile] },
@@ -55,6 +60,7 @@ function ProfilePage() {
 
   const mainProfile = (
     <>
+      {profile?.is_owner && <ProfileEditDropdown id={profile?.id} />}
       <Row noGutters className="px-3 text-center">
         <Col lg={3} className="text-lg-left">
           <Image
@@ -111,7 +117,11 @@ function ProfilePage() {
       {profileInstruments.results.length ? (
         <InfiniteScroll
           children={profileInstruments.results.map((instrument) => (
-            <Instrument key={instrument.id} {...instrument} setInstruments={setProfileInstruments} />
+            <Instrument
+              key={instrument.id}
+              {...instrument}
+              setInstruments={setProfileInstruments}
+            />
           ))}
           dataLength={profileInstruments.results.length}
           loader={<Asset spinner />}
@@ -130,7 +140,7 @@ function ProfilePage() {
   return (
     <Row>
       <Col className="py-2 p-0 p-lg-2" lg={8}>
-        <ProfilesOverview mobile/>
+        <ProfilesOverview mobile />
         <Container className={appStyles.Content}>
           {hasLoaded ? (
             <>
