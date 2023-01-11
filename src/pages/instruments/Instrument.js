@@ -48,9 +48,6 @@ const Instrument = (props) => {
     history.push(`/instruments/${id}/edit`);
   };
 
-
-
-
   const handleBookmark = async () => {
     try {
       const { data } = await axiosRes.post("/bookmarks/", { instrument: id });
@@ -66,6 +63,10 @@ const Instrument = (props) => {
       console.log(err);
     }
   };
+
+  const capitalize = (str) => {
+    return str.charAt(0).toUpperCase() + str.slice(1);
+  }
 
   const handleRemoveBookmark = async () => {
     try {
@@ -106,7 +107,7 @@ const Instrument = (props) => {
 
     <Card.Body>
       {title && <Card.Title>{title}</Card.Title>}
-      {category && <Card.Text>Category: {category}</Card.Text>}
+      {category && <Card.Text>Category: {capitalize(category)}</Card.Text>}
       {brand && <Card.Text>Brand: {brand}</Card.Text>}
       {description && <Card.Text>{description}</Card.Text>}
       {price && <Card.Text>Price: {price}</Card.Text>}
