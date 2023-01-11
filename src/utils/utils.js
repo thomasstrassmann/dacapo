@@ -15,6 +15,10 @@ export const fetchMore = async (resource, setResource) => {
   } catch (err) {}
 };
 
+export const capitalize = (str) => {
+  return str.charAt(0).toUpperCase() + str.slice(1);
+}
+
 export const followHelper = (profile, clickedProfile, following_id) => {
   return profile.id === clickedProfile.id
     ?

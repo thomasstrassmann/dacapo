@@ -7,6 +7,7 @@ import { axiosRes } from "../../api/axiosDefaults";
 
 import { useHistory } from "react-router-dom/cjs/react-router-dom";
 import { EditDropdown } from "../../components/EditDropdown";
+import { capitalize } from "../../utils/utils";
 
 const Wanted = (props) => {
   const {
@@ -59,7 +60,7 @@ const Wanted = (props) => {
       <Link to={`/wanted/${id}`}>
         <Card.Body>
           {title && <Card.Title>{title}</Card.Title>}
-          {category && <Card.Text>Category: {category}</Card.Text>}
+          {category && <Card.Text>Category: {capitalize(category)}</Card.Text>}
         </Card.Body>
       </Link>
     </Card>

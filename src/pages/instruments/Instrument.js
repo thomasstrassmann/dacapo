@@ -9,6 +9,7 @@ import bookmarks from "../../assets/icons/bookmarks.svg";
 import removeBookmarks from "../../assets/icons/bookmark_remove.svg";
 import { useHistory } from "react-router-dom/cjs/react-router-dom";
 import { EditDropdown } from "../../components/EditDropdown";
+import { capitalize } from "../../utils/utils";
 
 const Instrument = (props) => {
   const {
@@ -63,10 +64,6 @@ const Instrument = (props) => {
       console.log(err);
     }
   };
-
-  const capitalize = (str) => {
-    return str.charAt(0).toUpperCase() + str.slice(1);
-  }
 
   const handleRemoveBookmark = async () => {
     try {
