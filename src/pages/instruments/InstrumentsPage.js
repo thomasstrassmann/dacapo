@@ -9,7 +9,6 @@ import Instrument from "./Instrument";
 import Asset from "../../components/Asset";
 
 import searchNull from "../../assets/icons/search_null.svg";
-import search from "../../assets/icons/search.svg";
 
 import appStyles from "../../App.module.css";
 import styles from "../../styles/InstrumentsPage.module.css";
@@ -49,7 +48,7 @@ function InstrumentsPage({ feedback, filter = "", instrumentsPage }) {
     return () => {
       clearTimeout(timeout);
     };
-  }, [query, pathname, filter]);
+  }, [query, pathname, filter, user]);
 
   const addInstrumentIcon = (
     <Link className={styles.AddInstrument} to="/instruments/create">
@@ -58,57 +57,61 @@ function InstrumentsPage({ feedback, filter = "", instrumentsPage }) {
   );
 
   return (
-    <Container>
-    <Row className="h-100">
-      <Col lg={7}>
-        {hasLoaded ? (
-          <>
-            {instruments.results.length ? (
-              <InfiniteScroll
-                children={instruments.results.map((instrument) => (
-                  <Instrument
-                    key={instrument.id}
-                    {...instrument}
-                    setInstruments={setInstruments}
-                  />
-                ))}
-                dataLength={instruments.results.length}
-                loader={<Asset spinner />}
-                hasMore={!!instruments.next}
-                next={() => fetchMore(instruments, setInstruments)}
+    <>
+      <Container className={styles.SearchAddContainer}>
+        <Row className="d-flex justify-content-center">
+          <Col lg={8}>
+            <Form
+              className={styles.SearchBar}
+              onSubmit={(event) => event.preventDefault()}
+            >
+              <Form.Control
+                value={query}
+                onChange={(event) => setQuery(event.target.value)}
+                type="text"
+                placeholder="Search for instruments or members"
               />
-            ) : (
-              <Container className={appStyles.Content}>
-                <Asset src={searchNull} feedback={feedback} />
-              </Container>
-            )}
-          </>
-        ) : (
-          <Container className={appStyles.Content}>
-            <Asset spinner />
-          </Container>
-        )}
-      </Col>
+            </Form>
+          </Col>
+        </Row>
 
-      <Col lg={5} className={styles.fixedNavigation}>
-      <img src={search} className={styles.SearchIcon} alt="Search" />
-        <Form
-          className={styles.SearchBar}
-          onSubmit={(event) => event.preventDefault()}
-        >
-          <Form.Control
-            value={query}
-            onChange={(event) => setQuery(event.target.value)}
-            type="text"
-            className="mr-sm-2"
-            placeholder="Search for instruments or members"
-          />
-        </Form>
-        {user && instrumentsPage && addInstrumentIcon}
-      </Col>
-      <Col md={4} className="d-none d-lg-block p-0 p-lg-2"></Col>
-    </Row>
-    </Container>
+        <Row className="d-flex justify-content-center">
+          <Col>{user && instrumentsPage && addInstrumentIcon}</Col>
+        </Row>
+      </Container>
+
+      <Container>
+        <Row>
+          {hasLoaded ? (
+            <>
+              {instruments.results.length ? (
+                <InfiniteScroll
+                  children={instruments.results.map((instrument) => (
+                    <Instrument
+                      key={instrument.id}
+                      {...instrument}
+                      setInstruments={setInstruments}
+                    />
+                  ))}
+                  dataLength={instruments.results.length}
+                  loader={<Asset spinner />}
+                  hasMore={!!instruments.next}
+                  next={() => fetchMore(instruments, setInstruments)}
+                />
+              ) : (
+                <Container className={appStyles.Content}>
+                  <Asset src={searchNull} feedback={feedback} />
+                </Container>
+              )}
+            </>
+          ) : (
+            <Container className={appStyles.Content}>
+              <Asset spinner />
+            </Container>
+          )}
+        </Row>
+      </Container>
+    </>
   );
 }
 

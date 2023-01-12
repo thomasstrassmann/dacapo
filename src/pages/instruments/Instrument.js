@@ -106,9 +106,10 @@ const Instrument = (props) => {
       {title && <Card.Title>{title}</Card.Title>}
       {category && <Card.Text>Category: {capitalize(category)}</Card.Text>}
       {brand && <Card.Text>Brand: {brand}</Card.Text>}
-      {description && <Card.Text>{description}</Card.Text>}
+      {instrumentPage && description && <Card.Text>{description}</Card.Text>}
       {price && <Card.Text>Price: {price}</Card.Text>}
 
+      {instrumentPage &&
       <div>
           {bookmark_id ? (
           <span onClick={handleRemoveBookmark}>
@@ -123,6 +124,7 @@ const Instrument = (props) => {
         )}
         <p>Bookmarked in total: {bookmarks_count}</p>
       </div>
+        }
     </Card.Body>
   </Card>
 );
