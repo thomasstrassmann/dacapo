@@ -1,10 +1,12 @@
 import React from "react";
 import Avatar from "../../components/Avatar";
 import { Link } from "react-router-dom";
-import { Card, Media } from "react-bootstrap";
+import { Card, Container, Media } from "react-bootstrap";
 import { useUser } from "../../contexts/UserContext";
 import { axiosRes } from "../../api/axiosDefaults";
 
+import styles from "../../styles/Instrument.module.css";
+import instrumentsStyles from "../../styles/InstrumentsPage.module.css";
 import bookmarks from "../../assets/icons/bookmarks.svg";
 import removeBookmarks from "../../assets/icons/bookmark_remove.svg";
 import { useHistory } from "react-router-dom/cjs/react-router-dom";
@@ -25,7 +27,6 @@ const Instrument = (props) => {
     image,
     price,
     category,
-    created,
     updated,
     instrumentPage,
     setInstruments,
@@ -34,7 +35,6 @@ const Instrument = (props) => {
   const user = useUser();
   const history = useHistory();
   const is_owner = user?.username === owner;
-
 
   const handleDelete = async () => {
     try {
@@ -56,7 +56,11 @@ const Instrument = (props) => {
         ...prevInstruments,
         results: prevInstruments.results.map((instrument) => {
           return instrument.id === id
-            ? { ...instrument, bookmarks_count: instrument.bookmarks_count + 1, bookmark_id: data.id }
+            ? {
+                ...instrument,
+                bookmarks_count: instrument.bookmarks_count + 1,
+                bookmark_id: data.id,
+              }
             : instrument;
         }),
       }));
@@ -72,7 +76,11 @@ const Instrument = (props) => {
         ...prevInstruments,
         results: prevInstruments.results.map((instrument) => {
           return instrument.id === id
-            ? { ...instrument, bookmarks_count: instrument.bookmarks_count - 1, bookmark_id: null }
+            ? {
+                ...instrument,
+                bookmarks_count: instrument.bookmarks_count - 1,
+                bookmark_id: null,
+              }
             : instrument;
         }),
       }));
@@ -81,53 +89,94 @@ const Instrument = (props) => {
     }
   };
 
+  const CardSize = () => {
+    if (instrumentPage) {
+      return "styles.DetailSize"
+    } else {
+      return "styles.ListSize"
+    }
+  }
+
   return (
-    <Card>
-    <Card.Body>
-      <Media>
-        <Link to={`/profiles/${profile_id}`}>
-          <Avatar src={profile_avatar} height={55} />
-          {owner}
-        </Link>
-        <div>
-         <span>Created:{created}</span>
-          <span>Updated:{updated}</span>
-          {is_owner && instrumentPage && 
-          <EditDropdown handleEdit={handleEdit} handleDelete={handleDelete} /> }
-        </div>
-      </Media>
-    </Card.Body>
+    <>
+      <Container fluid>
+        <Card className={CardSize}>
+          <Card.Body>
+            <Media className={styles.HeaderContainer}>
+              <Link to={`/profiles/${profile_id}`}>
+                <Avatar src={profile_avatar} height={48} />
+                {owner}
+              </Link>
+              <div className={styles.HeaderOptions}>
+                <div>Updated:{updated}</div>
+                <div>
+                  {is_owner && instrumentPage && (
+                    <EditDropdown
+                      handleEdit={handleEdit}
+                      handleDelete={handleDelete}
+                    />
+                  )}
+                </div>
+              </div>
+            </Media>
+          </Card.Body>
+          <hr></hr>
+          <Link to={`/instruments/${id}`} className={styles.Title}>
+            {title && <Card.Title>{title}</Card.Title>}
+            {instrumentPage ? (
+              <Card.Img src={image} alt={title} className={styles.Image} />
+            ) : (
+              <Card.Img
+                src={image}
+                alt={title}
+                className={instrumentsStyles.Image}
+              />
+            )}
+          </Link>
 
-    <Link to={`/instruments/${id}`}>
-      <Card.Img src={image} alt={title} />
-    </Link>
+          <Card.Body className={styles.Subtext}>
+            {category && (
+              <Card.Text>
+                <strong>Category:</strong> {capitalize(category)}
+              </Card.Text>
+            )}
+            {brand && (
+              <Card.Text>
+                <strong>Brand:</strong> {brand}
+              </Card.Text>
+            )}
+            {instrumentPage && description && (
+              <Card.Text>{description}</Card.Text>
+            )}
+            {price && (
+              <Card.Text>
+                <strong>Price:</strong> {price} €
+              </Card.Text>
+            )}
 
-    <Card.Body>
-      {title && <Card.Title>{title}</Card.Title>}
-      {category && <Card.Text>Category: {capitalize(category)}</Card.Text>}
-      {brand && <Card.Text>Brand: {brand}</Card.Text>}
-      {instrumentPage && description && <Card.Text>{description}</Card.Text>}
-      {price && <Card.Text>Price: {price}</Card.Text>}
-
-      {instrumentPage &&
-      <div>
-          {bookmark_id ? (
-          <span onClick={handleRemoveBookmark}>
-            <img src={removeBookmarks} alt="Remove Bookmark" /><span>Remove Bookmark</span>
-          </span>
-        ) : user ? (
-          <span onClick={handleBookmark}>
-            <img src={bookmarks} alt="Bookmark" /><span>Bookmark instrument</span>
-          </span>
-        ) : (
-            <p>Log in to bookmark an instrument!</p>
-        )}
-        <p>Bookmarked in total: {bookmarks_count}</p>
-      </div>
-        }
-    </Card.Body>
-  </Card>
-);
+            {instrumentPage && (
+              <div>
+                {bookmark_id ? (
+                  <span onClick={handleRemoveBookmark}>
+                    <img src={removeBookmarks} alt="Remove Bookmark" />
+                    <span>Remove Bookmark</span>
+                  </span>
+                ) : user ? (
+                  <span onClick={handleBookmark}>
+                    <img src={bookmarks} alt="Bookmark" />
+                    <span>Bookmark instrument</span>
+                  </span>
+                ) : (
+                  <p>Log in to bookmark an instrument!</p>
+                )}
+                <p>Bookmarked in total: {bookmarks_count}</p>
+              </div>
+            )}
+          </Card.Body>
+        </Card>
+      </Container>
+    </>
+  );
 };
 
 export default Instrument;

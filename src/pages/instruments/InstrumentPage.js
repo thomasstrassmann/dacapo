@@ -29,7 +29,7 @@ function InstrumentPage() {
 
   return (
     <Row className="h-100">
-      <Col className="py-2 p-0 p-lg-2" lg={10}>
+      <Col>
         <Instrument {...instrument.results[0]} setInstruments={setInstrument} instrumentPage />
       </Col>
     </Row>

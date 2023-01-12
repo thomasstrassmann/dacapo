@@ -75,22 +75,25 @@ function InstrumentsPage({ feedback, filter = "", instrumentsPage }) {
           </Col>
         </Row>
 
-        <Row className="d-flex justify-content-center">
-          <Col>{user && instrumentsPage && addInstrumentIcon}</Col>
+        <Row>
+          <Col className="d-flex justify-content-center">{user && instrumentsPage && addInstrumentIcon}</Col>
         </Row>
       </Container>
 
-      <Container>
-        <Row>
+      <Container fluid>
+        <Row className={styles.InstrumentsContainer}>
           {hasLoaded ? (
             <>
               {instruments.results.length ? (
                 <InfiniteScroll
+                  style={{display: 'flex', flexDirection: 'row', 
+                  flexWrap: 'wrap', gap: '10px', width: '100%'}}
                   children={instruments.results.map((instrument) => (
                     <Instrument
                       key={instrument.id}
                       {...instrument}
                       setInstruments={setInstruments}
+                      style={{width: '300px'}}
                     />
                   ))}
                   dataLength={instruments.results.length}

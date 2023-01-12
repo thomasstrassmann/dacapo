@@ -85,8 +85,8 @@ const NavBar = () => {
   );
 
   return (
-    <Navbar className={styles.NavBar} fixed="top" expand="md" expanded={expanded}>
-      <Container>
+    <Navbar className={styles.NavBar} fixed="top" expand="lg" expanded={expanded}>
+      <Container fluid>
         <NavLink to="/" exact>
           <Navbar.Brand>
             <img src={logo} alt="DaCapo Logo" height="55" />

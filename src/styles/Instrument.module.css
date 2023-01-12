@@ -1,0 +1,43 @@
+.HeaderContainer {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+}
+
+.HeaderContainer Link {
+    flex: 1 0 100%;
+}
+
+.HeaderOptions {
+    flex: 1 0 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.Title{
+    text-align: center;
+    margin: 5%;
+}
+
+.card-text {
+    margin: 2%;
+}
+
+.Subtext {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 2rem;
+}
+
+.Image {
+    width: 100%;
+    object-fit: contain;    
+}
+
+.DetailSize{
+    width: 100%;
+}
+
+.ListSize{
+    width: 300px;
+}
