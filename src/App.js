@@ -17,6 +17,7 @@ import ProfileEditForm from "./pages/profiles/ProfileEditForm";
 import WantedListPage from "./pages/wanted/WantedListPage";
 import WantedDetailPage from "./pages/wanted/WantedDetailPage";
 import WantedCreateForm from "./pages/wanted/WantedCreateForm";
+import Home from "./pages/home/Home";
 
 function App() {
   const user = useUser();
@@ -27,7 +28,7 @@ function App() {
       <NavBar />
       <Container fluid className={styles.Main}>
         <Switch>
-          <Route exact path="/" render={() => <h1>Home</h1>} />
+          <Route exact path="/" render={() => <Home />} />
           <Route exact path="/login" render={() => <LoginForm />} />
           <Route exact path="/signup" render={() => <SignUpForm />} />
           <Route exact path="/instruments" render={() => 

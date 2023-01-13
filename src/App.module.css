@@ -18,6 +18,7 @@ font-family: 'Seymour One', sans-serif;
 .Main{
   position: relative;
   width: 100%;
+  padding: 0;
 }
 
 a {

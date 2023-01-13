@@ -252,3 +252,9 @@ At this point I would first like to mention the course content from CodeInstitut
 Franki Chamaki - https://unsplash.com/photos/U2azMu57UEY
 
 Dolo Iglesias - https://unsplash.com/de/fotos/z9z6u1rn7sY
+
+John Matychuk - https://unsplash.com/de/fotos/gUK3lA3K7Yo
+
+Wes Hicks - https://unsplash.com/de/fotos/MEL-jJnm7RQ
+
+Adam Rhodes - https://unsplash.com/de/fotos/CNDp7FoHEGo
