@@ -1,7 +1,7 @@
 import React from "react";
 import Avatar from "../../components/Avatar";
 import { Link } from "react-router-dom";
-import { Card, Container, Media } from "react-bootstrap";
+import { Card, Media } from "react-bootstrap";
 import { useUser } from "../../contexts/UserContext";
 import { axiosRes } from "../../api/axiosDefaults";
 
@@ -89,92 +89,84 @@ const Instrument = (props) => {
     }
   };
 
-  const CardSize = () => {
-    if (instrumentPage) {
-      return "styles.DetailSize"
-    } else {
-      return "styles.ListSize"
-    }
-  }
-
   return (
     <>
-      <Container fluid>
-        <Card className={CardSize}>
-          <Card.Body>
-            <Media className={styles.HeaderContainer}>
-              <Link to={`/profiles/${profile_id}`}>
-                <Avatar src={profile_avatar} height={48} />
-                {owner}
-              </Link>
-              <div className={styles.HeaderOptions}>
-                <div>Updated:{updated}</div>
-                <div>
-                  {is_owner && instrumentPage && (
-                    <EditDropdown
-                      handleEdit={handleEdit}
-                      handleDelete={handleDelete}
-                    />
-                  )}
-                </div>
-              </div>
-            </Media>
-          </Card.Body>
-          <hr></hr>
-          <Link to={`/instruments/${id}`} className={styles.Title}>
-            {title && <Card.Title>{title}</Card.Title>}
-            {instrumentPage ? (
-              <Card.Img src={image} alt={title} className={styles.Image} />
-            ) : (
-              <Card.Img
-                src={image}
-                alt={title}
-                className={instrumentsStyles.Image}
-              />
-            )}
-          </Link>
-
-          <Card.Body className={styles.Subtext}>
-            {category && (
-              <Card.Text>
-                <strong>Category:</strong> {capitalize(category)}
-              </Card.Text>
-            )}
-            {brand && (
-              <Card.Text>
-                <strong>Brand:</strong> {brand}
-              </Card.Text>
-            )}
-            {instrumentPage && description && (
-              <Card.Text>{description}</Card.Text>
-            )}
-            {price && (
-              <Card.Text>
-                <strong>Price:</strong> {price} €
-              </Card.Text>
-            )}
-
-            {instrumentPage && (
+      <Card
+        className={`${instrumentPage ? styles.DetailSize : styles.ListSize}`}
+      >
+        <Card.Body>
+          <Media className={styles.HeaderContainer}>
+            <Link to={`/profiles/${profile_id}`}>
+              <Avatar src={profile_avatar} height={48} />
+              {owner}
+            </Link>
+            <div className={styles.HeaderOptions}>
+              <div>Updated:{updated}</div>
               <div>
-                {bookmark_id ? (
-                  <span onClick={handleRemoveBookmark}>
-                    <img src={removeBookmarks} alt="Remove Bookmark" />
-                    <span>Remove Bookmark</span>
-                  </span>
-                ) : user ? (
-                  <span onClick={handleBookmark}>
-                    <img src={bookmarks} alt="Bookmark" />
-                    <span>Bookmark instrument</span>
-                  </span>
-                ) : (
-                  <p>Log in to bookmark an instrument!</p>
+                {is_owner && instrumentPage && (
+                  <EditDropdown
+                    handleEdit={handleEdit}
+                    handleDelete={handleDelete}
+                  />
                 )}
-                <p>Bookmarked in total: {bookmarks_count}</p>
               </div>
-            )}
-          </Card.Body>
-        </Card>
-      </Container>
+            </div>
+          </Media>
+        </Card.Body>
+        <hr></hr>
+        <Link to={`/instruments/${id}`} className={styles.Title}>
+          {title && <Card.Title>{title}</Card.Title>}
+          {instrumentPage ? (
+            <Card.Img src={image} alt={title} className={styles.Image} />
+          ) : (
+            <Card.Img
+              src={image}
+              alt={title}
+              className={instrumentsStyles.Image}
+            />
+          )}
+        </Link>
+
+        <Card.Body className={styles.Subtext}>
+          {category && (
+            <Card.Text>
+              <strong>Category:</strong> {capitalize(category)}
+            </Card.Text>
+          )}
+          {brand && (
+            <Card.Text>
+              <strong>Brand:</strong> {brand}
+            </Card.Text>
+          )}
+          {instrumentPage && description && (
+            <Card.Text>{description}</Card.Text>
+          )}
+          {price && (
+            <Card.Text>
+              <strong>Price:</strong> {price} €
+            </Card.Text>
+          )}
+
+          {instrumentPage && (
+            <div>
+              {bookmark_id ? (
+                <span onClick={handleRemoveBookmark}>
+                  <img src={removeBookmarks} alt="Remove Bookmark" />
+                  <span>Remove Bookmark</span>
+                </span>
+              ) : user ? (
+                <span onClick={handleBookmark}>
+                  <img src={bookmarks} alt="Bookmark" />
+                  <span>Bookmark instrument</span>
+                </span>
+              ) : (
+                <p>Log in to bookmark an instrument!</p>
+              )}
+              <p>Bookmarked in total: {bookmarks_count}</p>
+            </div>
+          )}
+        </Card.Body>
+      </Card>
     </>
   );
 };

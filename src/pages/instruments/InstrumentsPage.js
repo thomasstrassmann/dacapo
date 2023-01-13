@@ -80,14 +80,13 @@ function InstrumentsPage({ feedback, filter = "", instrumentsPage }) {
         </Row>
       </Container>
 
-      <Container fluid>
-        <Row className={styles.InstrumentsContainer}>
+      <Container>
           {hasLoaded ? (
             <>
               {instruments.results.length ? (
                 <InfiniteScroll
-                  style={{display: 'flex', flexDirection: 'row', 
-                  flexWrap: 'wrap', gap: '10px', width: '100%'}}
+                  style={{display: 'flex', 
+                  flexWrap: 'wrap', gap: '80px', width: '100%', justifyContent: 'center'}}
                   children={instruments.results.map((instrument) => (
                     <Instrument
                       key={instrument.id}
@@ -112,7 +111,6 @@ function InstrumentsPage({ feedback, filter = "", instrumentsPage }) {
               <Asset spinner />
             </Container>
           )}
-        </Row>
       </Container>
     </>
   );
