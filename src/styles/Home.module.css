@@ -43,3 +43,28 @@
     font-size: 5vw;
   }
 }
+
+.Introduction {
+    width: 100%;
+    margin: 2% auto;
+    text-align: center;
+}
+
+.Introduction h1 {
+    margin-bottom: 5%;
+    color: #fa3750;
+}
+
+.Introduction p {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 3vw;
+}
+
+.Link, .Link:hover  {
+    color: #fa3750;
+    padding: 2px;
+}
+
+.Introduction h4 {
+    margin: 5% auto;
+}

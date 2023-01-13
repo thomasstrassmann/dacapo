@@ -1,5 +1,5 @@
 import React from "react";
-import { Carousel } from "react-bootstrap";
+import { Carousel, Container } from "react-bootstrap";
 import { useUser } from "../../contexts/UserContext";
 
 import carousel1 from "../../assets/carousel1.jpg";
@@ -7,6 +7,7 @@ import carousel2 from "../../assets/carousel2.jpg";
 import carousel3 from "../../assets/carousel3.jpg";
 
 import styles from "../../styles/Home.module.css"
+import { Link } from "react-router-dom";
 
 function Home() {
   const user = useUser();
@@ -52,6 +53,18 @@ function Home() {
           </Carousel.Caption>
         </Carousel.Item>
       </Carousel>
+
+      <Container className={styles.Introduction}>
+        <h1>DaCapo - We value B-Stock instruments!</h1>
+        <p>Da capo is an Italian playing instruction from music theory and means 
+          "start from the beginning". And that's exactly what the instruments on DaCapo do: 
+          they start over by changing hands as a pre-owned instrument. </p>
+
+        
+        <h4>To enjoy all the benefits of DaCapo, <Link to="/login" className={styles.Link}> log in </Link>  
+          or <Link to="/signup" className={styles.Link}> create an account </Link> 
+          and discover the wonderful world of second-hand instruments!</h4>
+      </Container>
     </>
   );
 }
