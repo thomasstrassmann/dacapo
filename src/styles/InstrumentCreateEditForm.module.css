@@ -23,12 +23,15 @@
   font-family: "Cormorant Garamond", serif;
   font-size: 1.2rem;
   color: black;
+  padding: 1%;
+  border-color: #568294;
 }
 
-.ImageWindow {
-  padding: 0 !important;
+.RowContainer {
+  margin: 2%;
 }
 
-.ImageWindow:hover {
-  cursor: pointer;
+.ButtonContainer {
+  display: flex;
+  justify-content: center;
 }
