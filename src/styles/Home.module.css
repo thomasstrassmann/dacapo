@@ -1,6 +1,45 @@
 .Carousel {
-    height: 90vh;
-    width: 100%;
-    object-fit: cover;
-    display: block;
+  height: 90vh;
+  width: 100%;
+  object-fit: cover;
+  display: block;
+}
+
+.Caption {
+  position: absolute;
+  right: 15%;
+  top: 20%;
+  left: 15%;
+  z-index: 10;
+  height: min-content;
+  padding-top: 20px;
+  padding-bottom: 20px;
+  color: white;
+  text-align: center;
+  background-color: rgba(0, 0, 0, 0.7);
+  flex-direction: column;
+  justify-content: center;
+  display: flex;
+  border: 2px solid #fa3750;
+}
+
+.Username {
+    color: #fa3750;
+}
+
+.Caption h1, .Caption h2 {
+    margin: 2% auto;
+    font-size: 3vw;
+}
+
+.Caption p {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 3vw;
+    margin: 0;
+}
+
+@media (max-width: 992px) {
+  .Caption p {
+    font-size: 5vw;
+  }
 }
