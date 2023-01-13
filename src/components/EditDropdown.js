@@ -11,7 +11,6 @@ import lock from "../assets/icons/lock.svg";
 
 import styles from "../styles/EditDropdown.module.css";
 
-
 const Settings = React.forwardRef(({ onClick }, ref) => (
   <img
     src={settings}
@@ -28,7 +27,6 @@ export const EditDropdown = ({ handleEdit, handleDelete }) => {
   return (
     <Dropdown className="ml-auto" drop="left">
       <Dropdown.Toggle as={Settings} />
-
       <Dropdown.Menu
         className="text-center"
         popperConfig={{ strategy: "fixed" }}
@@ -62,14 +60,14 @@ export function ProfileEditDropdown({ id }) {
           onClick={() => history.push(`/profiles/${id}/edit`)}
           aria-label="change profile"
         >
-          <img src={settings_account} alt="Edit"/> Edit profile
+          <img src={settings_account} alt="Edit" /> Edit profile
         </Dropdown.Item>
 
         <Dropdown.Item
           onClick={() => history.push(`/profiles/${id}/edit/username`)}
           aria-label="change username"
         >
-          <img src={badge} alt="Change username"/>
+          <img src={badge} alt="Change username" />
           Change username
         </Dropdown.Item>
 
@@ -77,7 +75,7 @@ export function ProfileEditDropdown({ id }) {
           onClick={() => history.push(`/profiles/${id}/edit/password`)}
           aria-label="change password"
         >
-          <img src={lock} alt="Change password"/>
+          <img src={lock} alt="Change password" />
           Change password
         </Dropdown.Item>
       </Dropdown.Menu>

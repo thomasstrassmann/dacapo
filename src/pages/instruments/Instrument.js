@@ -144,7 +144,9 @@ const Instrument = (props) => {
             </Card.Text>
           )}
           {instrumentPage && description && (
-            <Card.Text>{description}</Card.Text>
+            <Card.Text>
+              <strong>Description:</strong> {description}
+            </Card.Text>
           )}
           {price && (
             <Card.Text>
