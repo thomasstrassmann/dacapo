@@ -1,5 +1,5 @@
 import React from "react";
-import { Carousel, Container } from "react-bootstrap";
+import { Carousel, Container, Navbar, NavLink } from "react-bootstrap";
 import { useUser } from "../../contexts/UserContext";
 
 import carousel1 from "../../assets/carousel1.jpg";
@@ -7,6 +7,7 @@ import carousel2 from "../../assets/carousel2.jpg";
 import carousel3 from "../../assets/carousel3.jpg";
 
 import styles from "../../styles/Home.module.css"
+import logo from "../../assets/dacapo-logo.png";
 import { Link } from "react-router-dom";
 
 function Home() {
@@ -19,7 +20,7 @@ function Home() {
           <img
             className={styles.Carousel}
             src={carousel1}
-            alt="Let B-Stock Instruments resound again!"
+            alt="Let B-Stock instruments resound again!"
           />
           <Carousel.Caption className={styles.Caption}>
             {user && <h1>Welcome <span className={styles.Username}>{user.username}!</span></h1>}
@@ -60,11 +61,31 @@ function Home() {
           "start from the beginning". And that's exactly what the instruments on DaCapo do: 
           they start over by changing hands as a pre-owned instrument. </p>
 
-        
+        {!user &&
         <h4>To enjoy all the benefits of DaCapo, <Link to="/login" className={styles.Link}> log in </Link>  
           or <Link to="/signup" className={styles.Link}> create an account </Link> 
-          and discover the wonderful world of second-hand instruments!</h4>
+          and discover the wonderful world of second-hand instruments!</h4>}
       </Container>
+
+      <Navbar className={styles.NavBar}>
+      <Container fluid>
+        <NavLink to="/">
+          Facebook
+        </NavLink>
+        <NavLink to="/">
+          Instagram
+        </NavLink>
+        <NavLink to="/">
+          Twitter
+        </NavLink>
+
+        <NavLink to="/" exact>
+          <Navbar.Brand>
+            <img src={logo} alt="DaCapo Logo" height="55" />
+          </Navbar.Brand>
+        </NavLink>
+      </Container>
+    </Navbar>
     </>
   );
 }
