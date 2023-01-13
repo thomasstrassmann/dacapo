@@ -19,6 +19,10 @@ export const capitalize = (str) => {
   return str.charAt(0).toUpperCase() + str.slice(1);
 }
 
+export const truncate = (str) => {
+  return (str.length > 40) ? str.slice(0, 39) + '...' : str;
+};
+
 export const followHelper = (profile, clickedProfile, following_id) => {
   return profile.id === clickedProfile.id
     ?

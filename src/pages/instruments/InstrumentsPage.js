@@ -10,7 +10,6 @@ import Asset from "../../components/Asset";
 
 import searchNull from "../../assets/icons/search_null.svg";
 
-import appStyles from "../../App.module.css";
 import styles from "../../styles/InstrumentsPage.module.css";
 import { useLocation } from "react-router";
 import { axiosReq } from "../../api/axiosDefaults";
@@ -101,13 +100,13 @@ function InstrumentsPage({ feedback, filter = "", instrumentsPage }) {
                   next={() => fetchMore(instruments, setInstruments)}
                 />
               ) : (
-                <Container className={appStyles.Content}>
+                <Container>
                   <Asset src={searchNull} feedback={feedback} />
                 </Container>
               )}
             </>
           ) : (
-            <Container className={appStyles.Content}>
+            <Container>
               <Asset spinner />
             </Container>
           )}

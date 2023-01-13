@@ -11,7 +11,7 @@ import bookmarks from "../../assets/icons/bookmarks.svg";
 import removeBookmarks from "../../assets/icons/bookmark_remove.svg";
 import { useHistory } from "react-router-dom/cjs/react-router-dom";
 import { EditDropdown } from "../../components/EditDropdown";
-import { capitalize } from "../../utils/utils";
+import { capitalize, truncate } from "../../utils/utils";
 
 const Instrument = (props) => {
   const {
@@ -92,7 +92,7 @@ const Instrument = (props) => {
   return (
     <>
       <Card
-        className={`${instrumentPage ? styles.DetailSize : styles.ListSize}`}
+        className={`${styles.Card} ${instrumentPage ? styles.DetailSize : styles.ListSize}`}
       >
         <Card.Body>
           <Media className={styles.HeaderContainer}>
@@ -113,9 +113,14 @@ const Instrument = (props) => {
             </div>
           </Media>
         </Card.Body>
-        <hr></hr>
-        <Link to={`/instruments/${id}`} className={styles.Title}>
-          {title && <Card.Title>{title}</Card.Title>}
+        <hr className={styles.Line}></hr>
+        <Link to={`/instruments/${id}`} className={styles.Teaser}>
+          {instrumentPage ? title && 
+            <Card.Title>{title}</Card.Title> : 
+          title && 
+            <Card.Title className={styles.Title}>{truncate(title)}</Card.Title>
+          } 
+
           {instrumentPage ? (
             <Card.Img src={image} alt={title} className={styles.Image} />
           ) : (
@@ -126,7 +131,7 @@ const Instrument = (props) => {
             />
           )}
         </Link>
-
+        <hr className={styles.Line}></hr>
         <Card.Body className={styles.Subtext}>
           {category && (
             <Card.Text>
