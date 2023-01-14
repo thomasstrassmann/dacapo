@@ -29,12 +29,12 @@
 }
 
 .Card {
-    border: 2px solid #5c8294;
+    border: 2px solid black;
     margin-top: 5%;
 }
 
 .Line {
-    border-top: 1px solid #fa3750;
+    border-top: 2px solid #fa3750;
     margin: 0;
 }
 
@@ -43,13 +43,18 @@
     font-size: 2rem;
 }
 
+.Subtext p {
+    margin: 0;
+}
+
 .Image {
     max-width: 768px;
     object-fit: contain;    
 }
 
 .DetailSize{
-    width: 100%;
+    width: 80%;
+    margin: 5% auto;
 }
 
 .ListSize{
