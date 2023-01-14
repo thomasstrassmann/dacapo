@@ -15,12 +15,12 @@
     justify-content: center;
 }
 
-.Teaser{
+.TeaserList, .TeaserDetail{
     text-align: center;
     margin: 5% 0;
 }
 
-.Teaser:hover {
+.TeaserList:hover {
     color: #fa3750;
 }
 
@@ -55,8 +55,46 @@
 .DetailSize{
     width: 80%;
     margin: 5% auto;
+    border: none;
+}
+
+.DetailSize .Line {
+    display: none;
 }
 
 .ListSize{
     width: 400px;
+}
+
+.BookmarkContainer {
+    margin: 2% auto;
+    display: flex;
+    width: 100%;
+    align-items: center;
+    flex-direction: column;
+    gap: 2vh;
+}
+
+.BookmarkContainer div, 
+.BookmarkContainer p,
+.BookmarkContainer span{
+    font-size: 3vw;
+}
+
+.BookmarkContainer img {
+    width: 4vw;
+}
+
+.HandleBookmark, .Settings {
+    cursor: pointer;
+}
+
+.Settings {
+    margin-left: 20%;
+}
+
+.HandleBookmark:hover {
+    color: #fa3750;
+    filter: invert(50%) sepia(52%) saturate(6690%) hue-rotate(328deg)
+    brightness(94%) contrast(110%);
 }

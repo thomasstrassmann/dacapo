@@ -12,6 +12,7 @@ import lock from "../assets/icons/lock.svg";
 import styles from "../styles/EditDropdown.module.css";
 
 const Settings = React.forwardRef(({ onClick }, ref) => (
+  <>
   <img
     src={settings}
     ref={ref}
@@ -21,6 +22,7 @@ const Settings = React.forwardRef(({ onClick }, ref) => (
       onClick(e);
     }}
   />
+  </>
 ));
 
 export const EditDropdown = ({ handleEdit, handleDelete }) => {

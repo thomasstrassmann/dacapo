@@ -6,6 +6,7 @@ import { useUser } from "../../contexts/UserContext";
 import { axiosRes } from "../../api/axiosDefaults";
 
 import styles from "../../styles/Instrument.module.css";
+import appStyles from "../../App.module.css";
 import instrumentsStyles from "../../styles/InstrumentsPage.module.css";
 import bookmarks from "../../assets/icons/bookmarks.svg";
 import removeBookmarks from "../../assets/icons/bookmark_remove.svg";
@@ -92,46 +93,69 @@ const Instrument = (props) => {
   return (
     <>
       <Card
-        className={`${styles.Card} ${instrumentPage ? styles.DetailSize : styles.ListSize}`}
+        className={`${styles.Card} ${
+          instrumentPage ? styles.DetailSize : styles.ListSize
+        }`}
       >
         <Card.Body>
           <Media className={styles.HeaderContainer}>
             <Link to={`/profiles/${profile_id}`}>
-              <Avatar src={profile_avatar} height={48} />
-              {owner}
+              <Avatar src={profile_avatar} height={`${instrumentPage ? 144 : 48}`} />
+              <span className={appStyles.Owner}>{owner}</span>
             </Link>
             <div className={styles.HeaderOptions}>
               <div>Updated:{updated}</div>
-              <div>
-                {is_owner && instrumentPage && (
+              {is_owner && instrumentPage && (
+              <div className={styles.Settings}>
                   <EditDropdown
                     handleEdit={handleEdit}
                     handleDelete={handleDelete}
                   />
+                </div>
                 )}
-              </div>
             </div>
           </Media>
         </Card.Body>
         <hr className={styles.Line}></hr>
-        <Link to={`/instruments/${id}`} className={styles.Teaser}>
-          {instrumentPage ? title && 
-            <Card.Title>{title}</Card.Title> : 
-          title && 
-            <Card.Title className={styles.Title}>{truncate(title)}</Card.Title>
-          } 
 
-          {instrumentPage ? (
+        {instrumentPage ? (
+          <div className={styles.TeaserDetail}>
+            <Card.Title>{title}</Card.Title>
             <Card.Img src={image} alt={title} className={styles.Image} />
-          ) : (
+          </div>
+        ) : (
+          <Link to={`/instruments/${id}`} className={styles.TeaserList}>
+            <Card.Title className={styles.Title}>{truncate(title)}</Card.Title>
             <Card.Img
               src={image}
               alt={title}
               className={instrumentsStyles.Image}
             />
-          )}
-        </Link>
+          </Link>
+        )}
+
         <hr className={styles.Line}></hr>
+        {instrumentPage && (
+          <div className={styles.BookmarkContainer}>
+            {bookmark_id ? (
+              <div
+                onClick={handleRemoveBookmark}
+                className={styles.HandleBookmark}
+              >
+                <img src={removeBookmarks} alt="Remove Bookmark" />
+                <span>Remove Bookmark</span>
+              </div>
+            ) : user ? (
+              <div onClick={handleBookmark} className={styles.HandleBookmark}>
+                <img src={bookmarks} alt="Bookmark" />
+                <span>Bookmark instrument</span>
+              </div>
+            ) : (
+              <p>Log in to bookmark an instrument!</p>
+            )}
+            <span>Bookmarked in total: {bookmarks_count}</span>
+          </div>
+        )}
         <Card.Body className={styles.Subtext}>
           {category && (
             <Card.Text>
@@ -143,34 +167,15 @@ const Instrument = (props) => {
               <strong>Brand:</strong> {brand}
             </Card.Text>
           )}
-          {instrumentPage && description && (
-            <Card.Text>
-              <strong>Description:</strong> {description}
-            </Card.Text>
-          )}
           {price && (
             <Card.Text>
               <strong>Price:</strong> {price} €
             </Card.Text>
           )}
-
-          {instrumentPage && (
-            <div>
-              {bookmark_id ? (
-                <span onClick={handleRemoveBookmark}>
-                  <img src={removeBookmarks} alt="Remove Bookmark" />
-                  <span>Remove Bookmark</span>
-                </span>
-              ) : user ? (
-                <span onClick={handleBookmark}>
-                  <img src={bookmarks} alt="Bookmark" />
-                  <span>Bookmark instrument</span>
-                </span>
-              ) : (
-                <p>Log in to bookmark an instrument!</p>
-              )}
-              <p>Bookmarked in total: {bookmarks_count}</p>
-            </div>
+          {instrumentPage && description && (
+            <Card.Text>
+              <strong>Description:</strong> {description}
+            </Card.Text>
           )}
         </Card.Body>
       </Card>

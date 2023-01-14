@@ -16,7 +16,7 @@ function Home() {
   return (
     <>
       <Carousel>
-        <Carousel.Item interval={5000}>
+        <Carousel.Item interval={7000}>
           <img
             className={styles.Carousel}
             src={carousel1}
@@ -29,7 +29,7 @@ function Home() {
             <p>No matter if guitar, bass, piano or tuba!</p>
           </Carousel.Caption>
         </Carousel.Item>
-        <Carousel.Item interval={5000}>
+        <Carousel.Item interval={7000}>
           <img
             className={styles.Carousel}
             src={carousel2}
@@ -43,7 +43,7 @@ function Home() {
             </p>
           </Carousel.Caption>
         </Carousel.Item>
-        <Carousel.Item interval={5000}>
+        <Carousel.Item interval={7000}>
           <img className={styles.Carousel} src={carousel3} alt="Contact buyers or post an instrument request!" />
           <Carousel.Caption className={styles.Caption}>
             <h2>Contact buyers or post an instrument request!</h2>
