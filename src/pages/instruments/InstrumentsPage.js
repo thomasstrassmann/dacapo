@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import React, { useEffect, useRef, useState } from "react";
 
 import Form from "react-bootstrap/Form";
 import Col from "react-bootstrap/Col";
@@ -9,20 +9,25 @@ import Instrument from "./Instrument";
 import Asset from "../../components/Asset";
 
 import searchNull from "../../assets/icons/search_null.svg";
+import arrow_up from "../../assets/icons/arrow_up.svg";
 
 import styles from "../../styles/InstrumentsPage.module.css";
+import btnStyles from "../../styles/Button.module.css";
+
 import { useLocation } from "react-router";
 import { axiosReq } from "../../api/axiosDefaults";
 import InfiniteScroll from "react-infinite-scroll-component";
 import { fetchMore } from "../../utils/utils";
 import { Link } from "react-router-dom";
 import { useUser } from "../../contexts/UserContext";
+import { Button } from "react-bootstrap";
 
 function InstrumentsPage({ feedback, filter = "", instrumentsPage }) {
   const [instruments, setInstruments] = useState({ results: [] });
   const [hasLoaded, setHasLoaded] = useState(false);
   const user = useUser();
   const [query, setQuery] = useState("");
+  const top = useRef();
 
   const { pathname } = useLocation();
 
@@ -55,6 +60,10 @@ function InstrumentsPage({ feedback, filter = "", instrumentsPage }) {
     </Link>
   );
 
+  const toTop = () => {
+    top.current.focus();
+  };
+
   return (
     <>
       <Container className={styles.SearchAddContainer}>
@@ -69,6 +78,7 @@ function InstrumentsPage({ feedback, filter = "", instrumentsPage }) {
                 onChange={(event) => setQuery(event.target.value)}
                 type="text"
                 placeholder="Search for instruments or members"
+                ref={top}
               />
             </Form>
           </Col>
@@ -111,6 +121,9 @@ function InstrumentsPage({ feedback, filter = "", instrumentsPage }) {
             </Container>
           )}
       </Container>
+      <Button onClick={toTop} className={btnStyles.TopButton}>
+            <img src={arrow_up} alt="Back to top"></img>
+      </Button>
     </>
   );
 }

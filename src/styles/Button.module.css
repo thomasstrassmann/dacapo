@@ -7,8 +7,10 @@
 
 .Button:hover,
 .CreateFormButton:hover,
-.ImageButton:hover {
+.ImageButton:hover,
+.TopButton:hover {
   background-color: #5c8294;
+  border: 2px solid black;
 }
 
 .CreateFormButton {
@@ -24,4 +26,19 @@
   border: 2px solid black;
   background-color: #fa3750;
   padding: 1% 2%;
+}
+
+.TopButton {
+  position: fixed;
+  background-color: #fa3750;
+  border-radius: 50%;
+  width: 5vw;
+  height: 5vw;
+  bottom: 3vh;
+  right: 3vw;
+  border: 2px solid black;
+}
+
+.TopButton img {
+  width: 2vw;
 }

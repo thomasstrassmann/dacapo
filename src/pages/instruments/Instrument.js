@@ -1,7 +1,7 @@
 import React from "react";
 import Avatar from "../../components/Avatar";
 import { Link } from "react-router-dom";
-import { Card, Col, Media } from "react-bootstrap";
+import { Card, Media } from "react-bootstrap";
 import { useUser } from "../../contexts/UserContext";
 import { axiosRes } from "../../api/axiosDefaults";
 
