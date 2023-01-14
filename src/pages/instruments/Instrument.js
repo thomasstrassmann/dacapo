@@ -1,7 +1,7 @@
 import React from "react";
 import Avatar from "../../components/Avatar";
 import { Link } from "react-router-dom";
-import { Card, Media } from "react-bootstrap";
+import { Card, Col, Media } from "react-bootstrap";
 import { useUser } from "../../contexts/UserContext";
 import { axiosRes } from "../../api/axiosDefaults";
 
@@ -156,7 +156,7 @@ const Instrument = (props) => {
             <span>Bookmarked in total: {bookmarks_count}</span>
           </div>
         )}
-        <Card.Body className={styles.Subtext}>
+        <Card.Body className={`${instrumentPage ? styles.SubtextDetail : styles.Subtext}`}>
           {category && (
             <Card.Text>
               <strong>Category:</strong> {capitalize(category)}
@@ -169,7 +169,7 @@ const Instrument = (props) => {
           )}
           {price && (
             <Card.Text>
-              <strong>Price:</strong> {price} €
+              <strong>Price:</strong> {price}€
             </Card.Text>
           )}
           {instrumentPage && description && (

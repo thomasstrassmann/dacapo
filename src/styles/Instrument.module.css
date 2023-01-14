@@ -38,9 +38,19 @@
     margin: 0;
 }
 
-.Subtext {
+.Subtext, .SubtextDetail {
     font-family: 'Cormorant Garamond', serif;
     font-size: 2rem;
+}
+
+.SubtextDetail {
+    display: flex;
+    justify-content: center;
+    flex-wrap: wrap;
+}
+
+.SubtextDetail p {
+    flex: 1 0 33%;
 }
 
 .Subtext p {
@@ -78,7 +88,7 @@
 .BookmarkContainer div, 
 .BookmarkContainer p,
 .BookmarkContainer span{
-    font-size: 3vw;
+    font-size: 2vw;
 }
 
 .BookmarkContainer img {
