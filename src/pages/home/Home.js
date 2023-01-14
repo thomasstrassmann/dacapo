@@ -67,8 +67,8 @@ function Home() {
           and discover the wonderful world of second-hand instruments!</h4>}
       </Container>
 
-      <Navbar className={styles.NavBar}>
-      <Container fluid>
+      <Navbar className={styles.Footer}>
+      <Container fluid className={styles.SocialLinks}>
         <NavLink to="/">
           Facebook
         </NavLink>
@@ -79,7 +79,7 @@ function Home() {
           Twitter
         </NavLink>
 
-        <NavLink to="/" exact>
+        <NavLink to="/" className={styles.BrandContainer}>
           <Navbar.Brand>
             <img src={logo} alt="DaCapo Logo" height="55" />
           </Navbar.Brand>

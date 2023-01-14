@@ -46,7 +46,7 @@
 
 .Introduction {
     width: 100%;
-    margin: 2% auto;
+    margin: 5% auto;
     text-align: center;
 }
 
@@ -68,3 +68,25 @@
 .Introduction h4 {
     margin: 5% auto;
 }
+
+.Footer {
+  border-top: 2px solid #fa3750;
+  background-color: black;
+  margin-top: 10%;
+  flex-wrap: wrap;
+}
+
+.Footer a {
+  color: white;
+  font-size: 1.5vw;
+}
+
+.BrandContainer {
+  width: 25%;
+}
+
+.BrandContainer img {
+  width: 100%;
+  object-fit: contain;
+}
+
