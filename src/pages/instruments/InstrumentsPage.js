@@ -9,10 +9,8 @@ import Instrument from "./Instrument";
 import Asset from "../../components/Asset";
 
 import searchNull from "../../assets/icons/search_null.svg";
-import arrow_up from "../../assets/icons/arrow_up.svg";
 
 import styles from "../../styles/InstrumentsPage.module.css";
-import btnStyles from "../../styles/Button.module.css";
 
 import { useLocation } from "react-router";
 import { axiosReq } from "../../api/axiosDefaults";
@@ -20,14 +18,14 @@ import InfiniteScroll from "react-infinite-scroll-component";
 import { fetchMore } from "../../utils/utils";
 import { Link } from "react-router-dom";
 import { useUser } from "../../contexts/UserContext";
-import { Button } from "react-bootstrap";
+import TopButton from "../../components/TopButton";
 
 function InstrumentsPage({ feedback, filter = "", instrumentsPage }) {
   const [instruments, setInstruments] = useState({ results: [] });
   const [hasLoaded, setHasLoaded] = useState(false);
   const user = useUser();
   const [query, setQuery] = useState("");
-  const top = useRef();
+  const top = React.createRef();
 
   const { pathname } = useLocation();
 
@@ -60,10 +58,6 @@ function InstrumentsPage({ feedback, filter = "", instrumentsPage }) {
     </Link>
   );
 
-  const toTop = () => {
-    top.current.focus();
-  };
-
   return (
     <>
       <Container className={styles.SearchAddContainer}>
@@ -85,50 +79,50 @@ function InstrumentsPage({ feedback, filter = "", instrumentsPage }) {
         </Row>
 
         <Row>
-          <Col className="d-flex justify-content-center">{user && instrumentsPage && addInstrumentIcon}</Col>
+          <Col className="d-flex justify-content-center">
+            {user && instrumentsPage && addInstrumentIcon}
+          </Col>
         </Row>
       </Container>
 
       <Container>
-          {hasLoaded ? (
-            <>
-              {instruments.results.length ? (
-                <InfiniteScroll
-                  style={{display: 'flex', 
-                  flexWrap: 'wrap', gap: '80px', width: '100%', justifyContent: 'center'}}
-                  children={instruments.results.map((instrument) => (
-                    <Instrument
-                      key={instrument.id}
-                      {...instrument}
-                      setInstruments={setInstruments}
-                      style={{width: '300px'}}
-                    />
-                  ))}
-                  dataLength={instruments.results.length}
-                  loader={<Asset spinner />}
-                  hasMore={!!instruments.next}
-                  next={() => fetchMore(instruments, setInstruments)}
-                />
-              ) : (
-                <Container>
-                  <Asset src={searchNull} feedback={feedback} />
-                </Container>
-              )}
-            </>
-          ) : (
-            <Container>
-              <Asset spinner />
-            </Container>
-          )}
+        {hasLoaded ? (
+          <>
+            {instruments.results.length ? (
+              <InfiniteScroll
+                style={{
+                  display: "flex",
+                  flexWrap: "wrap",
+                  gap: "80px",
+                  width: "100%",
+                  justifyContent: "center",
+                }}
+                children={instruments.results.map((instrument) => (
+                  <Instrument
+                    key={instrument.id}
+                    {...instrument}
+                    setInstruments={setInstruments}
+                    style={{ width: "300px" }}
+                  />
+                ))}
+                dataLength={instruments.results.length}
+                loader={<Asset spinner />}
+                hasMore={!!instruments.next}
+                next={() => fetchMore(instruments, setInstruments)}
+              />
+            ) : (
+              <Container>
+                <Asset src={searchNull} feedback={feedback} />
+              </Container>
+            )}
+          </>
+        ) : (
+          <Container>
+            <Asset spinner />
+          </Container>
+        )}
       </Container>
-
-      <Button onClick={toTop} className={`d-lg-none ${btnStyles.TopButtonMobile}`} lg>
-            <img src={arrow_up} alt="Back to top"></img>
-      </Button>
-
-      <Button onClick={toTop} className={`d-none d-lg-block ${btnStyles.TopButton}`} lg>
-            <img src={arrow_up} alt="Back to top"></img>
-      </Button>
+      <TopButton ref={top} />
     </>
   );
 }

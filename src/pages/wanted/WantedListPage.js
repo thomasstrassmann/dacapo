@@ -18,13 +18,14 @@ import InfiniteScroll from "react-infinite-scroll-component";
 import { fetchMore } from "../../utils/utils";
 import { Link } from "react-router-dom";
 import { useUser } from "../../contexts/UserContext";
+import TopButton from "../../components/TopButton";
 
 function WantedListPage({ feedback }) {
   const [wanted, setWanted] = useState({ results: [] });
   const [hasLoaded, setHasLoaded] = useState(false);
   const user = useUser();
   const [query, setQuery] = useState("");
-  const top = useRef();
+  const top = React.createRef();
 
   const { pathname } = useLocation();
 
@@ -113,6 +114,7 @@ function WantedListPage({ feedback }) {
           </Container>
         )}
       </Container>
+      <TopButton ref={top}/>
     </>
   );
 }
