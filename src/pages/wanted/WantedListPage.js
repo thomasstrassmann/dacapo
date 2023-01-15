@@ -1,4 +1,4 @@
-import React, { useEffect, useRef, useState } from "react";
+import React, { useEffect, useState } from "react";
 
 import Form from "react-bootstrap/Form";
 import Col from "react-bootstrap/Col";
@@ -10,7 +10,6 @@ import Asset from "../../components/Asset";
 
 import searchNull from "../../assets/icons/search_null.svg";
 
-import appStyles from "../../App.module.css";
 import styles from "../../styles/WantedListPage.module.css";
 import { useLocation } from "react-router";
 import { axiosReq } from "../../api/axiosDefaults";
@@ -95,7 +94,7 @@ function WantedListPage({ feedback }) {
                   justifyContent: "center",
                 }}
                 children={wanted.results.map((item) => (
-                  <Wanted key={item.id} {...item} />
+                  <Wanted key={item.id} {...item} style={{ width: "300px" }} />
                 ))}
                 dataLength={wanted.results.length}
                 loader={<Asset spinner />}
@@ -114,7 +113,7 @@ function WantedListPage({ feedback }) {
           </Container>
         )}
       </Container>
-      <TopButton ref={top}/>
+      <TopButton ref={top} />
     </>
   );
 }

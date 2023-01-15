@@ -1,4 +1,4 @@
-import React, { useRef } from "react";
+import React from "react";
 import { Button } from "react-bootstrap";
 import btnStyles from "../styles/Button.module.css";
 import arrow_up from "../assets/icons/arrow_up.svg";
@@ -13,7 +13,6 @@ const TopButton = React.forwardRef((props, ref) => {
       <Button
         onClick={toTop}
         className={`d-lg-none ${btnStyles.TopButtonMobile}`}
-        lg
       >
         <img src={arrow_up} alt="Back to top"></img>
       </Button>
@@ -21,7 +20,6 @@ const TopButton = React.forwardRef((props, ref) => {
       <Button
         onClick={toTop}
         className={`d-none d-lg-block ${btnStyles.TopButton}`}
-        lg
       >
         <img src={arrow_up} alt="Back to top"></img>
       </Button>

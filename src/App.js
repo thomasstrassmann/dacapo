@@ -34,18 +34,18 @@ function App() {
           <Route exact path="/instruments" render={() => 
             <InstrumentsPage feedback="There are no results for you search. 
             Try another keyword..." instrumentsPage />}/>
-          <Route exact path="/wanted" render={() => <WantedListPage 
-          feedback="There are no wanted items for you search. Try another keyword..."/>} /> 
+          <Route exact path="/instruments/create" render={() => <InstrumentCreateForm />} />
+          <Route exact path="/instruments/:id/edit" render={() => <InstrumentEditForm />} />
+          <Route exact path="/instruments/:id" render={() => <InstrumentPage instrumentPage />} />
           <Route exact path="/bookmarks" render={() => 
             <InstrumentsPage feedback="There are no results for you search. 
             Try another keyword or bookmark an instrument..."
             filter={`bookmarks__owner__profile=${profile_id}&ordering=-bookmarks__created&`}/>} />
-          <Route exact path="/instruments/create" render={() => <InstrumentCreateForm />} />
-          <Route exact path="/instruments/:id/edit" render={() => <InstrumentEditForm />} />
-          <Route exact path="/instruments/:id" render={() => <InstrumentPage />} />
+          <Route exact path="/wanted" render={() => <WantedListPage wantedListPage
+          feedback="There are no wanted items for you search. Try another keyword..."/>} /> 
           <Route exact path="/wanted/create" render={()=> <WantedCreateForm />} />
           {/* <Route exact path="/wanted/:id/edit" render={()=> <WantedEditForm />} /> */}
-          <Route exact path="/wanted/:id" render={()=> <WantedDetailPage />} />
+          <Route exact path="/wanted/:id" render={()=> <WantedDetailPage wantedDetailPage />} />
           <Route exact path="/profiles/:id" render={() => <ProfilePage />} />
           <Route exact path="/profiles/:id/edit/username" render={() => <UsernameForm />} />
           <Route exact path="/profiles/:id/edit/password" render={() => <UserPasswordForm />} />

@@ -7,7 +7,10 @@ import { axiosRes } from "../../api/axiosDefaults";
 
 import { useHistory } from "react-router-dom/cjs/react-router-dom";
 import { EditDropdown } from "../../components/EditDropdown";
-import { capitalize } from "../../utils/utils";
+import { capitalize, truncate } from "../../utils/utils";
+
+import styles from "../../styles/Instrument.module.css";
+import appStyles from "../../App.module.css";
 
 const Wanted = (props) => {
   const {
@@ -16,8 +19,10 @@ const Wanted = (props) => {
     profile_id,
     profile_avatar,
     title,
+    description,
     category,
     updated,
+    wantedDetailPage,
   } = props;
 
   const user = useUser();
@@ -38,32 +43,57 @@ const Wanted = (props) => {
   };
 
   return (
-    <Card>
-      <Card.Body>
-        <Media>
-          <Link to={`/profiles/${profile_id}`}>
-            <Avatar src={profile_avatar} height={55} />
-            {owner}
-          </Link>
-          <div>
-            <span>Updated:{updated}</span>
-            {is_owner && (
-              <EditDropdown
-                handleEdit={handleEdit}
-                handleDelete={handleDelete}
-              />
-            )}
-          </div>
-        </Media>
-      </Card.Body>
-
-      <Link to={`/wanted/${id}`}>
-        <Card.Body>
-          {title && <Card.Title>{title}</Card.Title>}
-          {category && <Card.Text>Category: {capitalize(category)}</Card.Text>}
+    <>
+      <Card
+        className={`${styles.Card} ${
+          wantedDetailPage ? styles.DetailSize : styles.ListSize
+        }`}
+      >
+        <Card.Body className={styles.NoPadding}>
+          <Media className={styles.HeaderContainer}>
+            <Link to={`/profiles/${profile_id}`}>
+              <Avatar src={profile_avatar} height={144} />
+              <span className={appStyles.Owner}>{owner}</span>
+            </Link>
+            <div className={styles.HeaderOptions}>
+              <span>Updated:{updated}</span>
+              {is_owner && wantedDetailPage && (
+                <EditDropdown
+                  handleEdit={handleEdit}
+                  handleDelete={handleDelete}
+                />
+              )}
+            </div>
+          </Media>
         </Card.Body>
-      </Link>
-    </Card>
+        <hr className={styles.Line}></hr>
+
+        {wantedDetailPage ? (
+          <div className={styles.TeaserDetail}>
+            <Card.Title>{title}</Card.Title>
+            <div className={`${styles.WantedInfo} ${styles.Subtext}`}>
+              <p>
+                <strong>Category:</strong> {category && capitalize(category)}
+              </p>
+              <p>
+                <strong>Description:</strong> {description}
+              </p>
+          </div>
+          </div>
+        ) : (
+          <Link to={`/wanted/${id}`}>
+            <div className={styles.WantedInfo}>
+              <Card.Title className={styles.Title}>
+                {title && truncate(title)}
+              </Card.Title>
+              <Card.Text className={styles.Subtext}>
+                <strong>Category:</strong> {category && capitalize(category)}
+              </Card.Text>
+            </div>
+          </Link>
+        )}
+      </Card>
+    </>
   );
 };
 

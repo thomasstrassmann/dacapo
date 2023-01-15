@@ -1,3 +1,7 @@
+.NoPadding {
+    padding:0;
+}
+
 .HeaderContainer {
     display: flex;
     flex-wrap: wrap;
@@ -107,4 +111,8 @@
     color: #fa3750;
     filter: invert(50%) sepia(52%) saturate(6690%) hue-rotate(328deg)
     brightness(94%) contrast(110%);
+}
+
+.WantedInfo {
+    padding: 1.25rem;
 }

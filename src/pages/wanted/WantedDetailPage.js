@@ -30,7 +30,7 @@ function WantedDetailPage() {
   return (
     <Row className="h-100">
       <Col lg={10}>
-        <Wanted {...wanted.results[0]} />
+        <Wanted {...wanted.results[0]} wantedDetailPage />
       </Col>
     </Row>
   );
