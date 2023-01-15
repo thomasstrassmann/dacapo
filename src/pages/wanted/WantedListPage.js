@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import React, { useEffect, useRef, useState } from "react";
 
 import Form from "react-bootstrap/Form";
 import Col from "react-bootstrap/Col";
@@ -9,7 +9,6 @@ import Wanted from "./Wanted";
 import Asset from "../../components/Asset";
 
 import searchNull from "../../assets/icons/search_null.svg";
-import search from "../../assets/icons/search.svg";
 
 import appStyles from "../../App.module.css";
 import styles from "../../styles/WantedListPage.module.css";
@@ -25,15 +24,14 @@ function WantedListPage({ feedback }) {
   const [hasLoaded, setHasLoaded] = useState(false);
   const user = useUser();
   const [query, setQuery] = useState("");
+  const top = useRef();
 
   const { pathname } = useLocation();
 
   useEffect(() => {
     const fetchWanted = async () => {
       try {
-        const { data } = await axiosReq.get(
-          `/wanted/?search=${query}`
-        );
+        const { data } = await axiosReq.get(`/wanted/?search=${query}`);
         setWanted(data);
         setHasLoaded(true);
       } catch (err) {
@@ -58,18 +56,45 @@ function WantedListPage({ feedback }) {
   );
 
   return (
-    <Container>
-    <Row className="h-100">
-      <Col lg={7}>
+    <>
+      <Container className={styles.SearchAddContainer}>
+        <Row className="d-flex justify-content-center">
+          <Col lg={8}>
+            <Form
+              className={styles.SearchBar}
+              onSubmit={(event) => event.preventDefault()}
+            >
+              <Form.Control
+                value={query}
+                onChange={(event) => setQuery(event.target.value)}
+                type="text"
+                placeholder="Search for wanted item or user"
+                ref={top}
+              />
+            </Form>
+          </Col>
+        </Row>
+        <Row>
+          <Col className="d-flex justify-content-center">
+            {user && addWantedIcon}
+          </Col>
+        </Row>
+      </Container>
+
+      <Container>
         {hasLoaded ? (
           <>
             {wanted.results.length ? (
               <InfiniteScroll
+                style={{
+                  display: "flex",
+                  flexWrap: "wrap",
+                  gap: "80px",
+                  width: "100%",
+                  justifyContent: "center",
+                }}
                 children={wanted.results.map((item) => (
-                  <Wanted
-                    key={item.id}
-                    {...item}
-                  />
+                  <Wanted key={item.id} {...item} />
                 ))}
                 dataLength={wanted.results.length}
                 loader={<Asset spinner />}
@@ -77,37 +102,18 @@ function WantedListPage({ feedback }) {
                 next={() => fetchMore(wanted, setWanted)}
               />
             ) : (
-              <Container className={appStyles.Content}>
+              <Container>
                 <Asset src={searchNull} feedback={feedback} />
               </Container>
             )}
           </>
         ) : (
-          <Container className={appStyles.Content}>
+          <Container>
             <Asset spinner />
           </Container>
         )}
-      </Col>
-
-      <Col lg={5} className={styles.fixedNavigation}>
-      <img src={search} className={styles.SearchIcon} alt="Search" />
-        <Form
-          className={styles.SearchBar}
-          onSubmit={(event) => event.preventDefault()}
-        >
-          <Form.Control
-            value={query}
-            onChange={(event) => setQuery(event.target.value)}
-            type="text"
-            className="mr-sm-2"
-            placeholder="Search for wanted item or user"
-          />
-        </Form>
-        {user && addWantedIcon}
-      </Col>
-      <Col md={4} className="d-none d-lg-block p-0 p-lg-2"></Col>
-    </Row>
-    </Container>
+      </Container>
+    </>
   );
 }
 
