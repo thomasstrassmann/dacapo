@@ -121,7 +121,12 @@ function InstrumentsPage({ feedback, filter = "", instrumentsPage }) {
             </Container>
           )}
       </Container>
-      <Button onClick={toTop} className={btnStyles.TopButton}>
+
+      <Button onClick={toTop} className={`d-lg-none ${btnStyles.TopButtonMobile}`} lg>
+            <img src={arrow_up} alt="Back to top"></img>
+      </Button>
+
+      <Button onClick={toTop} className={`d-none d-lg-block ${btnStyles.TopButton}`} lg>
             <img src={arrow_up} alt="Back to top"></img>
       </Button>
     </>

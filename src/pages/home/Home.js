@@ -24,7 +24,7 @@ function Home() {
           />
           <Carousel.Caption className={styles.Caption}>
             {user && <h1>Welcome <span className={styles.Username}>{user.username}!</span></h1>}
-            <h2>Let B-Stock Instruments resound again!</h2>
+            <h2>Let B-Stock instruments resound again!</h2>
             <p>Sell or buy instruments conveniently.</p>
             <p>No matter if guitar, bass, piano or tuba!</p>
           </Carousel.Caption>
