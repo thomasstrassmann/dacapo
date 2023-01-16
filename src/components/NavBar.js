@@ -87,9 +87,9 @@ const NavBar = () => {
   return (
     <Navbar className={styles.NavBar} fixed="top" expand="lg" expanded={expanded}>
       <Container fluid>
-        <NavLink to="/" exact>
-          <Navbar.Brand>
-            <img src={logo} alt="DaCapo Logo" height="55" />
+        <NavLink to="/" exact className={styles.LogoContainer}>
+          <Navbar.Brand >
+            <img src={logo} alt="DaCapo Logo" />
           </Navbar.Brand>
         </NavLink>
         <Navbar.Toggle onClick={() => setExpanded(!expanded)} ref={ref} aria-controls="basic-navbar-nav" />
