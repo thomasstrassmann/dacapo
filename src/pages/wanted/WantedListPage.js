@@ -52,7 +52,7 @@ function WantedListPage({ feedback }) {
 
   const addWantedIcon = (
     <Link className={styles.AddWanted} to="/wanted/create">
-      Add Wanted
+      Add wanted
     </Link>
   );
 
@@ -69,7 +69,7 @@ function WantedListPage({ feedback }) {
                 value={query}
                 onChange={(event) => setQuery(event.target.value)}
                 type="text"
-                placeholder="Search for wanted item or user"
+                placeholder="Search for wanted item, brands or user"
                 ref={top}
               />
             </Form>

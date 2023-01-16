@@ -55,7 +55,7 @@ function InstrumentsPage({ feedback, filter = "", instrumentsPage }) {
 
   const addInstrumentIcon = (
     <Link className={styles.AddInstrument} to="/instruments/create">
-      Add Instrument
+      Add instrument
     </Link>
   );
 
@@ -72,7 +72,7 @@ function InstrumentsPage({ feedback, filter = "", instrumentsPage }) {
                 value={query}
                 onChange={(event) => setQuery(event.target.value)}
                 type="text"
-                placeholder="Search for instruments or members"
+                placeholder="Search for instruments, brands or users"
                 ref={top}
               />
             </Form>
