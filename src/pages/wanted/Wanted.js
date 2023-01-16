@@ -49,7 +49,7 @@ const Wanted = (props) => {
           wantedDetailPage ? styles.DetailSize : styles.ListSize
         }`}
       >
-        <Card.Body className={styles.NoPadding}>
+        <Card.Body>
           <Media className={styles.HeaderContainer}>
             <Link to={`/profiles/${profile_id}`}>
               <Avatar src={profile_avatar} height={144} />
@@ -58,10 +58,12 @@ const Wanted = (props) => {
             <div className={styles.HeaderOptions}>
               <span>Updated:{updated}</span>
               {is_owner && wantedDetailPage && (
+                <div className={styles.Settings}>
                 <EditDropdown
                   handleEdit={handleEdit}
                   handleDelete={handleDelete}
                 />
+              </div>
               )}
             </div>
           </Media>

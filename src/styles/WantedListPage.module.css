@@ -1,13 +1,16 @@
+.SearchBar {
+  display: block;
+}
+
 .SearchBar input {
   border-radius: 20px;
   color: #5c8294;
+  display: inline;
   font-size: 0.8rem;
-  padding-left: 40px;
-  margin: 2%;
+  margin-bottom: 2%;
 }
 
 .AddWanted {
-  margin: 2% auto;
   display: block;
   padding: 1% 2%;
   border-radius: 4px;
@@ -19,4 +22,9 @@
   background-color: #5c8294;
   text-decoration: none;
   color: white;
+}
+
+.SearchAddContainer {
+  margin: 2% auto 0;
+  padding: 0;
 }
