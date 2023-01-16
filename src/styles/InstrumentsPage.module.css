@@ -63,3 +63,24 @@
 .InstrumentCard {
   width: 400px;
 }
+
+.NavButtonsContainer {
+  position: fixed;
+  bottom: 0;
+  left: 0;
+  height: 4vw;
+  background-color: black;
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 5vw;
+  border-top: 2px solid #fa3750;
+}
+
+
+@media (max-width: 768px) {
+  .NavButtonsContainer {
+    height: 7vw;
+  }
+}

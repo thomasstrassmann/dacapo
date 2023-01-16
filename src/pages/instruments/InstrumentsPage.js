@@ -19,6 +19,7 @@ import { fetchMore } from "../../utils/utils";
 import { Link } from "react-router-dom";
 import { useUser } from "../../contexts/UserContext";
 import TopButton from "../../components/TopButton";
+import BackButton from "../../components/BackButton";
 
 function InstrumentsPage({ feedback, filter = "", instrumentsPage }) {
   const [instruments, setInstruments] = useState({ results: [] });
@@ -122,7 +123,10 @@ function InstrumentsPage({ feedback, filter = "", instrumentsPage }) {
           </Container>
         )}
       </Container>
-      <TopButton ref={top} />
+      <div className={styles.NavButtonsContainer}>
+        <BackButton />
+        <TopButton ref={top} />
+      </div>
     </>
   );
 }

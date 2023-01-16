@@ -9,7 +9,9 @@
 .CreateFormButton:hover,
 .ImageButton:hover,
 .TopButton:hover,
-.TopButtonMobile:hover {
+.TopButtonMobile:hover,
+.BackButton:hover,
+.BackButtonMobile:hover {
   background-color: #5c8294;
   border: 2px solid black;
 }
@@ -29,38 +31,32 @@
   padding: 1% 2%;
 }
 
-.TopButton {
-  position: fixed;
-  background-color: #fa3750;
-  border-radius: 50%;
-  width: 5vw;
-  height: 5vw;
-  bottom: 3vh;
-  right: 2vw;
-  border: 2px solid black;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-}
-
-.TopButton img {
-  width: 3vw;
-}
-
-.TopButtonMobile {
-  position: fixed;
+.TopButton,
+.BackButton {
+  position: relative;
   background-color: #fa3750;
   width: 10vw;
-  height: 4vw;
-  bottom: 0;
-  left: 50%;
-  transform: translate(-50%, 0);
-  border: 2px solid black;
+  height: 3vw;
+  border: 1px solid black;
   display: flex;
   justify-content: center;
   align-items: center;
 }
 
-.TopButtonMobile img {
-  width: 5vw;
+.TopButton img,
+.BackButton img {
+  width: 2vw;
+}
+
+@media (max-width: 768px) {
+  .TopButton,
+  .BackButton {
+    width: 20vw;
+    height: 6vw;
+  }
+
+  .TopButton img,
+  .BackButton img {
+    width: 4vw;
+  }
 }

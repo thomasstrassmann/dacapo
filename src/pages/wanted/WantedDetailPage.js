@@ -3,9 +3,11 @@ import React, { useEffect, useState } from "react";
 import { useParams } from "react-router";
 import { axiosReq } from "../../api/axiosDefaults";
 
+import styles from "../../styles/WantedListPage.module.css";
 import Col from "react-bootstrap/Col";
 import Row from "react-bootstrap/Row";
 import Wanted from "./Wanted";
+import BackButton from "../../components/BackButton";
 
 function WantedDetailPage() {
   const { id } = useParams();
@@ -28,11 +30,16 @@ function WantedDetailPage() {
   }, [id]);
 
   return (
-    <Row className="h-100">
-      <Col>
-        <Wanted {...wanted.results[0]} wantedDetailPage />
-      </Col>
-    </Row>
+    <>
+      <Row className="h-100">
+        <Col>
+          <Wanted {...wanted.results[0]} wantedDetailPage />
+        </Col>
+      </Row>
+      <div className={styles.NavButtonsContainer}>
+        <BackButton />
+      </div>
+    </>
   );
 }
 

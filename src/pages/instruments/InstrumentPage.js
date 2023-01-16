@@ -2,10 +2,13 @@ import React, { useEffect, useState } from "react";
 
 import { useParams } from "react-router";
 import { axiosReq } from "../../api/axiosDefaults";
+import styles from "../../styles/InstrumentsPage.module.css";
+
 
 import Col from "react-bootstrap/Col";
 import Row from "react-bootstrap/Row";
 import Instrument from "./Instrument";
+import BackButton from "../../components/BackButton";
 
 function InstrumentPage() {
   const { id } = useParams();
@@ -28,11 +31,20 @@ function InstrumentPage() {
   }, [id]);
 
   return (
-    <Row className="h-100">
-      <Col>
-        <Instrument {...instrument.results[0]} setInstruments={setInstrument} instrumentPage />
-      </Col>
-    </Row>
+    <>
+      <Row className="h-100">
+        <Col>
+          <Instrument
+            {...instrument.results[0]}
+            setInstruments={setInstrument}
+            instrumentPage
+          />
+        </Col>
+      </Row>
+      <div className={styles.NavButtonsContainer}>
+        <BackButton />
+      </div>
+    </>
   );
 }
 

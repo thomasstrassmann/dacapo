@@ -18,6 +18,7 @@ import { fetchMore } from "../../utils/utils";
 import { Link } from "react-router-dom";
 import { useUser } from "../../contexts/UserContext";
 import TopButton from "../../components/TopButton";
+import BackButton from "../../components/BackButton";
 
 function WantedListPage({ feedback }) {
   const [wanted, setWanted] = useState({ results: [] });
@@ -113,7 +114,10 @@ function WantedListPage({ feedback }) {
           </Container>
         )}
       </Container>
-      <TopButton ref={top} />
+      <div className={styles.NavButtonsContainer}>
+        <BackButton />
+        <TopButton ref={top} />
+      </div>
     </>
   );
 }

@@ -10,17 +10,7 @@ const TopButton = React.forwardRef((props, ref) => {
 
   return (
     <>
-      <Button
-        onClick={toTop}
-        className={`d-lg-none ${btnStyles.TopButtonMobile}`}
-      >
-        <img src={arrow_up} alt="Back to top"></img>
-      </Button>
-
-      <Button
-        onClick={toTop}
-        className={`d-none d-lg-block ${btnStyles.TopButton}`}
-      >
+      <Button onClick={toTop} className={`d-flex ${btnStyles.TopButton}`}>
         <img src={arrow_up} alt="Back to top"></img>
       </Button>
     </>
