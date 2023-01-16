@@ -6,8 +6,7 @@ import Row from "react-bootstrap/Row";
 import Col from "react-bootstrap/Col";
 import Container from "react-bootstrap/Container";
 
-
-import btnStyles from "../../styles/Button.module.css"
+import btnStyles from "../../styles/Button.module.css";
 import styles from "../../styles/InstrumentCreateEditForm.module.css";
 import appStyles from "../../App.module.css";
 
@@ -37,10 +36,19 @@ function InstrumentEditForm() {
     const handleMount = async () => {
       try {
         const { data } = await axiosReq.get(`/instruments/${id}/`);
-        const { title, description, image, brand, price, category, is_owner } = data;
+        const { title, description, image, brand, price, category, is_owner } =
+          data;
 
-        is_owner ? setInstrumentData({ title, description, image, brand, price, category }) 
-        : history.push("/");
+        is_owner
+          ? setInstrumentData({
+              title,
+              description,
+              image,
+              brand,
+              price,
+              category,
+            })
+          : history.push("/");
       } catch (err) {
         console.log(err);
       }
@@ -90,7 +98,7 @@ function InstrumentEditForm() {
     }
   };
 
-  const inputFields = (
+  const bulletPoints = (
     <div className="text-center">
       <Form.Group className={styles.FormGroup}>
         <Form.Label>Title</Form.Label>
@@ -99,6 +107,7 @@ function InstrumentEditForm() {
           name="title"
           value={title}
           onChange={handleChange}
+          required
         />
       </Form.Group>
       {errors?.title?.map((message, idx) => (
@@ -114,6 +123,7 @@ function InstrumentEditForm() {
           name="brand"
           value={brand}
           onChange={handleChange}
+          required
         />
       </Form.Group>
       {errors?.brand?.map((message, idx) => (
@@ -129,6 +139,7 @@ function InstrumentEditForm() {
           name="category"
           value={category}
           onChange={handleChange}
+          required
           aria-label="Select the instrument category"
         >
           <option>Please select a category</option>
@@ -146,22 +157,6 @@ function InstrumentEditForm() {
         </Alert>
       ))}
 
-      <Form.Group className={styles.FormGroup}>
-        <Form.Label>Description</Form.Label>
-        <Form.Control
-          as="textarea"
-          rows={10}
-          name="description"
-          value={description}
-          onChange={handleChange}
-        />
-      </Form.Group>
-      {errors?.description?.map((message, idx) => (
-        <Alert variant="warning" key={idx}>
-          {message}
-        </Alert>
-      ))}
-
       <Form.Group className={`${styles.Price} ${styles.FormGroup}`}>
         <Form.Label>Price</Form.Label>
         <Form.Control
@@ -169,43 +164,70 @@ function InstrumentEditForm() {
           name="price"
           value={price}
           onChange={handleChange}
-        /> <span className={styles.Currency}>Euro</span>
+          required
+        />{" "}
+        <span className={styles.Currency}>Euro</span>
       </Form.Group>
       {errors?.price?.map((message, idx) => (
         <Alert variant="warning" key={idx}>
           {message}
         </Alert>
       ))}
-
-      <Button className={btnStyles.CreateFormButton} onClick={() => {history.goBack();}}>
-        cancel
-      </Button>
-      <Button className={btnStyles.CreateFormButton} type="submit">
-        update
-      </Button>
     </div>
+  );
+
+  const descriptionButtons = (
+    <>
+      <Container className={appStyles.Content}>
+        <Form.Group className={styles.FormGroup}>
+          <Form.Label>Description</Form.Label>
+          <Form.Control
+            as="textarea"
+            rows={10}
+            name="description"
+            value={description}
+            onChange={handleChange}
+            required
+          />
+        </Form.Group>
+        {errors?.description?.map((message, idx) => (
+          <Alert variant="warning" key={idx}>
+            {message}
+          </Alert>
+        ))}
+        <div className={styles.ButtonContainer}>
+          <Button
+            className={btnStyles.CreateFormButton}
+            onClick={() => {
+              history.goBack();
+            }}
+          >
+            cancel
+          </Button>
+          <Button className={btnStyles.CreateFormButton} type="submit">
+            create
+          </Button>
+        </div>
+      </Container>
+    </>
   );
 
   return (
     <Form onSubmit={handleSubmit}>
-      <Row>
+      <Row className={styles.RowContainer}>
         <Col className="p-0 p-md-2" md={4} lg={5}>
           <Container
             className={`${appStyles.Content} ${styles.ImageWindow} d-flex flex-column justify-content-center`}
           >
-            
+            <div>{bulletPoints}</div>
             <Form.Group className={`text-center ${styles.ImageWindow}`}>
-                  <figure>
-                    <Image className={appStyles.Image} src={image} rounded />
-                  </figure>
-                  <div>
-                    <Form.Label
-                      htmlFor="image-upload"
-                    >
-                      Change the image
-                    </Form.Label>
-                  </div>
-              
+              <figure>
+                <Image className={appStyles.Image} src={image} rounded />
+              </figure>
+              <div>
+                <Form.Label htmlFor="image-upload">Change the image</Form.Label>
+              </div>
+
               <Form.File
                 id="image-upload"
                 accept="image/*"
@@ -220,11 +242,11 @@ function InstrumentEditForm() {
               </Alert>
             ))}
 
-            <div className="d-md-none">{inputFields}</div>
+            <div className="d-md-none">{descriptionButtons}</div>
           </Container>
         </Col>
         <Col md={6} lg={7} className="d-none d-md-block p-0 p-md-2">
-          <Container className={appStyles.Content}>{inputFields}</Container>
+          <div>{descriptionButtons}</div>
         </Col>
       </Row>
     </Form>
