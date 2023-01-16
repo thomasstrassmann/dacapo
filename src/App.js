@@ -17,6 +17,7 @@ import ProfileEditForm from "./pages/profiles/ProfileEditForm";
 import WantedListPage from "./pages/wanted/WantedListPage";
 import WantedDetailPage from "./pages/wanted/WantedDetailPage";
 import WantedCreateForm from "./pages/wanted/WantedCreateForm";
+import WantedEditForm from "./pages/wanted/WantedEditForm";
 import Home from "./pages/home/Home";
 
 function App() {
@@ -44,7 +45,7 @@ function App() {
           <Route exact path="/wanted" render={() => <WantedListPage wantedListPage
           feedback="There are no wanted items for you search. Try another keyword..."/>} /> 
           <Route exact path="/wanted/create" render={()=> <WantedCreateForm />} />
-          {/* <Route exact path="/wanted/:id/edit" render={()=> <WantedEditForm />} /> */}
+          <Route exact path="/wanted/:id/edit" render={()=> <WantedEditForm />} />
           <Route exact path="/wanted/:id" render={()=> <WantedDetailPage wantedDetailPage />} />
           <Route exact path="/profiles/:id" render={() => <ProfilePage />} />
           <Route exact path="/profiles/:id/edit/username" render={() => <UsernameForm />} />

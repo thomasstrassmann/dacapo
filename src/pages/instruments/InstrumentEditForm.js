@@ -205,7 +205,7 @@ function InstrumentEditForm() {
             cancel
           </Button>
           <Button className={btnStyles.CreateFormButton} type="submit">
-            create
+            update
           </Button>
         </div>
       </Container>
