@@ -26,18 +26,17 @@ import { Button, Image } from "react-bootstrap";
 import { fetchMore } from "../../utils/utils";
 
 import InfiniteScroll from "react-infinite-scroll-component";
-import { useHistory } from "react-router-dom/cjs/react-router-dom";
 
 function ProfilePage() {
   const [hasLoaded, setHasLoaded] = useState(false);
   const [profileInstruments, setProfileInstruments] = useState({ results: [] });
   const [errors, setErrors] = useState({});
-  const [ratingData, setRatingData] = useState({ rating: ""});
+  const [ratingData, setRatingData] = useState({ rating: "" });
+  const [ratedUsers, setRatedUsers] = useState({ results: [] });
   const { rating } = ratingData;
 
   const user = useUser();
   const { id } = useParams();
-  const history = useHistory();
 
   const { pageProfile } = useProfile();
   const { handleFollow, handleUnfollow, setProfile } = useSetProfile();
@@ -47,23 +46,28 @@ function ProfilePage() {
   useEffect(() => {
     const fetchData = async () => {
       try {
-        const [{ data: pageProfile }, { data: profileInstruments }] =
-          await Promise.all([
-            axiosReq.get(`/profiles/${id}/`),
-            axiosReq.get(`/instruments/?owner__profile=${id}`),
-          ]);
+        const [
+          { data: pageProfile },
+          { data: profileInstruments },
+          { data: ratedUsers },
+        ] = await Promise.all([
+          axiosReq.get(`/profiles/${id}/`),
+          axiosReq.get(`/instruments/?owner__profile=${id}`),
+          axiosReq.get(`/rating/?owner__id=${user.pk}`),
+        ]);
         setProfile((prevState) => ({
           ...prevState,
           pageProfile: { results: [pageProfile] },
         }));
         setProfileInstruments(profileInstruments);
+        setRatedUsers(ratedUsers);
         setHasLoaded(true);
       } catch (err) {
         console.log(err);
       }
     };
     fetchData();
-  }, [id, setProfile]);
+  }, [id, setProfile, user]);
 
   const handleChange = (event) => {
     setRatingData({
@@ -80,7 +84,7 @@ function ProfilePage() {
     formData.append("rating", ratingData.rating);
 
     try {
-      await axiosReq.post('/rating/', formData);
+      await axiosReq.post("/rating/", formData);
     } catch (err) {
       console.log(err);
       if (err.response?.status !== 401) {
@@ -148,7 +152,7 @@ function ProfilePage() {
             </Col>
             <Col className="my-2">
               <div>
-                Rating:{" "}
+                Rating:
                 {profile?.average_rating === 0
                   ? "No ratings yet!"
                   : profile?.average_rating}
@@ -182,6 +186,11 @@ function ProfilePage() {
             {user?.username === profile?.owner
               ? "You can not rate your own account!"
               : ratingField}
+            {ratedUsers.results.map((ratedProfile) =>
+              ratedProfile.profile_id === id
+                ? "You already rated this profile!"
+                : ratingField
+            )}
           </Col>
         </Row>
       </Row>
