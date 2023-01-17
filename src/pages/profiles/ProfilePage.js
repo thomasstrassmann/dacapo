@@ -32,8 +32,9 @@ function ProfilePage() {
   const [profileInstruments, setProfileInstruments] = useState({ results: [] });
   const [errors, setErrors] = useState({});
   const [ratingData, setRatingData] = useState({ rating: "" });
-  const [ratedUsers, setRatedUsers] = useState({ results: [] });
   const { rating } = ratingData;
+
+  const [ratedUsers, setRatedUsers] = useState({ results: [] });
 
   const user = useUser();
   const { id } = useParams();
@@ -44,29 +45,31 @@ function ProfilePage() {
   const is_owner = user?.username === profile?.owner;
 
   useEffect(() => {
-    const fetchData = async () => {
-      try {
-        const [
-          { data: pageProfile },
-          { data: profileInstruments },
-          { data: ratedUsers },
-        ] = await Promise.all([
-          axiosReq.get(`/profiles/${id}/`),
-          axiosReq.get(`/instruments/?owner__profile=${id}`),
-          axiosReq.get(`/rating/?owner__id=${user.pk}`),
-        ]);
-        setProfile((prevState) => ({
-          ...prevState,
-          pageProfile: { results: [pageProfile] },
-        }));
-        setProfileInstruments(profileInstruments);
-        setRatedUsers(ratedUsers);
-        setHasLoaded(true);
-      } catch (err) {
-        console.log(err);
-      }
-    };
-    fetchData();
+    if (user) {
+      const fetchData = async () => {
+        try {
+          const [
+            { data: pageProfile },
+            { data: profileInstruments },
+            { data: ratedUsers },
+          ] = await Promise.all([
+            axiosReq.get(`/profiles/${id}/`),
+            axiosReq.get(`/instruments/?owner__profile=${id}`),
+            axiosReq.get(`/rating/?owner__id=${user.pk}`),
+          ]);
+          setProfile((prevState) => ({
+            ...prevState,
+            pageProfile: { results: [pageProfile] },
+          }));
+          setProfileInstruments(profileInstruments);
+          setRatedUsers(ratedUsers);
+          setHasLoaded(true);
+        } catch (err) {
+          console.log(err);
+        }
+      };
+      fetchData();
+    }
   }, [id, setProfile, user]);
 
   const handleChange = (event) => {
@@ -95,33 +98,37 @@ function ProfilePage() {
 
   const ratingField = (
     <>
-      <Form onSubmit={handleSubmit}>
-        <Form.Group>
-          <Form.Label>Rating</Form.Label>
-          <Form.Control
-            as="select"
-            name="rating"
-            value={rating}
-            onChange={handleChange}
-            placeholder="Rate the seller"
-            aria-label="Rate the seller"
-          >
-            <option value="1">1 Star</option>
-            <option value="2">2 Stars</option>
-            <option value="3">3 Stars</option>
-            <option value="4">4 Stars</option>
-            <option value="5">5 Stars</option>
-          </Form.Control>
-        </Form.Group>
-        {errors?.rating?.map((message, idx) => (
-          <Alert variant="warning" key={idx}>
-            {message}
-          </Alert>
-        ))}
-        <Button className={btnStyles.CreateFormButton} type="submit">
-          rate
-        </Button>
-      </Form>
+      {ratedUsers.results.some((item) => item.profile_id === parseInt(id)) ? (
+        <p>You already rated this profile!</p>
+      ) : (
+        <Form onSubmit={handleSubmit}>
+          <Form.Group>
+            <Form.Label>Rating</Form.Label>
+            <Form.Control
+              as="select"
+              name="rating"
+              value={rating}
+              onChange={handleChange}
+              placeholder="Rate the seller"
+              aria-label="Rate the seller"
+            >
+              <option value="1">1 Star</option>
+              <option value="2">2 Stars</option>
+              <option value="3">3 Stars</option>
+              <option value="4">4 Stars</option>
+              <option value="5">5 Stars</option>
+            </Form.Control>
+          </Form.Group>
+          {errors?.rating?.map((message, idx) => (
+            <Alert variant="warning" key={idx}>
+              {message}
+            </Alert>
+          ))}
+          <Button className={btnStyles.CreateFormButton} type="submit">
+            rate
+          </Button>
+        </Form>
+      )}
     </>
   );
 
@@ -183,14 +190,8 @@ function ProfilePage() {
         </Row>
         <Row>
           <Col>
-            {user?.username === profile?.owner
-              ? "You can not rate your own account!"
-              : ratingField}
-            {ratedUsers.results.map((ratedProfile) =>
-              ratedProfile.profile_id === id
-                ? "You already rated this profile!"
-                : ratingField
-            )}
+            {is_owner && "You can not rate your own account!"}
+            {!is_owner && ratingField}
           </Col>
         </Row>
       </Row>
