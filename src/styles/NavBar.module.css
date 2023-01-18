@@ -5,11 +5,17 @@
 }
 
 .LogoContainer {
-  width: 25%;
+  width: 15%;
 }
 
 .LogoContainer img {
   width: 100%;
+}
+
+@media screen and (max-width: 992px) {
+  .LogoContainer {
+    width: 30%;
+  }
 }
 
 .Active {
@@ -19,7 +25,7 @@
 }
 
 .NavLink, .NavLinkProfile {
-  padding: 10px;
+  padding: 5px;
 }
 
 .NavLink:hover {

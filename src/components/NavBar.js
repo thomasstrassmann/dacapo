@@ -10,6 +10,7 @@ import { useSetUser, useUser } from "../contexts/UserContext";
 import piano from "../assets/icons/piano.svg";
 import bookmarks from "../assets/icons/bookmarks.svg";
 import wanted from "../assets/icons/wanted.svg";
+import trending_up from "../assets/icons/trending_up.svg";
 import logout from "../assets/icons/logout.svg";
 import axios from "axios";
 import Avatar from "./Avatar";
@@ -53,13 +54,20 @@ const NavBar = () => {
       </NavLink>
 
       <NavLink
+        className={styles.NavLink}
+        activeClassName={styles.Active}
+        to="#">
+        <img src={trending_up} alt="Wanted" height="30"/>Trending
+      </NavLink>
+
+      <NavLink
         className={styles.NavLinkProfile}
         to={`/profiles/${user?.profile_id}`}>
         <Avatar src={user?.profile_avatar} text="Profile" height={30} />
       </NavLink>
 
       <NavLink className={styles.NavLink} to="/" onClick={handleSignOut}>
-        <img src={logout} alt="Logout" height="30" />Logout
+        <img src={logout} alt="Logout" height="30" />
       </NavLink>
   </>)
   
@@ -94,8 +102,8 @@ const NavBar = () => {
         </NavLink>
         <Navbar.Toggle onClick={() => setExpanded(!expanded)} ref={ref} aria-controls="basic-navbar-nav" />
 
-        <Navbar.Collapse id="basic-navbar-nav">
-          <Nav className="ml-auto">
+        <Navbar.Collapse id="basic-navbar-nav" className="w-100">
+          <Nav className={`ml-auto ${styles.LinkContainer}`}>
             {user ? loggedInNav : loggedOutNav}
           </Nav>
         </Navbar.Collapse>
