@@ -3,7 +3,7 @@ import React, { useEffect, useState } from "react";
 import { useParams } from "react-router";
 import { axiosReq } from "../../api/axiosDefaults";
 
-import styles from "../../styles/WantedListPage.module.css";
+import btnStyles from "../../styles/Button.module.css";
 import Col from "react-bootstrap/Col";
 import Row from "react-bootstrap/Row";
 import Wanted from "./Wanted";
@@ -36,7 +36,7 @@ function WantedDetailPage() {
           <Wanted {...wanted.results[0]} wantedDetailPage />
         </Col>
       </Row>
-      <div className={styles.NavButtonsContainer}>
+      <div className={btnStyles.NavButtonsContainer}>
         <BackButton />
       </div>
     </>

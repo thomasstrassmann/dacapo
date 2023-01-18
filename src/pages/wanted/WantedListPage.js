@@ -11,6 +11,7 @@ import Asset from "../../components/Asset";
 import searchNull from "../../assets/icons/search_null.svg";
 
 import styles from "../../styles/WantedListPage.module.css";
+import btnStyles from "../../styles/Button.module.css";
 import { useLocation } from "react-router";
 import { axiosReq } from "../../api/axiosDefaults";
 import InfiniteScroll from "react-infinite-scroll-component";
@@ -114,7 +115,7 @@ function WantedListPage({ feedback }) {
           </Container>
         )}
       </Container>
-      <div className={styles.NavButtonsContainer}>
+      <div className={btnStyles.NavButtonsContainer}>
         <BackButton />
         <TopButton ref={top} />
       </div>

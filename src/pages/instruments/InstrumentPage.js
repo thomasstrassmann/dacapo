@@ -2,7 +2,7 @@ import React, { useEffect, useState } from "react";
 
 import { useParams } from "react-router";
 import { axiosReq } from "../../api/axiosDefaults";
-import styles from "../../styles/InstrumentsPage.module.css";
+import btnStyles from "../../styles/Button.module.css"
 
 
 import Col from "react-bootstrap/Col";
@@ -41,7 +41,7 @@ function InstrumentPage() {
           />
         </Col>
       </Row>
-      <div className={styles.NavButtonsContainer}>
+      <div className={btnStyles.NavButtonsContainer}>
         <BackButton />
       </div>
     </>

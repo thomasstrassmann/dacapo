@@ -3,7 +3,6 @@ import React, { useEffect, useState } from "react";
 import Col from "react-bootstrap/Col";
 import Row from "react-bootstrap/Row";
 import Form from "react-bootstrap/Form";
-import Container from "react-bootstrap/Container";
 import { Alert } from "react-bootstrap";
 
 import Asset from "../../components/Asset";
@@ -11,7 +10,6 @@ import Instrument from "../instruments/Instrument";
 
 import search_null from "../../assets/icons/search_null.svg";
 import styles from "../../styles/ProfilePage.module.css";
-import appStyles from "../../App.module.css";
 import instrumentStyles from "../../styles/Instrument.module.css";
 import btnStyles from "../../styles/Button.module.css";
 
@@ -25,6 +23,7 @@ import { axiosReq } from "../../api/axiosDefaults";
 import { Button, Image } from "react-bootstrap";
 import { fetchMore } from "../../utils/utils";
 
+import BackButton from "../../components/BackButton";
 import InfiniteScroll from "react-infinite-scroll-component";
 import Star from "../../components/Star";
 
@@ -135,7 +134,7 @@ function ProfilePage() {
 
   const mainProfile = (
     <>
-      <Row>
+      <Row className={styles.TopMargin}>
         <Col className="d-flex justify-content-center">
           <Image
             className={styles.ProfileImage}
@@ -152,58 +151,66 @@ function ProfilePage() {
       </Row>
       <Row>
         <Col className="d-flex justify-content-center">
-        {user &&
-              !is_owner &&
-              (profile?.following_id ? (
-                <Button
-                  className={btnStyles.DefaultButton}
-                  onClick={() => handleUnfollow(profile)}
-                >
-                  unfollow
-                </Button>
-              ) : (
-                <Button
-                  className={btnStyles.DefaultButton}
-                  onClick={() => handleFollow(profile)}
-                >
-                  follow
-                </Button>
-              ))}
+          {user &&
+            !is_owner &&
+            (profile?.following_id ? (
+              <Button
+                className={btnStyles.DefaultButton}
+                onClick={() => handleUnfollow(profile)}
+              >
+                unfollow
+              </Button>
+            ) : (
+              <Button
+                className={btnStyles.DefaultButton}
+                onClick={() => handleFollow(profile)}
+              >
+                follow
+              </Button>
+            ))}
         </Col>
       </Row>
       <Row>
-            <Col className={`d-flex justify-content-center ${styles.ProfileDetails} ${styles.ProfileSpacing}`}>
-              <span>{profile?.followers_count} followers</span>
-              <span>{profile?.following_count} following</span>
-            </Col>
-        </Row>
-          <Row>
-            <Col className={`d-flex justify-content-center ${styles.ProfileDetails}`}>
-              <div>{profile?.instruments_count} instruments</div>
-            </Col>
-          </Row>
-          <Row>
-            <Col className={`d-flex justify-content-center align-items-center ${styles.ProfileDetails}`}>
-                Rating: 
-                {profile?.average_rating === 0
-                  ? " No ratings yet!"
-                  : ` ${profile?.average_rating} `}
-                {profile?.average_rating !== 0 && <Star/>} 
-            </Col>
-          </Row>
-        <Row>
-          <Col className="d-flex justify-content-center">
-            {!is_owner && ratingField}
-          </Col>
-        </Row>
+        <Col
+          className={`d-flex justify-content-center ${styles.ProfileDetails} ${styles.ProfileSpacing}`}
+        >
+          <span>{profile?.followers_count} followers</span>
+          <span>{profile?.following_count} following</span>
+        </Col>
+      </Row>
+      <Row>
+        <Col
+          className={`d-flex justify-content-center ${styles.ProfileDetails}`}
+        >
+          <div>{profile?.instruments_count} instruments</div>
+        </Col>
+      </Row>
+      <Row>
+        <Col
+          className={`d-flex justify-content-center align-items-center ${styles.ProfileDetails}`}
+        >
+          Rating:
+          {profile?.average_rating === 0
+            ? " No ratings yet!"
+            : ` ${profile?.average_rating} `}
+          {profile?.average_rating !== 0 && <Star />}
+        </Col>
+      </Row>
+      <Row>
+        <Col className="d-flex justify-content-center">
+          {!is_owner && ratingField}
+        </Col>
+      </Row>
     </>
   );
 
   const mainProfileInstruments = (
     <>
-      <hr className={instrumentStyles.Line}/>
-      <p className={`text-center ${styles.ProfileDetails}`}>Instruments of {profile?.owner}</p>
-      <hr className={instrumentStyles.Line}/>
+      <hr className={instrumentStyles.Line} />
+      <p className={`text-center ${styles.ProfileDetails}`}>
+        Instruments of {profile?.owner}
+      </p>
+      <hr className={instrumentStyles.Line} />
       {profileInstruments.results.length ? (
         <InfiniteScroll
           children={profileInstruments.results.map((instrument) => (
@@ -228,9 +235,9 @@ function ProfilePage() {
   );
 
   return (
-    <Row>
-      <Col>
-        <Container className={appStyles.Content}>
+    <>
+      <Row>
+        <Col>
           {hasLoaded ? (
             <>
               {mainProfile}
@@ -239,9 +246,12 @@ function ProfilePage() {
           ) : (
             <Asset spinner />
           )}
-        </Container>
-      </Col>
-    </Row>
+        </Col>
+      </Row>
+      <div className={btnStyles.NavButtonsContainer}>
+        <BackButton />
+      </div>
+    </>
   );
 }
 

@@ -11,6 +11,7 @@ import Asset from "../../components/Asset";
 import searchNull from "../../assets/icons/search_null.svg";
 
 import styles from "../../styles/InstrumentsPage.module.css";
+import btnStyles from "../../styles/Button.module.css";
 
 import { useLocation } from "react-router";
 import { axiosReq } from "../../api/axiosDefaults";
@@ -123,7 +124,7 @@ function InstrumentsPage({ feedback, filter = "", instrumentsPage }) {
           </Container>
         )}
       </Container>
-      <div className={styles.NavButtonsContainer}>
+      <div className={btnStyles.NavButtonsContainer}>
         <BackButton />
         <TopButton ref={top} />
       </div>
