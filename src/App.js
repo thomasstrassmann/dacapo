@@ -19,6 +19,7 @@ import WantedDetailPage from "./pages/wanted/WantedDetailPage";
 import WantedCreateForm from "./pages/wanted/WantedCreateForm";
 import WantedEditForm from "./pages/wanted/WantedEditForm";
 import Home from "./pages/home/Home";
+import Trending from "./pages/trending/Trending";
 
 function App() {
   const user = useUser();
@@ -51,7 +52,7 @@ function App() {
           <Route exact path="/profiles/:id/edit/username" render={() => <UsernameForm />} />
           <Route exact path="/profiles/:id/edit/password" render={() => <UserPasswordForm />} />
           <Route exact path="/profiles/:id/edit" render={() => <ProfileEditForm />} />
-
+          <Route exact path="/trending" render={()=> <Trending />}/>
           <Route render={() => <h1>Page does not exist!</h1>} />
         </Switch>
       </Container>

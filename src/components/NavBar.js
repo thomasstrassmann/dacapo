@@ -56,8 +56,8 @@ const NavBar = () => {
       <NavLink
         className={styles.NavLink}
         activeClassName={styles.Active}
-        to="#">
-        <img src={trending_up} alt="Wanted" height="30"/>Trending
+        to="/trending">
+        <img src={trending_up} alt="Trending" height="30"/>Trending
       </NavLink>
 
       <NavLink
