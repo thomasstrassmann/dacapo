@@ -211,13 +211,22 @@ function ProfilePage() {
         Instruments of {profile?.owner}
       </p>
       <hr className={instrumentStyles.Line} />
+
       {profileInstruments.results.length ? (
         <InfiniteScroll
+          style={{
+            display: "flex",
+            flexWrap: "wrap",
+            gap: "80px",
+            width: "100%",
+            justifyContent: "center",
+          }}
           children={profileInstruments.results.map((instrument) => (
             <Instrument
               key={instrument.id}
               {...instrument}
               setInstruments={setProfileInstruments}
+              style={{ width: "300px" }}
             />
           ))}
           dataLength={profileInstruments.results.length}
