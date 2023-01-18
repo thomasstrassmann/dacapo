@@ -196,7 +196,7 @@ function ProfilePage() {
           {profile?.average_rating !== 0 && <Star />}
         </Col>
       </Row>
-      <Row>
+      <Row className={styles.ProfileInstrumentsMargin}>
         <Col className="d-flex justify-content-center">
           {!is_owner && ratingField}
         </Col>
