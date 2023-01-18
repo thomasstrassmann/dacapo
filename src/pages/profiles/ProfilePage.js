@@ -12,9 +12,9 @@ import Instrument from "../instruments/Instrument";
 import search_null from "../../assets/icons/search_null.svg";
 import styles from "../../styles/ProfilePage.module.css";
 import appStyles from "../../App.module.css";
+import instrumentStyles from "../../styles/Instrument.module.css";
 import btnStyles from "../../styles/Button.module.css";
 
-import ProfilesOverview from "./ProfilesOverview";
 import { ProfileEditDropdown } from "../../components/EditDropdown";
 
 import { useUser } from "../../contexts/UserContext";
@@ -26,6 +26,7 @@ import { Button, Image } from "react-bootstrap";
 import { fetchMore } from "../../utils/utils";
 
 import InfiniteScroll from "react-infinite-scroll-component";
+import Star from "../../components/Star";
 
 function ProfilePage() {
   const [hasLoaded, setHasLoaded] = useState(false);
@@ -99,17 +100,17 @@ function ProfilePage() {
   const ratingField = (
     <>
       {ratedUsers.results.some((item) => item.profile_id === parseInt(id)) ? (
-        <p>You already rated this profile!</p>
+        <p className="text-center">You already rated this profile!</p>
       ) : (
-        <Form onSubmit={handleSubmit}>
+        <Form onSubmit={handleSubmit} className={styles.RatingContainer}>
           <Form.Group>
-            <Form.Label>Rating</Form.Label>
+            <Form.Label className={styles.RatingLabel}>Rating</Form.Label>
             <Form.Control
               as="select"
               name="rating"
               value={rating}
               onChange={handleChange}
-              placeholder="Rate the seller"
+              className={styles.RatingInput}
               aria-label="Rate the seller"
             >
               <option value="1">1 Star</option>
@@ -124,7 +125,7 @@ function ProfilePage() {
               {message}
             </Alert>
           ))}
-          <Button className={btnStyles.CreateFormButton} type="submit">
+          <Button className={btnStyles.DefaultButton} type="submit">
             rate
           </Button>
         </Form>
@@ -134,75 +135,75 @@ function ProfilePage() {
 
   const mainProfile = (
     <>
-      {profile?.is_owner && <ProfileEditDropdown id={profile?.id} />}
-      <Row noGutters className="px-3 text-center">
-        <Col className="text-lg-left">
+      <Row>
+        <Col className="d-flex justify-content-center">
           <Image
             className={styles.ProfileImage}
             roundedCircle
             src={profile?.avatar}
           />
         </Col>
-        <Col>
-          <h3 className="m-2">{profile?.owner}</h3>
-          <Row className="justify-content-center no-gutters">
-            <Col className="my-2">
-              <div>{profile?.followers_count} followers</div>
-            </Col>
-            <Col className="my-2">
-              <div>{profile?.following_count} following</div>
-            </Col>
-          </Row>
-          <Row>
-            <Col className="my-2">
-              <div>{profile?.instruments_count} instruments</div>
-            </Col>
-            <Col className="my-2">
-              <div>
-                Rating:
-                {profile?.average_rating === 0
-                  ? "No ratings yet!"
-                  : profile?.average_rating}
-              </div>
-            </Col>
-          </Row>
+      </Row>
+      <Row>
+        <Col className="d-flex justify-content-center">
+          <h3>{profile?.owner}</h3>
+          {profile?.is_owner && <ProfileEditDropdown id={profile?.id} />}
         </Col>
-        <Row>
-          <Col>
-            {user &&
+      </Row>
+      <Row>
+        <Col className="d-flex justify-content-center">
+        {user &&
               !is_owner &&
               (profile?.following_id ? (
                 <Button
-                  className={btnStyles.Button}
+                  className={btnStyles.DefaultButton}
                   onClick={() => handleUnfollow(profile)}
                 >
                   unfollow
                 </Button>
               ) : (
                 <Button
-                  className={btnStyles.Button}
+                  className={btnStyles.DefaultButton}
                   onClick={() => handleFollow(profile)}
                 >
                   follow
                 </Button>
               ))}
-          </Col>
+        </Col>
+      </Row>
+      <Row>
+            <Col className={`d-flex justify-content-center ${styles.ProfileDetails} ${styles.ProfileSpacing}`}>
+              <span>{profile?.followers_count} followers</span>
+              <span>{profile?.following_count} following</span>
+            </Col>
         </Row>
+          <Row>
+            <Col className={`d-flex justify-content-center ${styles.ProfileDetails}`}>
+              <div>{profile?.instruments_count} instruments</div>
+            </Col>
+          </Row>
+          <Row>
+            <Col className={`d-flex justify-content-center align-items-center ${styles.ProfileDetails}`}>
+                Rating: 
+                {profile?.average_rating === 0
+                  ? " No ratings yet!"
+                  : ` ${profile?.average_rating} `}
+                {profile?.average_rating !== 0 && <Star/>} 
+            </Col>
+          </Row>
         <Row>
-          <Col>
-            {is_owner && "You can not rate your own account!"}
+          <Col className="d-flex justify-content-center">
             {!is_owner && ratingField}
           </Col>
         </Row>
-      </Row>
     </>
   );
 
   const mainProfileInstruments = (
     <>
-      <hr />
-      <p className="text-center">Instruments of {profile?.owner}</p>
-      <hr />
+      <hr className={instrumentStyles.Line}/>
+      <p className={`text-center ${styles.ProfileDetails}`}>Instruments of {profile?.owner}</p>
+      <hr className={instrumentStyles.Line}/>
       {profileInstruments.results.length ? (
         <InfiniteScroll
           children={profileInstruments.results.map((instrument) => (
@@ -228,8 +229,7 @@ function ProfilePage() {
 
   return (
     <Row>
-      <Col className="py-2 p-0 p-lg-2">
-        <ProfilesOverview mobile />
+      <Col>
         <Container className={appStyles.Content}>
           {hasLoaded ? (
             <>

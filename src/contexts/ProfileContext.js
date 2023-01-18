@@ -69,7 +69,7 @@ export const ProfileProvider = ({ children }) => {
   useEffect(() => {
     const handleMount = async () => {
       try {
-        const { data } = await axiosReq.get(
+        const { data  } = await axiosReq.get(
           "/profiles/?ordering=-followers_count"
         );
         setProfile((prevState) => ({

@@ -1,17 +1,19 @@
-import React from 'react'
-import { Container, Row } from 'react-bootstrap'
-import ProfilesOverview from '../profiles/ProfilesOverview'
+import React from "react";
+import { Container, Row, Col } from "react-bootstrap";
+import ProfilesOverview from "../profiles/ProfilesOverview";
 
 const Trending = () => {
-    return (
+  return (
     <>
-    <Container>
+      <Container>
         <Row>
+          <Col>
             <ProfilesOverview/>
+          </Col>
         </Row>
-    </Container>
+      </Container>
     </>
-  )
-}
+  );
+};
 
 export default Trending;

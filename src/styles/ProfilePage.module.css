@@ -11,3 +11,26 @@
       height: 250px;
     }
   }
+
+  .ProfileDetails {
+    margin: 1%;
+  }
+
+  .ProfileSpacing {
+    gap: 10%;
+  }
+
+  .RatingContainer {
+    margin: 5% auto;
+  }
+
+  .RatingLabel {
+    display: block;
+    margin: 5%;
+    text-align: center;
+  }
+
+  .RatingInput {
+    max-width: 280px;
+    text-align: center;
+  }
