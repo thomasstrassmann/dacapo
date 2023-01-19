@@ -9,6 +9,7 @@ import Col from "react-bootstrap/Col";
 import Row from "react-bootstrap/Row";
 import Instrument from "./Instrument";
 import BackButton from "../../components/BackButton";
+import Contact from "../../components/Contact";
 
 function InstrumentPage() {
   const { id } = useParams();
@@ -40,6 +41,9 @@ function InstrumentPage() {
             instrumentPage
           />
         </Col>
+      </Row>
+      <Row>
+        <Contact/>
       </Row>
       <div className={btnStyles.NavButtonsContainer}>
         <BackButton />
