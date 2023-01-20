@@ -7,7 +7,7 @@ const Asset = ({ spinner, src, feedback }) => {
     <div className={`${styles.Asset} p-4`}>
       {spinner && <Spinner animation="grow" variant="danger" />}
       {src && <img src={src} alt={feedback} />}
-      {feedback && <p className="mt-4">{feedback}</p>}
+      {feedback && <p className="mt-4 text-center">{feedback}</p>}
     </div>
   );
 };

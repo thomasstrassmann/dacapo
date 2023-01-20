@@ -21,7 +21,7 @@
   }
 
   .RatingContainer {
-    margin: 5% auto;
+    margin: 1% auto 5%;
   }
 
   .RatingLabel {
@@ -40,5 +40,5 @@
   }
 
   .ProfileInstrumentsMargin {
-    margin-top: 5%;
+    margin-top: 1%;
   }

@@ -182,7 +182,14 @@ function ProfilePage() {
         <Col
           className={`d-flex justify-content-center ${styles.ProfileDetails}`}
         >
-          <div>{profile?.instruments_count} instruments</div>
+          <span>{profile?.instruments_count} instruments</span>
+        </Col>
+      </Row>
+      <Row>
+        <Col
+          className={`d-flex justify-content-center ${styles.ProfileDetails}`}
+        >
+          {profile?.phone && <span>Phone: {profile.phone}</span>}
         </Col>
       </Row>
       <Row>
