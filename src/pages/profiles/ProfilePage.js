@@ -191,6 +191,7 @@ function ProfilePage() {
             ))}
         </Col>
       </Row>
+      <Container className={styles.ProfileDetailsContainer}>
       <Row>
         <Col
           className={`d-flex justify-content-center ${styles.ProfileDetails} ${styles.ProfileSpacing}`}
@@ -213,6 +214,8 @@ function ProfilePage() {
           {profile?.phone && <span>Phone: {profile?.phone}</span>}
         </Col>
       </Row>
+      </Container>
+
       <Row>
         <Col
           className={`${styles.ProfileRating} ${styles.ProfileDetails}`}

@@ -16,6 +16,12 @@
     margin: 1%;
   }
 
+  @media screen and (max-width: 576px) {
+    .ProfileDetailsContainer {
+      font-size: 3vw;
+    }
+  }
+
   .ProfileSpacing {
     gap: 10%;
   }
