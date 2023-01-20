@@ -42,3 +42,19 @@
   .ProfileInstrumentsMargin {
     margin-top: 1%;
   }
+
+  .ProfileRating {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 20px;
+  }
+
+  .NumberOfRatings {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 1.5rem;
+  }
+
+  .RatingInfo {
+    padding-top: 4px;
+  }

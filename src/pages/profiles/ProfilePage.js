@@ -33,6 +33,7 @@ function ProfilePage() {
   const [profileInstruments, setProfileInstruments] = useState({ results: [] });
   const [errors, setErrors] = useState({});
   const [ratingData, setRatingData] = useState({ rating: "" });
+  const [numOfRatings, setNumOfRatings] = useState({ count: 0 });
   const { rating } = ratingData;
 
   const [ratedUsers, setRatedUsers] = useState({ results: [] });
@@ -53,10 +54,12 @@ function ProfilePage() {
             { data: pageProfile },
             { data: profileInstruments },
             { data: ratedUsers },
+            { data: numOfRatings },
           ] = await Promise.all([
             axiosReq.get(`/profiles/${id}/`),
             axiosReq.get(`/instruments/?owner__profile=${id}`),
             axiosReq.get(`/rating/?owner__id=${user.pk}`),
+            axiosReq.get(`/rating/?profile_id=${id}`),
           ]);
           setProfile((prevState) => ({
             ...prevState,
@@ -64,12 +67,21 @@ function ProfilePage() {
           }));
           setProfileInstruments(profileInstruments);
           setRatedUsers(ratedUsers);
+          setNumOfRatings(numOfRatings);
           setHasLoaded(true);
         } catch (err) {
           console.log(err);
         }
       };
-      fetchData();
+
+      setHasLoaded(false);
+      const timeout = setTimeout(() => {
+        fetchData();
+      }, 800);
+
+      return () => {
+        clearTimeout(timeout);
+      };
     }
   }, [id, setProfile, user]);
 
@@ -133,6 +145,14 @@ function ProfilePage() {
     </>
   );
 
+  const ratingDisplay = (
+    <div className={styles.RatingInfo}>
+    {profile?.average_rating.toFixed(1)}
+    <Star/>
+    <span className={styles.NumberOfRatings}>({numOfRatings.count})</span>
+    </div>
+  )
+
   const mainProfile = (
     <>
       <Row className={styles.TopMargin}>
@@ -190,18 +210,17 @@ function ProfilePage() {
         <Col
           className={`d-flex justify-content-center ${styles.ProfileDetails}`}
         >
-          {profile?.phone && <span>Phone: {profile.phone}</span>}
+          {profile?.phone && <span>Phone: {profile?.phone}</span>}
         </Col>
       </Row>
       <Row>
         <Col
-          className={`d-flex justify-content-center align-items-center ${styles.ProfileDetails}`}
+          className={`${styles.ProfileRating} ${styles.ProfileDetails}`}
         >
-          Rating:
+          Rating: 
           {profile?.average_rating === 0
             ? " No ratings yet!"
-            : ` ${profile?.average_rating.toFixed(1)} `}
-          {profile?.average_rating !== 0 && <Star />}
+            : <div>{ratingDisplay}</div>}
         </Col>
       </Row>
       <Row className={styles.ProfileInstrumentsMargin}>
@@ -214,13 +233,13 @@ function ProfilePage() {
 
   const mainProfileInstruments = (
     <>
-        <hr className={instrumentStyles.Line} />
-        <p className={`text-center ${styles.ProfileDetails}`}>
-          Instruments of {profile?.owner}
-        </p>
-        <hr className={instrumentStyles.Line} />
-        
-        <Container className={appStyles.ScrollContainer}>
+      <hr className={instrumentStyles.Line} />
+      <p className={`text-center ${styles.ProfileDetails}`}>
+        Instruments of {profile?.owner}
+      </p>
+      <hr className={instrumentStyles.Line} />
+
+      <Container className={appStyles.ScrollContainer}>
         {profileInstruments.results.length ? (
           <InfiniteScroll
             style={{
