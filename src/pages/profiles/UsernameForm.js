@@ -5,16 +5,14 @@ import Button from "react-bootstrap/Button";
 import Col from "react-bootstrap/Col";
 import Container from "react-bootstrap/Container";
 import Form from "react-bootstrap/Form";
-import Row from "react-bootstrap/Row";
+import BackButton from "../../components/BackButton";
 
 import { useSetUser, useUser } from "../../contexts/UserContext";
 import { useHistory, useParams } from "react-router-dom";
 import { axiosRes } from "../../api/axiosDefaults";
 
-
 import btnStyles from "../../styles/Button.module.css";
 import appStyles from "../../App.module.css";
-
 
 const UsernameForm = () => {
   const [username, setUsername] = useState("");
@@ -52,7 +50,7 @@ const UsernameForm = () => {
   };
 
   return (
-    <Row>
+    <>
       <Col className="py-2 mx-auto text-center" md={6}>
         <Container className={appStyles.Content}>
           <Form onSubmit={handleSubmit} className="my-2">
@@ -62,6 +60,7 @@ const UsernameForm = () => {
                 placeholder="username"
                 type="text"
                 value={username}
+                className="text-center"
                 onChange={(event) => setUsername(event.target.value)}
               />
             </Form.Group>
@@ -72,13 +71,13 @@ const UsernameForm = () => {
             ))}
 
             <Button
-              className={`${btnStyles.Button} ${btnStyles.Blue}`}
+              className={`d-block my-2 mx-auto ${btnStyles.DefaultButton} ${btnStyles.Blue}`}
               onClick={() => history.goBack()}
             >
               cancel
             </Button>
             <Button
-              className={`${btnStyles.Button} ${btnStyles.Blue}`}
+              className={`d-block mx-auto ${btnStyles.DefaultButton} ${btnStyles.Blue}`}
               type="submit"
             >
               save
@@ -86,7 +85,10 @@ const UsernameForm = () => {
           </Form>
         </Container>
       </Col>
-    </Row>
+      <div className={btnStyles.NavButtonsContainer}>
+        <BackButton />
+      </div>
+    </>
   );
 };
 

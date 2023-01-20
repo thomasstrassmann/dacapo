@@ -3,7 +3,6 @@ import React, { useEffect, useState } from "react";
 import Alert from "react-bootstrap/Alert";
 import Button from "react-bootstrap/Button";
 import Container from "react-bootstrap/Container";
-import Row from "react-bootstrap/Row";
 import Col from "react-bootstrap/Col";
 import Form from "react-bootstrap/Form";
 
@@ -13,6 +12,7 @@ import { axiosRes } from "../../api/axiosDefaults";
 import btnStyles from "../../styles/Button.module.css";
 import appStyles from "../../App.module.css";
 import { useUser } from "../../contexts/UserContext";
+import BackButton from "../../components/BackButton";
 
 const UserPasswordForm = () => {
   const history = useHistory();
@@ -52,7 +52,7 @@ const UserPasswordForm = () => {
   };
 
   return (
-    <Row>
+    <>
       <Col className="py-2 mx-auto text-center" md={6}>
         <Container className={appStyles.Content}>
           <Form onSubmit={handleSubmit}>
@@ -63,6 +63,7 @@ const UserPasswordForm = () => {
                 type="password"
                 value={new_password1}
                 onChange={handleChange}
+                className="text-center"
                 name="new_password1"
               />
             </Form.Group>
@@ -78,6 +79,7 @@ const UserPasswordForm = () => {
                 type="password"
                 value={new_password2}
                 onChange={handleChange}
+                className="text-center"
                 name="new_password2"
               />
             </Form.Group>
@@ -87,21 +89,24 @@ const UserPasswordForm = () => {
               </Alert>
             ))}
             <Button
-              className={`${btnStyles.Button} ${btnStyles.Blue}`}
+              className={`d-block my-2 mx-auto ${btnStyles.DefaultButton}`}
               onClick={() => history.goBack()}
             >
               cancel
             </Button>
             <Button
               type="submit"
-              className={`${btnStyles.Button} ${btnStyles.Blue}`}
+              className={`d-block mx-auto ${btnStyles.DefaultButton}`}
             >
               save
             </Button>
           </Form>
         </Container>
       </Col>
-    </Row>
+      <div className={btnStyles.NavButtonsContainer}>
+        <BackButton />
+      </div>
+      </>
   );
 };
 

@@ -141,7 +141,6 @@ const ProfileEditForm = () => {
   return (
     <>
       <Form className={styles.FormContainer} onSubmit={handleSubmit}>
-        <Row>
           <Col>
             <Container>
               <Form.Group className={styles.ProfileEditContainer}>
@@ -182,7 +181,6 @@ const ProfileEditForm = () => {
               </div>
             </Container>
           </Col>
-        </Row>
       </Form>
       <div className={btnStyles.NavButtonsContainer}>
         <BackButton />
