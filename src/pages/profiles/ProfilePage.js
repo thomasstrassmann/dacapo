@@ -147,11 +147,11 @@ function ProfilePage() {
 
   const ratingDisplay = (
     <div className={styles.RatingInfo}>
-    {profile?.average_rating.toFixed(1)}
-    <Star/>
-    <span className={styles.NumberOfRatings}>({numOfRatings.count})</span>
+      {profile?.average_rating.toFixed(1)}
+      <Star />
+      <span className={styles.NumberOfRatings}>({numOfRatings.count})</span>
     </div>
-  )
+  );
 
   const mainProfile = (
     <>
@@ -163,11 +163,11 @@ function ProfilePage() {
             src={profile?.avatar}
           />
         </Col>
+        {profile?.is_owner && <ProfileEditDropdown id={profile?.id} />}
       </Row>
       <Row>
         <Col className="d-flex justify-content-center">
           <h3>{profile?.owner}</h3>
-          {profile?.is_owner && <ProfileEditDropdown id={profile?.id} />}
         </Col>
       </Row>
       <Row>
@@ -192,38 +192,38 @@ function ProfilePage() {
         </Col>
       </Row>
       <Container className={styles.ProfileDetailsContainer}>
-      <Row>
-        <Col
-          className={`d-flex justify-content-center ${styles.ProfileDetails} ${styles.ProfileSpacing}`}
-        >
-          <span>Followers: {profile?.followers_count}</span>
-          <span>Following: {profile?.following_count}</span>
-        </Col>
-      </Row>
-      <Row>
-        <Col
-          className={`d-flex justify-content-center ${styles.ProfileDetails}`}
-        >
-          <span>Instruments: {profile?.instruments_count}</span>
-        </Col>
-      </Row>
-      <Row>
-        <Col
-          className={`d-flex justify-content-center ${styles.ProfileDetails}`}
-        >
-          {profile?.phone && <span>Phone: {profile?.phone}</span>}
-        </Col>
-      </Row>
+        <Row>
+          <Col
+            className={`d-flex justify-content-center ${styles.ProfileDetails} ${styles.ProfileSpacing}`}
+          >
+            <span>Followers: {profile?.followers_count}</span>
+            <span>Following: {profile?.following_count}</span>
+          </Col>
+        </Row>
+        <Row>
+          <Col
+            className={`d-flex justify-content-center ${styles.ProfileDetails}`}
+          >
+            <span>Instruments: {profile?.instruments_count}</span>
+          </Col>
+        </Row>
+        <Row>
+          <Col
+            className={`d-flex justify-content-center ${styles.ProfileDetails}`}
+          >
+            {profile?.phone && <span>Phone: {profile?.phone}</span>}
+          </Col>
+        </Row>
       </Container>
 
       <Row>
-        <Col
-          className={`${styles.ProfileRating} ${styles.ProfileDetails}`}
-        >
-          Rating: 
-          {profile?.average_rating === 0
-            ? " No ratings yet!"
-            : <div>{ratingDisplay}</div>}
+        <Col className={`${styles.ProfileRating} ${styles.ProfileDetails}`}>
+          Rating:
+          {profile?.average_rating === 0 ? (
+            " No ratings yet!"
+          ) : (
+            <div>{ratingDisplay}</div>
+          )}
         </Col>
       </Row>
       <Row className={styles.ProfileInstrumentsMargin}>
@@ -277,18 +277,16 @@ function ProfilePage() {
 
   return (
     <>
-      <Row>
-        <Col>
-          {hasLoaded ? (
-            <>
-              {mainProfile}
-              {mainProfileInstruments}
-            </>
-          ) : (
-            <Asset spinner />
-          )}
-        </Col>
-      </Row>
+      <Container fluid>
+        {hasLoaded ? (
+          <>
+            {mainProfile}
+            {mainProfileInstruments}
+          </>
+        ) : (
+          <Asset spinner />
+        )}
+      </Container>
       <div className={btnStyles.NavButtonsContainer}>
         <BackButton />
       </div>
