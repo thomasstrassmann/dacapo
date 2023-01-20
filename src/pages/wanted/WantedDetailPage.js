@@ -4,14 +4,18 @@ import { useParams } from "react-router";
 import { axiosReq } from "../../api/axiosDefaults";
 
 import btnStyles from "../../styles/Button.module.css";
+import contactStyles from "../../styles/Contact.module.css";
 import Col from "react-bootstrap/Col";
 import Row from "react-bootstrap/Row";
 import Wanted from "./Wanted";
 import BackButton from "../../components/BackButton";
+import { useUser } from "../../contexts/UserContext";
+import Contact from "../../components/Contact";
 
 function WantedDetailPage() {
   const { id } = useParams();
   const [wanted, setWanted] = useState({ results: [] });
+  const user = useUser();
 
   useEffect(() => {
     const handleMount = async () => {
@@ -35,6 +39,12 @@ function WantedDetailPage() {
         <Col>
           <Wanted {...wanted.results[0]} wantedDetailPage />
         </Col>
+        {user && (
+          <Row className={contactStyles.Container}>
+            <h3 className={contactStyles.Heading}>Contact the seller</h3>
+            <Contact />
+          </Row>
+        )}
       </Row>
       <div className={btnStyles.NavButtonsContainer}>
         <BackButton />

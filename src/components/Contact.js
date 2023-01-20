@@ -2,6 +2,7 @@ import React, { useEffect, useState } from "react";
 import { Button, Form } from "react-bootstrap";
 import { useParams } from "react-router-dom/cjs/react-router-dom";
 import styles from "../styles/Contact.module.css";
+import btnStyles from "../styles/Button.module.css";
 import axios from "axios";
 
 const Contact = () => {
@@ -53,16 +54,18 @@ const Contact = () => {
     <>
       <Form className={styles.ContactForm}>
         <Form.Group controlId="text">
-          <Form.Label className="d-none">Your message to the seller</Form.Label>
+          <Form.Label className="d-none">Your message</Form.Label>
           <Form.Control
-            type="text"
+            as="textarea"
+            rows={10}
             name="text"
+            className={styles.Message}
             onChange={handleChange}
             value={text}
             required
           />
         </Form.Group>
-        <Button onClick={sendMail}>Send message</Button>
+        <Button className={btnStyles.ContactButton} onClick={sendMail}>Send message</Button>
       </Form>
     </>
   )
