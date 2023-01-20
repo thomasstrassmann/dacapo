@@ -41,7 +41,7 @@ function WantedDetailPage() {
         </Col>
         {user && (
           <Row className={contactStyles.Container}>
-            <h3 className={contactStyles.Heading}>Contact the seller</h3>
+            <h3 className={contactStyles.Heading}>Contact the seeker</h3>
             <Contact query="wanted"/>
           </Row>
         )}

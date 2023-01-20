@@ -11,9 +11,10 @@ import Alert from "react-bootstrap/Alert";
 
 import { axiosReq } from "../../api/axiosDefaults";
 
+import styles from "../../styles/Profile.module.css";
 import btnStyles from "../../styles/Button.module.css";
-import appStyles from "../../App.module.css";
 import { useUser, useSetUser } from "../../contexts/UserContext";
+import BackButton from "../../components/BackButton";
 
 const ProfileEditForm = () => {
   const user = useUser();
@@ -85,11 +86,12 @@ const ProfileEditForm = () => {
   const textFields = (
     <>
       <Form.Group>
-        <Form.Label>Email</Form.Label>
+        <Form.Label className="w-100 text-center">Email</Form.Label>
         <Form.Control
           type="email"
           value={email}
           onChange={handleChange}
+          className={styles.TextFields}
           name="email"
         />
       </Form.Group>
@@ -101,11 +103,16 @@ const ProfileEditForm = () => {
       ))}
 
       <Form.Group>
-        <Form.Label>Phone</Form.Label>
+        <Form.Label className="w-100 text-center">Phone</Form.Label>
+        <p className={styles.PhoneNote}>
+          <strong>Caution:</strong> This phone number is displayed on your
+          profile so that prospects can contact you by phone.
+        </p>
         <Form.Control
           type="text"
           value={phone}
           onChange={handleChange}
+          className={styles.TextFields}
           name="phone"
         />
       </Form.Group>
@@ -117,63 +124,70 @@ const ProfileEditForm = () => {
       ))}
 
       <Button
-        className={`${btnStyles.Button} ${btnStyles.Blue}`}
+        className={`d-block mx-auto my-2 ${btnStyles.DefaultButton}`}
         onClick={() => history.goBack()}
       >
         cancel
       </Button>
-      <Button className={`${btnStyles.Button} ${btnStyles.Blue}`} type="submit">
+      <Button
+        className={`d-block mx-auto ${btnStyles.DefaultButton}`}
+        type="submit"
+      >
         save
       </Button>
     </>
   );
 
   return (
-    <Form onSubmit={handleSubmit}>
-      <Row>
-        <Col className="py-2 p-0 p-md-2 text-center" md={7} lg={6}>
-          <Container className={appStyles.Content}>
-            <Form.Group>
-              {avatar && (
-                <figure>
-                  <Image src={avatar} fluid />
-                </figure>
-              )}
-              {errors?.avatar?.map((message, idx) => (
-                <Alert variant="info" key={idx}>
-                  {message}
-                </Alert>
-              ))}
-              <div>
-                <Form.Label
-                  className={`${btnStyles.Button} ${btnStyles.Blue} btn my-auto`}
-                  htmlFor="image-upload"
-                >
-                  Change the avatar
-                </Form.Label>
+    <>
+      <Form className={styles.FormContainer} onSubmit={handleSubmit}>
+        <Row>
+          <Col>
+            <Container>
+              <Form.Group className={styles.ProfileEditContainer}>
+                {avatar && (
+                  <figure>
+                    <Image src={avatar} fluid />
+                  </figure>
+                )}
+                {errors?.avatar?.map((message, idx) => (
+                  <Alert variant="info" key={idx}>
+                    {message}
+                  </Alert>
+                ))}
+                <div className="mx-auto">
+                  <Form.Label
+                    className={`mx-auto ${btnStyles.DefaultButton} ${btnStyles.ChangeAvatarButton}`}
+                    htmlFor="image-upload"
+                  >
+                    Change the avatar
+                  </Form.Label>
+                </div>
+                <Form.File
+                  id="image-upload"
+                  ref={imageFile}
+                  accept="image/*"
+                  onChange={(e) => {
+                    if (e.target.files.length) {
+                      setProfile({
+                        ...profile,
+                        avatar: URL.createObjectURL(e.target.files[0]),
+                      });
+                    }
+                  }}
+                />
+              </Form.Group>
+              <div className={` ${styles.ProfileEditContainer}`}>
+                {textFields}
               </div>
-              <Form.File
-                id="image-upload"
-                ref={imageFile}
-                accept="image/*"
-                onChange={(e) => {
-                  if (e.target.files.length) {
-                    setProfile({
-                      ...profile,
-                      avatar: URL.createObjectURL(e.target.files[0]),
-                    });
-                  }
-                }}
-              />
-            </Form.Group>
-            <div className="d-md-none">{textFields}</div>
-          </Container>
-        </Col>
-        <Col md={5} lg={6} className="d-none d-md-block p-0 p-md-2 text-center">
-          <Container className={appStyles.Content}>{textFields}</Container>
-        </Col>
-      </Row>
-    </Form>
+            </Container>
+          </Col>
+        </Row>
+      </Form>
+      <div className={btnStyles.NavButtonsContainer}>
+        <BackButton />
+      </div>
+    </>
   );
 };
 

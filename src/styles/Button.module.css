@@ -97,3 +97,10 @@
   background-color: #fa3750;
   max-width: 280px;
 }
+
+.ChangeAvatarButton {
+  color: white;
+  text-align: center;
+  padding: .375rem 0.75rem;
+  border-radius: 0.25rem;
+}
