@@ -12,6 +12,7 @@ import searchNull from "../../assets/icons/search_null.svg";
 
 import styles from "../../styles/InstrumentsPage.module.css";
 import btnStyles from "../../styles/Button.module.css";
+import appStyles from "../../App.module.css";
 
 import { useLocation } from "react-router";
 import { axiosReq } from "../../api/axiosDefaults";
@@ -87,7 +88,7 @@ function InstrumentsPage({ feedback, filter = "", instrumentsPage }) {
         </Row>
       </Container>
 
-      <Container>
+      <Container className={appStyles.ScrollContainer}>
         {hasLoaded ? (
           <>
             {instruments.results.length ? (

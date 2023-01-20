@@ -10,6 +10,7 @@ import Instrument from "../instruments/Instrument";
 
 import search_null from "../../assets/icons/search_null.svg";
 import styles from "../../styles/ProfilePage.module.css";
+import appStyles from "../../App.module.css";
 import instrumentStyles from "../../styles/Instrument.module.css";
 import btnStyles from "../../styles/Button.module.css";
 
@@ -219,7 +220,7 @@ function ProfilePage() {
         </p>
         <hr className={instrumentStyles.Line} />
         
-        <Container>
+        <Container className={appStyles.ScrollContainer}>
         {profileInstruments.results.length ? (
           <InfiniteScroll
             style={{

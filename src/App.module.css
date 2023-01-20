@@ -69,6 +69,10 @@ figure {
   brightness(94%) contrast(110%);
 }
 
+.ScrollContainer {
+  padding-bottom: 10%;
+}
+
 *::-webkit-scrollbar {
   width: 5px;
 }
