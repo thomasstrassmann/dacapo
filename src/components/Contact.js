@@ -5,7 +5,7 @@ import styles from "../styles/Contact.module.css";
 import btnStyles from "../styles/Button.module.css";
 import axios from "axios";
 
-const Contact = () => {
+const Contact = (query) => {
   const [contactData, setContactData] = useState({
     text: "",
   });
@@ -17,7 +17,7 @@ const Contact = () => {
 
   useEffect(() => {
     const handleMount = async () => {
-        axios.get(`https://dacapo-api.herokuapp.com/instruments/${id}`)
+        axios.get(`https://dacapo-api.herokuapp.com/${query}/${id}`)
         .then(response => {
           setItem(response.data);
           return axios.get(`https://dacapo-api.herokuapp.com/profiles/${response.data.profile_id}`)
@@ -28,9 +28,7 @@ const Contact = () => {
         }).catch(error => console.log(error.response));
     }
     handleMount();
-  }, [id, itemOwnerMail]);
-
-//   const user = useUser();
+  }, [id, itemOwnerMail, query]);
 
   const handleChange = (event) => {
     setContactData({

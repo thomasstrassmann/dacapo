@@ -47,7 +47,7 @@ function InstrumentPage() {
       {user && (
         <Row className={contactStyles.Container}>
           <h3 className={contactStyles.Heading}>Contact the seller</h3>
-          <Contact />
+          <Contact query="instruments"/>
         </Row>
       )}
       <div className={btnStyles.NavButtonsContainer}>
