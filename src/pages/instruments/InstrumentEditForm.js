@@ -225,7 +225,7 @@ function InstrumentEditForm() {
                 <Image className={appStyles.Image} src={image} rounded />
               </figure>
               <div>
-                <Form.Label htmlFor="image-upload">Change the image</Form.Label>
+                <Form.Label htmlFor="image-upload" className={`${btnStyles.DefaultButton} ${btnStyles.ChangeAvatarButton}`}>Change the image</Form.Label>
               </div>
 
               <Form.File
