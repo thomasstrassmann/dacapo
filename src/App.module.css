@@ -8,6 +8,7 @@ font-family: 'Seymour One', sans-serif;
   box-sizing: border-box;
   margin: 0;
   padding: 0;
+  overflow-x: hidden;
 }
 
 .App {
@@ -80,7 +81,7 @@ figure {
   background: #f1f1f1;
 }
 *::-webkit-scrollbar-thumb {
-  background: #888;
+  background: #fa3750;
 }
 *::-webkit-scrollbar-thumb:hover {
   background: #555;

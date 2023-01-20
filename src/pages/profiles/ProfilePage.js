@@ -200,7 +200,7 @@ function ProfilePage() {
           Rating:
           {profile?.average_rating === 0
             ? " No ratings yet!"
-            : ` ${profile?.average_rating} `}
+            : ` ${profile?.average_rating.toFixed(1)} `}
           {profile?.average_rating !== 0 && <Star />}
         </Col>
       </Row>
