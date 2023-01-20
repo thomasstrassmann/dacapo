@@ -7,14 +7,17 @@ import contactStyles from "../../styles/Contact.module.css";
 
 import Col from "react-bootstrap/Col";
 import Row from "react-bootstrap/Row";
+import Container from "react-bootstrap/Container";
 import Instrument from "./Instrument";
 import BackButton from "../../components/BackButton";
 import Contact from "../../components/Contact";
+import Asset from "../../components/Asset";
 import { useUser } from "../../contexts/UserContext";
 
 function InstrumentPage() {
   const { id } = useParams();
   const [instrument, setInstrument] = useState({ results: [] });
+  const [hasLoaded, setHasLoaded] = useState(false);
   const user = useUser();
 
   useEffect(() => {
@@ -24,32 +27,54 @@ function InstrumentPage() {
           axiosReq.get(`/instruments/${id}`),
         ]);
         setInstrument({ results: [instrument] });
+        setHasLoaded(true);
         console.log(instrument);
       } catch (err) {
         console.log(err);
       }
     };
+    setHasLoaded(false);
+    const timeout = setTimeout(() => {
+      handleMount();
+    }, 800);
 
-    handleMount();
+    return () => {
+      clearTimeout(timeout);
+    };
   }, [id]);
+
+  const contactForm = (
+    <>
+      {user && (
+        <Row className={contactStyles.Container}>
+          <h3 className={contactStyles.Heading}>Contact the seller</h3>
+          <Contact query="instruments" />
+        </Row>
+      )}
+    </>
+  );
 
   return (
     <>
       <Row className="h-100">
-        <Col>
-          <Instrument
-            {...instrument.results[0]}
-            setInstruments={setInstrument}
-            instrumentPage
-          />
-        </Col>
+        {hasLoaded ? (
+          <>
+            <Col>
+              <Instrument
+                {...instrument.results[0]}
+                setInstruments={setInstrument}
+                instrumentPage
+              />
+            </Col>
+            <div>{contactForm}</div>
+          </>
+        ) : (
+          <Container>
+            <Asset spinner />
+          </Container>
+        )}
       </Row>
-      {user && (
-        <Row className={contactStyles.Container}>
-          <h3 className={contactStyles.Heading}>Contact the seller</h3>
-          <Contact query="instruments"/>
-        </Row>
-      )}
+
       <div className={btnStyles.NavButtonsContainer}>
         <BackButton />
       </div>

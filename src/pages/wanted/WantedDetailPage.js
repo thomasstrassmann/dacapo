@@ -46,32 +46,32 @@ function WantedDetailPage() {
 
   const contactForm = (
     <>
-    {user && (
-      <Row className={contactStyles.Container}>
-        <h3 className={contactStyles.Heading}>Contact the seeker</h3>
-        <Contact query="wanted" />
-      </Row>
-    )}
+      {user && (
+        <Row className={contactStyles.Container}>
+          <h3 className={contactStyles.Heading}>Contact the seeker</h3>
+          <Contact query="wanted" />
+        </Row>
+      )}
     </>
-    )
+  );
 
   return (
     <>
       <Row className="h-100">
         {hasLoaded ? (
           <>
-          <Col>
-            <Wanted {...wanted.results[0]} wantedDetailPage />
-          </Col>
-          <div>{contactForm}</div>
+            <Col>
+              <Wanted {...wanted.results[0]} wantedDetailPage />
+            </Col>
+            <div>{contactForm}</div>
           </>
         ) : (
           <Container>
             <Asset spinner />
           </Container>
         )}
-
       </Row>
+
       <div className={btnStyles.NavButtonsContainer}>
         <BackButton />
       </div>
