@@ -3,7 +3,7 @@ import React, { useEffect, useState } from "react";
 import Col from "react-bootstrap/Col";
 import Row from "react-bootstrap/Row";
 import Form from "react-bootstrap/Form";
-import { Alert } from "react-bootstrap";
+import { Alert, Container } from "react-bootstrap";
 
 import Asset from "../../components/Asset";
 import Instrument from "../instruments/Instrument";
@@ -174,15 +174,15 @@ function ProfilePage() {
         <Col
           className={`d-flex justify-content-center ${styles.ProfileDetails} ${styles.ProfileSpacing}`}
         >
-          <span>{profile?.followers_count} followers</span>
-          <span>{profile?.following_count} following</span>
+          <span>Followers: {profile?.followers_count}</span>
+          <span>Following: {profile?.following_count}</span>
         </Col>
       </Row>
       <Row>
         <Col
           className={`d-flex justify-content-center ${styles.ProfileDetails}`}
         >
-          <span>{profile?.instruments_count} instruments</span>
+          <span>Instruments: {profile?.instruments_count}</span>
         </Col>
       </Row>
       <Row>
@@ -213,40 +213,42 @@ function ProfilePage() {
 
   const mainProfileInstruments = (
     <>
-      <hr className={instrumentStyles.Line} />
-      <p className={`text-center ${styles.ProfileDetails}`}>
-        Instruments of {profile?.owner}
-      </p>
-      <hr className={instrumentStyles.Line} />
-
-      {profileInstruments.results.length ? (
-        <InfiniteScroll
-          style={{
-            display: "flex",
-            flexWrap: "wrap",
-            gap: "80px",
-            width: "100%",
-            justifyContent: "center",
-          }}
-          children={profileInstruments.results.map((instrument) => (
-            <Instrument
-              key={instrument.id}
-              {...instrument}
-              setInstruments={setProfileInstruments}
-              style={{ width: "300px" }}
-            />
-          ))}
-          dataLength={profileInstruments.results.length}
-          loader={<Asset spinner />}
-          hasMore={!!profileInstruments.next}
-          next={() => fetchMore(profileInstruments, setProfileInstruments)}
-        />
-      ) : (
-        <Asset
-          src={search_null}
-          feedback={`${profile?.owner} has no instruments to sell at this point.`}
-        />
-      )}
+        <hr className={instrumentStyles.Line} />
+        <p className={`text-center ${styles.ProfileDetails}`}>
+          Instruments of {profile?.owner}
+        </p>
+        <hr className={instrumentStyles.Line} />
+        
+        <Container>
+        {profileInstruments.results.length ? (
+          <InfiniteScroll
+            style={{
+              display: "flex",
+              flexWrap: "wrap",
+              gap: "80px",
+              width: "100%",
+              justifyContent: "center",
+            }}
+            children={profileInstruments.results.map((instrument) => (
+              <Instrument
+                key={instrument.id}
+                {...instrument}
+                setInstruments={setProfileInstruments}
+                style={{ width: "300px" }}
+              />
+            ))}
+            dataLength={profileInstruments.results.length}
+            loader={<Asset spinner />}
+            hasMore={!!profileInstruments.next}
+            next={() => fetchMore(profileInstruments, setProfileInstruments)}
+          />
+        ) : (
+          <Asset
+            src={search_null}
+            feedback={`${profile?.owner} has no instruments to sell at this point.`}
+          />
+        )}
+      </Container>
     </>
   );
 
