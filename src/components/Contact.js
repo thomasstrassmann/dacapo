@@ -5,7 +5,7 @@ import styles from "../styles/Contact.module.css";
 import btnStyles from "../styles/Button.module.css";
 import axios from "axios";
 
-const Contact = (query) => {
+const Contact = ({query}) => {
   const [contactData, setContactData] = useState({
     text: "",
   });
