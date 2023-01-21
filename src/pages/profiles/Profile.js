@@ -8,39 +8,37 @@ import { Button } from "react-bootstrap";
 import { useSetProfile } from "../../contexts/ProfileContext";
 
 const Profile = (props) => {
-  const { profile, mobile, imageSize = 50 } = props;
+  const { profile, imageSize = 50 } = props;
   const { id, following_id, avatar, owner } = profile;
 
-  const user = useUser(); 
+  const user = useUser();
   const { handleFollow, handleUnfollow } = useSetProfile();
   const is_owner = user?.username === owner;
 
   return (
-    <div
-      className={`my-3 d-flex align-items-center ${mobile && "flex-column"}`}
-    >
+    <div className={styles.ProfileAbstract}>
       <div>
-        <Link className="align-self-center" to={`/profiles/${id}`}>
+        <Link className={styles.ProfileInfos} to={`/profiles/${id}`}>
           <Avatar src={avatar} height={imageSize} />
+          <div className={`mx-2 ${styles.WordBreak}`}>
+            <strong>{owner}</strong>
+          </div>
         </Link>
       </div>
-      <div className={`mx-2 ${styles.WordBreak}`}>
-        <strong>{owner}</strong>
-      </div>
-      <div className={`text-right ${!mobile && "ml-auto"}`}>
-        {!mobile &&
-          user &&
+
+      <div className={`text-right`}>
+        {user &&
           !is_owner &&
           (following_id ? (
             <Button
-              className={btnStyles.Button}
+              className={btnStyles.TrendingButton}
               onClick={() => handleUnfollow(profile)}
             >
               unfollow
             </Button>
           ) : (
             <Button
-              className={btnStyles.Button}
+              className={btnStyles.TrendingButton}
               onClick={() => handleFollow(profile)}
             >
               follow

@@ -13,7 +13,8 @@
 .TopButtonMobile:hover,
 .BackButton:hover,
 .BackButtonMobile:hover,
-.ContactButton:hover {
+.ContactButton:hover,
+.TrendingButton:hover  {
   background-color: #5c8294;
   border: 2px solid black;
 }
@@ -30,6 +31,13 @@
   border: 2px solid black;
   background-color: #fa3750;
   max-width: 280px;
+}
+
+.TrendingButton {
+  width: 33vw;
+  border: 2px solid black;
+  background-color: #fa3750;
+  max-width: 200px;
 }
 
 .ImageButton {

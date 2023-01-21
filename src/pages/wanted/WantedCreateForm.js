@@ -123,7 +123,7 @@ function WantedCreateForm() {
 
   return (
     <Form onSubmit={handleSubmit}>
-      <Row>
+      <Row className={appStyles.Row}>
         <Col className="p-0 p-md-2">
           <Container className={appStyles.Content}>{inputFields}</Container>
         </Col>
