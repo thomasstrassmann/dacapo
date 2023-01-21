@@ -39,7 +39,6 @@ function ProfilePage() {
   const [currentRating, setCurrentRating] = useState(0);
   const [notRated, setNotRated] = useState(true);
 
-
   const [ratedUsers, setRatedUsers] = useState({ results: [] });
 
   const user = useUser();
@@ -47,6 +46,8 @@ function ProfilePage() {
 
   const { pageProfile } = useProfile();
   const { handleFollow, handleUnfollow, setProfile } = useSetProfile();
+  const [show, setShow] = useState(false);
+
   const [profile] = pageProfile.results;
   const is_owner = user?.username === profile?.owner;
 
@@ -111,49 +112,48 @@ function ProfilePage() {
         setErrors(err.response?.data);
       }
     }
-    axiosReq.get(`/profiles/${id}/`)
-        .then(response => {
-          setCurrentRating(response.data.average_rating);
-  })
-  setNumOfRatings({count: numOfRatings.count + 1});
-  setNotRated(false);
-}
-
+    axiosReq.get(`/profiles/${id}/`).then((response) => {
+      setCurrentRating(response.data.average_rating);
+    });
+    setNumOfRatings({ count: numOfRatings.count + 1 });
+    setShow(true);
+    setNotRated(false);
+  };
 
   const ratingField = (
     <>
-    <div className={`${notRated ? "" : styles.Hide}`}>
-      {ratedUsers.results.some((item) => item.profile_id === parseInt(id)) ? (
-        <p className="text-center">You already rated this profile!</p>
-      ) : (
-        <Form onSubmit={handleSubmit} className={styles.RatingContainer}>
-          <Form.Group>
-            <Form.Label className={styles.RatingLabel}>Rating</Form.Label>
-            <Form.Control
-              as="select"
-              name="rating"
-              value={rating}
-              onChange={handleChange}
-              className={styles.RatingInput}
-              aria-label="Rate the seller"
-            >
-              <option value="1">1 Star</option>
-              <option value="2">2 Stars</option>
-              <option value="3">3 Stars</option>
-              <option value="4">4 Stars</option>
-              <option value="5">5 Stars</option>
-            </Form.Control>
-          </Form.Group>
-          {errors?.rating?.map((message, idx) => (
-            <Alert variant="warning" key={idx}>
-              {message}
-            </Alert>
-          ))}
-          <Button className={btnStyles.DefaultButton} type="submit">
-            rate
-          </Button>
-        </Form>
-      )}
+      <div className={`${notRated ? "" : styles.Hide}`}>
+        {ratedUsers.results.some((item) => item.profile_id === parseInt(id)) ? (
+          <p className="text-center">You already rated this profile!</p>
+        ) : (
+          <Form onSubmit={handleSubmit} className={styles.RatingContainer}>
+            <Form.Group>
+              <Form.Label className={styles.RatingLabel}>Rating</Form.Label>
+              <Form.Control
+                as="select"
+                name="rating"
+                value={rating}
+                onChange={handleChange}
+                className={styles.RatingInput}
+                aria-label="Rate the seller"
+              >
+                <option value="1">1 Star</option>
+                <option value="2">2 Stars</option>
+                <option value="3">3 Stars</option>
+                <option value="4">4 Stars</option>
+                <option value="5">5 Stars</option>
+              </Form.Control>
+            </Form.Group>
+            {errors?.rating?.map((message, idx) => (
+              <Alert variant="warning" key={idx}>
+                {message}
+              </Alert>
+            ))}
+            <Button className={btnStyles.DefaultButton} type="submit">
+              rate
+            </Button>
+          </Form>
+        )}
       </div>
     </>
   );
@@ -229,10 +229,20 @@ function ProfilePage() {
         </Row>
       </Container>
 
+      {show && (
+        <Alert variant="success" onClose={() => setShow(false)} dismissible>
+          <Alert.Heading>Thanks for your feedback!</Alert.Heading>
+          <p>
+            Go to the instruments or trending page to find more interesting
+            profiles!
+          </p>
+        </Alert>
+      )}
+
       <Row>
         <Col className={`${styles.ProfileRating} ${styles.ProfileDetails}`}>
           Rating:
-          {profile?.average_rating === 0 ? (
+          {currentRating === 0 ? (
             " No ratings yet!"
           ) : (
             <div>{ratingDisplay}</div>
