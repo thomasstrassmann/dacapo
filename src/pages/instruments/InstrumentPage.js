@@ -3,6 +3,7 @@ import React, { useEffect, useState } from "react";
 import { useParams } from "react-router";
 import { axiosReq } from "../../api/axiosDefaults";
 import btnStyles from "../../styles/Button.module.css";
+import appStyles from "../../App.module.css";
 import contactStyles from "../../styles/Contact.module.css";
 
 import Col from "react-bootstrap/Col";
@@ -56,7 +57,7 @@ function InstrumentPage() {
 
   return (
     <>
-      <Row className="h-100">
+      <Row className={`h-100 ${appStyles.Row}`}>
         {hasLoaded ? (
           <>
             <Col>

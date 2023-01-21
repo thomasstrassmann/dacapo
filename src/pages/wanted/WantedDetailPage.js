@@ -6,6 +6,8 @@ import Container from "react-bootstrap/Container";
 
 import btnStyles from "../../styles/Button.module.css";
 import contactStyles from "../../styles/Contact.module.css";
+import appStyles from "../../App.module.css";
+
 import Col from "react-bootstrap/Col";
 import Row from "react-bootstrap/Row";
 import Wanted from "./Wanted";
@@ -57,7 +59,7 @@ function WantedDetailPage() {
 
   return (
     <>
-      <Row className="h-100">
+      <Row className={`h-100 ${appStyles.Row}`}>
         {hasLoaded ? (
           <>
             <Col>
