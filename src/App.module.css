@@ -48,6 +48,11 @@ a:hover {
   width: 100%;
 }
 
+.Row {
+  margin: 0;
+  padding:0;
+}
+
 .Image {
   max-height: 40vh;
   max-width: 100%;

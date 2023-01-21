@@ -82,7 +82,7 @@ const SignUpForm = () => {
                 className={styles.Input}
                 type="email"
                 name="email"
-                placeholder="E-Mail address"
+                placeholder="Email address"
                 onChange={handleChange}
                 value={email}
                 required

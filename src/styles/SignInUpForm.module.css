@@ -1,5 +1,7 @@
 .Row {
     height: calc(100vh - 81px);
+    margin: 0;
+    padding: 0;
 }
 
 .Input {
