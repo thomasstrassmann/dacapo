@@ -64,3 +64,7 @@
   .RatingInfo {
     padding-top: 4px;
   }
+
+  .Hide {
+    display: none;
+  }

@@ -37,6 +37,7 @@ function ProfilePage() {
 
   const [numOfRatings, setNumOfRatings] = useState({ count: 0 });
   const [currentRating, setCurrentRating] = useState(0);
+  const [notRated, setNotRated] = useState(true);
 
 
   const [ratedUsers, setRatedUsers] = useState({ results: [] });
@@ -115,11 +116,13 @@ function ProfilePage() {
           setCurrentRating(response.data.average_rating);
   })
   setNumOfRatings({count: numOfRatings.count + 1});
+  setNotRated(false);
 }
 
 
   const ratingField = (
     <>
+    <div className={`${notRated ? "" : styles.Hide}`}>
       {ratedUsers.results.some((item) => item.profile_id === parseInt(id)) ? (
         <p className="text-center">You already rated this profile!</p>
       ) : (
@@ -151,6 +154,7 @@ function ProfilePage() {
           </Button>
         </Form>
       )}
+      </div>
     </>
   );
 
