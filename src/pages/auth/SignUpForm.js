@@ -89,7 +89,7 @@ const SignUpForm = () => {
               />
             </Form.Group>
 
-            {errors.password1?.map((message, idx) => (
+            {errors.email?.map((message, idx) => (
               <Alert key={idx} variant="info">
                 {message}
               </Alert>

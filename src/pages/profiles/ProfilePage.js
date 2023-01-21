@@ -33,8 +33,11 @@ function ProfilePage() {
   const [profileInstruments, setProfileInstruments] = useState({ results: [] });
   const [errors, setErrors] = useState({});
   const [ratingData, setRatingData] = useState({ rating: "" });
-  const [numOfRatings, setNumOfRatings] = useState({ count: 0 });
   const { rating } = ratingData;
+
+  const [numOfRatings, setNumOfRatings] = useState({ count: 0 });
+  const [currentRating, setCurrentRating] = useState(0);
+
 
   const [ratedUsers, setRatedUsers] = useState({ results: [] });
 
@@ -68,12 +71,12 @@ function ProfilePage() {
           setProfileInstruments(profileInstruments);
           setRatedUsers(ratedUsers);
           setNumOfRatings(numOfRatings);
+          setCurrentRating(pageProfile?.average_rating);
           setHasLoaded(true);
         } catch (err) {
           console.log(err);
         }
       };
-
       setHasLoaded(false);
       const timeout = setTimeout(() => {
         fetchData();
@@ -107,7 +110,13 @@ function ProfilePage() {
         setErrors(err.response?.data);
       }
     }
-  };
+    axiosReq.get(`/profiles/${id}/`)
+        .then(response => {
+          setCurrentRating(response.data.average_rating);
+  })
+  setNumOfRatings({count: numOfRatings.count + 1});
+}
+
 
   const ratingField = (
     <>
@@ -147,7 +156,7 @@ function ProfilePage() {
 
   const ratingDisplay = (
     <div className={styles.RatingInfo}>
-      {profile?.average_rating.toFixed(1)}
+      {currentRating?.toFixed(1)}
       <Star />
       <span className={styles.NumberOfRatings}>({numOfRatings.count})</span>
     </div>
