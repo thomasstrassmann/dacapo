@@ -54,20 +54,13 @@ const NavBar = () => {
       </NavLink>
 
       <NavLink
-        className={styles.NavLink}
-        activeClassName={styles.Active}
-        to="/trending">
-        <img src={trending_up} alt="Trending" height="30"/>Trending
-      </NavLink>
-
-      <NavLink
         className={styles.NavLinkProfile}
         to={`/profiles/${user?.profile_id}`}>
         <Avatar src={user?.profile_avatar} text="Profile" height={30} />
       </NavLink>
 
       <NavLink className={styles.NavLink} to="/" onClick={handleSignOut}>
-        <img src={logout} alt="Logout" height="30" />
+        <img src={logout} alt="Logout" height="30" />Logout
       </NavLink>
   </>)
   

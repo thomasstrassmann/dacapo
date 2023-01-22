@@ -31,7 +31,6 @@ const ProfilesOverview = ({mobile}) => {
       ) : (
         <Asset spinner />
       )}
-      <h2 className="text-center my-2">Most popular profiles by rating - Top 5</h2>
     </Container>
   );
 };

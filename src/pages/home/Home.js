@@ -5,6 +5,7 @@ import { useUser } from "../../contexts/UserContext";
 import carousel1 from "../../assets/carousel1.jpg";
 import carousel2 from "../../assets/carousel2.jpg";
 import carousel3 from "../../assets/carousel3.jpg";
+import ProfilesOverview from "../profiles/ProfilesOverview";
 
 import styles from "../../styles/Home.module.css"
 import logo from "../../assets/dacapo-logo.png";
@@ -15,6 +16,8 @@ function Home() {
 
   return (
     <>
+    {!user && 
+      <>
       <Carousel>
         <Carousel.Item interval={7000}>
           <img
@@ -23,7 +26,6 @@ function Home() {
             alt="Let B-Stock instruments resound again!"
           />
           <Carousel.Caption className={styles.Caption}>
-            {user && <h1>Welcome <span className={styles.Username}>{user.username}!</span></h1>}
             <h2>Let B-Stock instruments resound again!</h2>
             <p>Sell or buy instruments conveniently.</p>
             <p>No matter if guitar, bass, piano or tuba!</p>
@@ -61,11 +63,26 @@ function Home() {
           "start from the beginning". And that's exactly what the instruments on DaCapo do: 
           they start over by changing hands as a pre-owned instrument. </p>
 
-        {!user &&
         <h4>To enjoy all the benefits of DaCapo, <Link to="/login" className={styles.Link}> log in </Link>  
           or <Link to="/signup" className={styles.Link}> create an account </Link> 
-          and discover the wonderful world of second-hand instruments!</h4>}
+          and discover the wonderful world of second-hand instruments!</h4>
       </Container>
+      </>
+      }
+      {user && 
+      <>
+      <h1 className="my-2 text-center">Welcome <span className={styles.Username}>{user.username}!</span></h1>
+      <p className="my-2 text-center">My Dashboard</p>
+      <Carousel>
+        <Carousel.Item interval={7000}>
+          <ProfilesOverview/>
+        </Carousel.Item>
+      </Carousel>
+      </>
+      }
+
+
+
 
       <Navbar className={styles.Footer}>
       <Container fluid className={styles.SocialLinks}>
