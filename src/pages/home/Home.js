@@ -10,6 +10,7 @@ import ProfilesOverview from "../profiles/ProfilesOverview";
 import styles from "../../styles/Home.module.css"
 import logo from "../../assets/dacapo-logo.png";
 import { Link } from "react-router-dom";
+import FollowedUsers from "./FollowedUsers";
 
 function Home() {
   const user = useUser();
@@ -78,6 +79,8 @@ function Home() {
           <ProfilesOverview/>
         </Carousel.Item>
       </Carousel>
+
+      <FollowedUsers/>
       </>
       }
 
