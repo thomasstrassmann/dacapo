@@ -1,133 +1,141 @@
 .NoPadding {
-    padding:0;
+  padding: 0;
 }
 
 .HeaderContainer {
-    display: flex;
-    flex-wrap: wrap;
-    justify-content: center;
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
 }
 
 .HeaderContainer Link {
-    flex: 1 0 100%;
+  flex: 1 0 100%;
 }
 
 .HeaderOptions {
-    flex: 1 0 100%;
-    display: flex;
-    align-items: center;
-    justify-content: center;
+  flex: 1 0 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
 }
 
-.TeaserList, .TeaserDetail{
-    text-align: center;
-    margin: 5% 0 0;
+.TeaserList,
+.TeaserDetail {
+  text-align: center;
+  margin: 5% 0 0;
 }
 
 .TeaserList:hover {
-    color: #fa3750;
+  color: #fa3750;
 }
 
 .Title {
-    height: 48px;
+  height: 48px;
 }
 
 .Card {
-    border: 2px solid black;
-    margin-top: 5%;
+  border: 2px solid black;
+  margin-top: 5%;
 }
 
 .Line {
-    border-top: 2px solid #fa3750;
-    margin: 0;
+  border-top: 2px solid #fa3750;
+  margin: 0;
 }
 
-.Subtext, .SubtextDetail {
-    font-family: 'Cormorant Garamond', serif;
-    font-size: 1.5rem;
-    padding: 0 2% 2%;
+.Subtext,
+.SubtextDetail {
+  font-family: "Cormorant Garamond", serif;
+  font-size: 1.5rem;
+  padding: 0 2% 2%;
 }
 
 .SubtextDetail {
-    display: flex;
-    justify-content: center;
-    flex-wrap: wrap;
-    font-size: 2.5vw;
+  display: flex;
+  justify-content: center;
+  flex-wrap: wrap;
+  font-size: 2.5vw;
 }
 
 .SubtextDetail p {
-    flex: 1 0 33%;
+  flex: 1 0 33%;
 }
 
 .Subtext p {
-    margin: 0;
+  margin: 0;
 }
 
 .Image {
-    max-width: 768px;
-    object-fit: contain;    
+  max-width: 768px;
+  object-fit: contain;
 }
 
-.DetailSize{
-    width: 80%;
-    margin: 5% auto;
-    border: none;
+.DetailSize {
+  width: 80%;
+  margin: 5% auto;
+  border: none;
 }
 
 .DetailSize .Line {
-    display: none;
+  display: none;
 }
 
-.ListSize{
-    width: 400px;
-    max-height: 515px;
+.ListSize {
+  width: 400px;
+  max-height: 515px;
+}
+
+.TeaserList:hover {
+    text-decoration: none;
 }
 
 .BookmarkContainer {
-    margin: 2% auto;
-    display: flex;
-    width: 100%;
-    align-items: center;
-    flex-direction: column;
-    gap: 2vh;
+  margin: 2% auto;
+  display: flex;
+  width: 100%;
+  align-items: center;
+  flex-direction: column;
+  gap: 2vh;
 }
 
-.BookmarkContainer div, 
+.BookmarkContainer div,
 .BookmarkContainer p,
-.BookmarkContainer span{
-    font-size: 2vw;
+.BookmarkContainer span {
+  font-size: 2vw;
 }
 
 .BookmarkContainer img {
-    width: 4vw;
+  width: 4vw;
 }
 
-.HandleBookmark, .Settings {
-    cursor: pointer;
+.HandleBookmark,
+.Settings {
+  cursor: pointer;
 }
 
 .Settings {
-    margin-left: 20%;
+  margin-left: 20%;
 }
 
 .HandleBookmark:hover {
-    color: #fa3750;
-    filter: invert(50%) sepia(52%) saturate(6690%) hue-rotate(328deg)
+  color: #fa3750;
+  filter: invert(50%) sepia(52%) saturate(6690%) hue-rotate(328deg)
     brightness(94%) contrast(110%);
 }
 
 .WantedInfo {
-    padding: 1.25rem;
+  padding: 1.25rem;
 }
 
 .AnimateBorder {
-    box-sizing: border-box;
-    border: 4px solid black;
-    animation: highlight 0.5s ease-out forwards;
+  box-sizing: border-box;
+  border: 2px solid black;
+  animation: highlight 0.7s linear forwards;
+}
+
+@keyframes highlight {
+  100% {
+    border: 2px solid #fa3750;
+    box-shadow: 6px 3px 3px #fa3750;
   }
- 
-  @keyframes highlight {
-    to {
-        border: 4px solid #fa3750;
-        background-color: #EFF7D7;
-}}
+}
