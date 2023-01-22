@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState } from "react";
 import Avatar from "../../components/Avatar";
 import { Link } from "react-router-dom";
 import { Card, Media } from "react-bootstrap";
@@ -27,6 +27,7 @@ const Wanted = (props) => {
 
   const user = useUser();
   const history = useHistory();
+  const [isHovered, setIsHovered] = useState(false);
   const is_owner = user?.username === owner;
 
   const handleDelete = async () => {
@@ -42,14 +43,16 @@ const Wanted = (props) => {
     history.push(`/wanted/${id}/edit`);
   };
 
+  const handleHover = () => {
+    setIsHovered(!isHovered)
+  };
+
   return (
     <>
       <Card
-        className={`${styles.Card} ${
-          wantedDetailPage ? styles.DetailSize : styles.ListSize
-        }`}
-      >
-        <Card.Body>
+        className={`${styles.Card} ${wantedDetailPage ? styles.DetailSize : styles.ListSize}
+          ${isHovered && !wantedDetailPage ? styles.AnimateBorder : ""}`} onMouseEnter={handleHover} onMouseLeave={handleHover}>
+        <Card.Body className="p-0">
           <Media className={styles.HeaderContainer}>
             <Link to={`/profiles/${profile_id}`}>
               <Avatar src={profile_avatar} height={144} />
@@ -88,7 +91,7 @@ const Wanted = (props) => {
               <Card.Title className={styles.Title}>
                 {title && truncate(title)}
               </Card.Title>
-              <Card.Text className={styles.Subtext}>
+              <Card.Text className={` p-0 ${styles.Subtext}`}>
                 <strong>Category:</strong> {category && capitalize(category)}
               </Card.Text>
             </div>

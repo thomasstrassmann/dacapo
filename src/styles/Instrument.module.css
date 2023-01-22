@@ -6,6 +6,7 @@
   display: flex;
   flex-wrap: wrap;
   justify-content: center;
+  text-align: center;
 }
 
 .HeaderContainer Link {
@@ -30,7 +31,7 @@
 }
 
 .Title {
-  height: 48px;
+  height: 55px;
 }
 
 .Card {
@@ -124,7 +125,7 @@
 }
 
 .WantedInfo {
-  padding: 1.25rem;
+  padding: 2.5rem;
 }
 
 .AnimateBorder {
