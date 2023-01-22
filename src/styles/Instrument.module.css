@@ -21,7 +21,7 @@
 
 .TeaserList, .TeaserDetail{
     text-align: center;
-    margin: 5% 0;
+    margin: 5% 0 0;
 }
 
 .TeaserList:hover {
@@ -44,14 +44,15 @@
 
 .Subtext, .SubtextDetail {
     font-family: 'Cormorant Garamond', serif;
-    font-size: 2rem;
+    font-size: 1.5rem;
+    padding: 0 2% 2%;
 }
 
 .SubtextDetail {
     display: flex;
     justify-content: center;
     flex-wrap: wrap;
-    font-size: 3vw;
+    font-size: 2.5vw;
 }
 
 .SubtextDetail p {

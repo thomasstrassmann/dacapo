@@ -90,95 +90,130 @@ const Instrument = (props) => {
     }
   };
 
+  const bookmarkSection = (
+    <>
+      <div className={styles.BookmarkContainer}>
+        {bookmark_id ? (
+          <div onClick={handleRemoveBookmark} className={styles.HandleBookmark}>
+            <img src={removeBookmarks} alt="Remove Bookmark" />
+            <span>Remove Bookmark</span>
+          </div>
+        ) : user ? (
+          <div onClick={handleBookmark} className={styles.HandleBookmark}>
+            <img src={bookmarks} alt="Bookmark" />
+            <span>Bookmark instrument</span>
+          </div>
+        ) : (
+          <p>Log in to bookmark an instrument!</p>
+        )}
+        <span>Bookmarked in total: {bookmarks_count}</span>
+      </div>
+    </>
+  );
+
   return (
     <>
-      <Card
-        className={`${styles.Card} ${
-          instrumentPage ? styles.DetailSize : styles.ListSize
-        }`}
-      >
-        <Card.Body>
-          <Media className={styles.HeaderContainer}>
-            <Link to={`/profiles/${profile_id}`}>
-              <Avatar src={profile_avatar} height={`${instrumentPage ? 144 : 48}`} />
-              <span className={appStyles.Owner}>{owner}</span>
-            </Link>
-            <div className={styles.HeaderOptions}>
-              <div>Updated:{updated}</div>
-              {is_owner && instrumentPage && (
-              <div className={styles.Settings}>
-                  <EditDropdown
-                    handleEdit={handleEdit}
-                    handleDelete={handleDelete}
-                  />
-                </div>
+      {instrumentPage ? (
+        <Card
+          className={`${styles.Card} ${styles.DetailSize}`}>
+          <Card.Body>
+            <Media className={styles.HeaderContainer}>
+              <Link to={`/profiles/${profile_id}`}>
+                <Avatar
+                  src={profile_avatar}
+                  height={144}
+                />
+                <span className={appStyles.Owner}>{owner}</span>
+              </Link>
+              <div className={styles.HeaderOptions}>
+                <div>Updated:{updated}</div>
+                {is_owner && (
+                  <div className={styles.Settings}>
+                    <EditDropdown
+                      handleEdit={handleEdit}
+                      handleDelete={handleDelete}
+                    />
+                  </div>
                 )}
-            </div>
-          </Media>
-        </Card.Body>
-        <hr className={styles.Line}></hr>
-
-        {instrumentPage ? (
+              </div>
+            </Media>
+          </Card.Body>
+          <hr className={styles.Line}></hr>
           <div className={styles.TeaserDetail}>
             <Card.Title>{title}</Card.Title>
             <Card.Img src={image} alt={title} className={styles.Image} />
           </div>
-        ) : (
-          <Link to={`/instruments/${id}`} className={styles.TeaserList}>
-            <Card.Title className={styles.Title}>{truncate(title)}</Card.Title>
-            <Card.Img
-              src={image}
-              alt={title}
-              className={instrumentsStyles.Image}
-            />
-          </Link>
-        )}
-
-        <hr className={styles.Line}></hr>
-        {instrumentPage && (
-          <div className={styles.BookmarkContainer}>
-            {bookmark_id ? (
-              <div
-                onClick={handleRemoveBookmark}
-                className={styles.HandleBookmark}
-              >
-                <img src={removeBookmarks} alt="Remove Bookmark" />
-                <span>Remove Bookmark</span>
-              </div>
-            ) : user ? (
-              <div onClick={handleBookmark} className={styles.HandleBookmark}>
-                <img src={bookmarks} alt="Bookmark" />
-                <span>Bookmark instrument</span>
-              </div>
-            ) : (
-              <p>Log in to bookmark an instrument!</p>
+          <div>{bookmarkSection}</div>
+          <Card.Body className={styles.SubtextDetail}>
+            {category && (
+              <Card.Text>
+                <strong>Category:</strong> {capitalize(category)}
+              </Card.Text>
             )}
-            <span>Bookmarked in total: {bookmarks_count}</span>
-          </div>
-        )}
-        <Card.Body className={`${instrumentPage ? styles.SubtextDetail : styles.Subtext}`}>
-          {category && (
-            <Card.Text>
-              <strong>Category:</strong> {capitalize(category)}
-            </Card.Text>
-          )}
-          {brand && (
-            <Card.Text>
-              <strong>Brand:</strong> {brand}
-            </Card.Text>
-          )}
-          {price && (
-            <Card.Text>
-              <strong>Price:</strong> {price}€
-            </Card.Text>
-          )}
-          {instrumentPage && description && (
-            <Card.Text>
-              <strong>Description:</strong> {description}
-            </Card.Text>
-          )}
-        </Card.Body>
-      </Card>
+            {brand && (
+              <Card.Text>
+                <strong>Brand:</strong> {brand}
+              </Card.Text>
+            )}
+            {price && (
+              <Card.Text>
+                <strong>Price:</strong> {price}€
+              </Card.Text>
+            )}
+            {description && (
+              <Card.Text>
+                <strong>Description:</strong> {description}
+              </Card.Text>
+            )}
+          </Card.Body>
+        </Card>
+      ) : (
+        <Card
+          className={`${styles.Card} ${styles.ListSize}`}>
+          <Card.Body className="p-0">
+            <Media className={styles.HeaderContainer}>
+              <Link to={`/profiles/${profile_id}`}>
+                <Avatar
+                  src={profile_avatar}
+                  height={48}
+                />
+                <span className={appStyles.Owner}>{owner}</span>
+              </Link>
+              <div className={styles.HeaderOptions}>
+                <div>Updated:{updated}</div>
+              </div>
+            </Media>
+            <hr className={styles.Line}></hr>
+            <Link to={`/instruments/${id}`} className={styles.TeaserList}>
+              <Card.Title className={styles.Title}>
+                {truncate(title)}
+              </Card.Title>
+              <Card.Img
+                src={image}
+                alt={title}
+                className={instrumentsStyles.Image}
+              />
+              <div className={styles.Subtext}>
+                {category && (
+                  <Card.Text>
+                    <strong>Category:</strong> {capitalize(category)}
+                  </Card.Text>
+                )}
+                {brand && (
+                  <Card.Text>
+                    <strong>Brand:</strong> {brand}
+                  </Card.Text>
+                )}
+                {price && (
+                  <Card.Text>
+                    <strong>Price:</strong> {price}€
+                  </Card.Text>
+                )}
+              </div>
+            </Link>
+          </Card.Body>
+        </Card>
+      )}
     </>
   );
 };
