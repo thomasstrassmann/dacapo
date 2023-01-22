@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState } from "react";
 import Avatar from "../../components/Avatar";
 import { Link } from "react-router-dom";
 import { Card, Media } from "react-bootstrap";
@@ -36,6 +36,7 @@ const Instrument = (props) => {
   const user = useUser();
   const history = useHistory();
   const is_owner = user?.username === owner;
+  const [isHovered, setIsHovered] = useState(false);
 
   const handleDelete = async () => {
     try {
@@ -88,6 +89,10 @@ const Instrument = (props) => {
     } catch (err) {
       console.log(err);
     }
+  };
+
+  const handleHover = () => {
+    setIsHovered(!isHovered)
   };
 
   const bookmarkSection = (
@@ -169,7 +174,7 @@ const Instrument = (props) => {
         </Card>
       ) : (
         <Card
-          className={`${styles.Card} ${styles.ListSize}`}>
+          className={`${styles.Card} ${styles.ListSize} ${isHovered ? styles.AnimateBorder : ""}`} onMouseEnter={handleHover} onMouseLeave={handleHover}>
           <Card.Body className="p-0">
             <Media className={styles.HeaderContainer}>
               <Link to={`/profiles/${profile_id}`}>

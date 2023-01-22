@@ -80,6 +80,7 @@
 
 .ListSize{
     width: 400px;
+    max-height: 515px;
 }
 
 .BookmarkContainer {
@@ -118,3 +119,15 @@
 .WantedInfo {
     padding: 1.25rem;
 }
+
+.AnimateBorder {
+    box-sizing: border-box;
+    border: 4px solid black;
+    animation: highlight 0.5s ease-out forwards;
+  }
+ 
+  @keyframes highlight {
+    to {
+        border: 4px solid #fa3750;
+        background-color: #EFF7D7;
+}}
