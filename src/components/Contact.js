@@ -27,7 +27,6 @@ const Contact = ({query}) => {
         })
         .then (response => {
           setItemOwnerMail(response.data.email);
-          console.log(itemOwnerMail);
         }).catch(error => console.log(error.response));
     }
     handleMount();

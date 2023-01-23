@@ -29,9 +29,8 @@ function InstrumentPage() {
         ]);
         setInstrument({ results: [instrument] });
         setHasLoaded(true);
-        console.log(instrument);
       } catch (err) {
-        console.log(err);
+        // console.log(err);
       }
     };
     setHasLoaded(false);

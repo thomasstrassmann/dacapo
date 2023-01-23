@@ -37,7 +37,7 @@ const Wanted = (props) => {
       await axiosRes.delete(`/wanted/${id}/`);
       history.goBack();
     } catch (err) {
-      console.log(err);
+      // console.log(err);
     }
   };
 

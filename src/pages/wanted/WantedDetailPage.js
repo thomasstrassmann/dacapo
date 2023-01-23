@@ -31,9 +31,8 @@ function WantedDetailPage() {
         ]);
         setWanted({ results: [wanted] });
         setHasLoaded(true);
-        console.log(wanted);
       } catch (err) {
-        console.log(err);
+        // console.log(err);
       }
     };
     setHasLoaded(false);

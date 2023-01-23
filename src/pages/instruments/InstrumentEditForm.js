@@ -51,7 +51,7 @@ function InstrumentEditForm() {
             })
           : history.push("/");
       } catch (err) {
-        console.log(err);
+        // console.log(err);
       }
     };
 
@@ -92,7 +92,7 @@ function InstrumentEditForm() {
       await axiosReq.put(`/instruments/${id}`, formData);
       history.push(`/instruments/${id}`);
     } catch (err) {
-      console.log(err);
+      // console.log(err);
       if (err.response?.status !== 401) {
         setErrors(err.response?.data);
       }

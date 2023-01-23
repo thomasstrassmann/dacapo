@@ -46,7 +46,7 @@ const Instrument = (props) => {
       await axiosRes.delete(`/instruments/${id}/`);
       history.goBack();
     } catch (err) {
-      console.log(err);
+      // console.log(err);
     }
   };
 
@@ -70,7 +70,7 @@ const Instrument = (props) => {
         }),
       }));
     } catch (err) {
-      console.log(err);
+      // console.log(err);
     }
   };
 
@@ -90,7 +90,7 @@ const Instrument = (props) => {
         }),
       }));
     } catch (err) {
-      console.log(err);
+      // console.log(err);
     }
   };
 

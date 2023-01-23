@@ -77,7 +77,7 @@ function ProfilePage() {
           setCurrentRating(pageProfile?.average_rating);
           setHasLoaded(true);
         } catch (err) {
-          console.log(err);
+          // console.log(err);
         }
       };
       setHasLoaded(false);
@@ -108,7 +108,7 @@ function ProfilePage() {
     try {
       await axiosReq.post("/rating/", formData);
     } catch (err) {
-      console.log(err);
+      // console.log(err);
       if (err.response?.status !== 401) {
         setErrors(err.response?.data);
       }
