@@ -10,7 +10,7 @@ const ProfilesOverview = ({ mobile }) => {
 
   return (
     <>
-      <h2 className="text-center mb-2">Top 5 profiles by followers</h2>
+      <h3 className={styles.OverviewHeading}>Top 5 profiles by followers</h3>
       {followedProfiles.results.length ? (
         <>
           <div className={styles.ProfilesContainer}>

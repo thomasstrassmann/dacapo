@@ -55,3 +55,12 @@
   flex-direction: column;
   align-items: center;
 }
+
+.OverviewHeading {
+  text-align: center;
+  margin: 5%;
+}
+
+.Subscriptions {
+  margin: 10% 5%;
+}

@@ -91,21 +91,3 @@
   width: 100%;
   object-fit: contain;
 }
-
-.InfoContainer {
-  width: 100%;
-  display: flex;
-  flex-wrap: wrap;
-  align-items: center;
-}
-
-.InfoChildren {
-  width: 50%;
-  display: inline-block;
-}
-
-@media (max-width: 992px) {
-  .InfoChildren {
-    width: 100%;
-  }
-}

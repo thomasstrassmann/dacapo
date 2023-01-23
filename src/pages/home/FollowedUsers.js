@@ -1,6 +1,4 @@
 import React, { useEffect, useState } from "react";
-import { Container } from "react-bootstrap";
-import appStyles from "../../App.module.css";
 import styles from "../../styles/Profile.module.css";
 import Asset from "../../components/Asset";
 
@@ -59,7 +57,7 @@ const FollowedUsers = () => {
   }, [user, profile]);
 
   return (
-    <Container className={appStyles.Content}>
+    <div className={styles.Subscriptions}>
       <h2 className="text-center my-2">My subscriptions</h2>
       {hasLoaded ? (
         <>
@@ -77,7 +75,7 @@ const FollowedUsers = () => {
       ) : (
         <Asset spinner />
       )}
-    </Container>
+    </div>
   );
 };
 

@@ -131,7 +131,7 @@
 .AnimateBorder {
   box-sizing: border-box;
   border: 2px solid black;
-  animation: highlight 0.7s linear forwards;
+  animation: highlight 0.3s linear forwards;
 }
 
 @keyframes highlight {

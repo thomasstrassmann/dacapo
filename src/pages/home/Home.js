@@ -93,8 +93,7 @@ function Home() {
       )}
       {user && (
         <>
-          <div className={styles.InfoContainer}>
-            <Carousel className={styles.InfoChildren}>
+            <Carousel>
               <Carousel.Item interval={7000}>
                 <img
                   className={styles.Carousel}
@@ -133,10 +132,9 @@ function Home() {
               </Carousel.Item>
             </Carousel>
 
-            <div className={styles.InfoChildren}>
+            <div>
               <ProfilesOverview />
             </div>
-          </div>
 
           <FollowedUsers />
         </>
