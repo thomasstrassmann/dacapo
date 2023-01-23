@@ -10,7 +10,6 @@ import { useSetUser, useUser } from "../contexts/UserContext";
 import piano from "../assets/icons/piano.svg";
 import bookmarks from "../assets/icons/bookmarks.svg";
 import wanted from "../assets/icons/wanted.svg";
-import trending_up from "../assets/icons/trending_up.svg";
 import logout from "../assets/icons/logout.svg";
 import axios from "axios";
 import Avatar from "./Avatar";

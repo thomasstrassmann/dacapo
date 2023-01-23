@@ -76,7 +76,7 @@ function Home() {
       <p className="my-2 text-center">My Dashboard</p>
       <Carousel>
         <Carousel.Item interval={7000}>
-          <ProfilesOverview/>
+          <ProfilesOverview />
         </Carousel.Item>
       </Carousel>
 
