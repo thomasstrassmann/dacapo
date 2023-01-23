@@ -30,39 +30,53 @@ const NavBar = () => {
     }
   };
 
-  const loggedInNav = (<>
-        <NavLink
+  const loggedInNav = (
+    <>
+      <NavLink
         className={styles.NavLink}
         activeClassName={styles.Active}
-        to="/instruments">
-        <img src={piano} alt="Instruments" height="30" />Instruments
+        to="/instruments"
+      >
+        <img src={piano} alt="Instruments" height="30" />
+        Instruments
       </NavLink>
 
       <NavLink
         className={styles.NavLink}
         activeClassName={styles.Active}
-        to="/bookmarks">
-        <img src={bookmarks} alt="Bookmarks" height="30"/>Bookmarks
+        to="/bookmarks"
+      >
+        <img src={bookmarks} alt="Bookmarks" height="30" />
+        Bookmarks
       </NavLink>
 
       <NavLink
         className={styles.NavLink}
         activeClassName={styles.Active}
-        to="/wanted">
-        <img src={wanted} alt="Wanted" height="30"/>Wanted
+        to="/wanted"
+      >
+        <img src={wanted} alt="Wanted" height="30" />
+        Wanted
       </NavLink>
 
       <NavLink
         className={styles.NavLinkProfile}
-        to={`/profiles/${user?.profile_id}`}>
-        <Avatar src={user?.profile_avatar} text="Profile" height={30} />
+        to={`/profiles/${user?.profile_id}`}
+      >
+        <Avatar
+          src={user?.profile_avatar}
+          text={`${user?.username}`}
+          height={30}
+        />
       </NavLink>
 
       <NavLink className={styles.NavLink} to="/" onClick={handleSignOut}>
-        <img src={logout} alt="Logout" height="30" />Logout
+        <img src={logout} alt="Logout" height="30" />
+        Logout
       </NavLink>
-  </>)
-  
+    </>
+  );
+
   const loggedOutNav = (
     <>
       <NavLink
@@ -85,14 +99,23 @@ const NavBar = () => {
   );
 
   return (
-    <Navbar className={styles.NavBar} fixed="top" expand="lg" expanded={expanded}>
+    <Navbar
+      className={styles.NavBar}
+      fixed="top"
+      expand="lg"
+      expanded={expanded}
+    >
       <Container fluid>
         <NavLink to="/" exact className={styles.LogoContainer}>
-          <Navbar.Brand >
+          <Navbar.Brand>
             <img src={logo} alt="DaCapo Logo" />
           </Navbar.Brand>
         </NavLink>
-        <Navbar.Toggle onClick={() => setExpanded(!expanded)} ref={ref} aria-controls="basic-navbar-nav" />
+        <Navbar.Toggle
+          onClick={() => setExpanded(!expanded)}
+          ref={ref}
+          aria-controls="basic-navbar-nav"
+        />
 
         <Navbar.Collapse id="basic-navbar-nav" className="w-100">
           <Nav className={`ml-auto ${styles.LinkContainer}`}>

@@ -24,18 +24,19 @@
 }
 
 .Username {
-    color: #fa3750;
+  color: #fa3750;
 }
 
-.Caption h1, .Caption h2 {
-    margin: 2% auto;
-    font-size: 3vw;
+.Caption h1,
+.Caption h2 {
+  margin: 2% auto;
+  font-size: 3vw;
 }
 
 .Caption p {
-    font-family: 'Cormorant Garamond', serif;
-    font-size: 3vw;
-    margin: 0;
+  font-family: "Cormorant Garamond", serif;
+  font-size: 3vw;
+  margin: 0;
 }
 
 @media (max-width: 992px) {
@@ -45,28 +46,29 @@
 }
 
 .Introduction {
-    width: 100%;
-    margin: 5% auto;
-    text-align: center;
+  width: 100%;
+  margin: 5% auto;
+  text-align: center;
 }
 
 .Introduction h1 {
-    margin-bottom: 5%;
-    color: #fa3750;
+  margin-bottom: 5%;
+  color: #fa3750;
 }
 
 .Introduction p {
-    font-family: 'Cormorant Garamond', serif;
-    font-size: 3vw;
+  font-family: "Cormorant Garamond", serif;
+  font-size: 3vw;
 }
 
-.Link, .Link:hover  {
-    color: #fa3750;
-    padding: 2px;
+.Link,
+.Link:hover {
+  color: #fa3750;
+  padding: 2px;
 }
 
 .Introduction h4 {
-    margin: 5% auto;
+  margin: 5% auto;
 }
 
 .Footer {
@@ -90,3 +92,20 @@
   object-fit: contain;
 }
 
+.InfoContainer {
+  width: 100%;
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+}
+
+.InfoChildren {
+  width: 50%;
+  display: inline-block;
+}
+
+@media (max-width: 992px) {
+  .InfoChildren {
+    width: 100%;
+  }
+}
