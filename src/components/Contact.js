@@ -4,6 +4,7 @@ import { useParams } from "react-router-dom/cjs/react-router-dom";
 import styles from "../styles/Contact.module.css";
 import btnStyles from "../styles/Button.module.css";
 import axios from "axios";
+import { useUser } from "../contexts/UserContext";
 
 const Contact = ({query}) => {
   const [contactData, setContactData] = useState({
@@ -14,6 +15,7 @@ const Contact = ({query}) => {
 
   const [item, setItem] = useState({});
   const [itemOwnerMail, setItemOwnerMail] = useState("");
+  const user = useUser();
 
   useEffect(() => {
     const handleMount = async () => {
@@ -39,11 +41,11 @@ const Contact = ({query}) => {
 
   const sendMail = () => {
       window.Email.send({
-        // implement token here
+        SecureToken : "adf6a3e4-0246-41bf-8582-26f5979355f2",
         To: `${itemOwnerMail}`,
-        From: "dacapo@gmail.com",
+        From: "dacapo.service@gmail.com",
         Subject: `Interest in ${item.title}`,
-        Body: `${text}`,
+        Body: `Message from ${user.username} (${user.email}): \n ${text}`,
       }).then((message) => alert(message));
     //   implement popup here
     };
