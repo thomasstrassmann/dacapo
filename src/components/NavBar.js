@@ -1,5 +1,9 @@
 import React from "react";
-import { Container, Navbar, Nav } from "react-bootstrap";
+import Container from "react-bootstrap/Container";
+import Navbar from "react-bootstrap/Navbar";
+import Nav from "react-bootstrap/Nav";
+
+
 import logo from "../assets/dacapo-logo.png";
 import login from "../assets/icons/login.svg";
 import signup from "../assets/icons/signup.svg";

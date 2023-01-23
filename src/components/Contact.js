@@ -1,5 +1,6 @@
 import React, { useEffect, useState } from "react";
-import { Button, Form } from "react-bootstrap";
+import Button from "react-bootstrap/Button";
+import Form from "react-bootstrap/Form";
 import { useParams } from "react-router-dom/cjs/react-router-dom";
 import styles from "../styles/Contact.module.css";
 import btnStyles from "../styles/Button.module.css";

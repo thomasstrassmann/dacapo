@@ -1,5 +1,5 @@
 import React from "react";
-import { Button } from "react-bootstrap";
+import Button from "react-bootstrap/Button";
 import btnStyles from "../styles/Button.module.css";
 import arrow_up from "../assets/icons/arrow_up.svg";
 

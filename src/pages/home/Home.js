@@ -1,5 +1,10 @@
 import React from "react";
-import { Carousel, Container, Navbar, NavLink } from "react-bootstrap";
+import Carousel from "react-bootstrap/Carousel";
+import Container from "react-bootstrap/Container";
+import Navbar from "react-bootstrap/Navbar";
+import NavLink from "react-bootstrap/NavLink";
+
+
 import { useUser } from "../../contexts/UserContext";
 
 import carousel1 from "../../assets/carousel1.jpg";

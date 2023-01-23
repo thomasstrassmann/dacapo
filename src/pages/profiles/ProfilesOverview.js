@@ -5,7 +5,7 @@ import { useProfile } from "../../contexts/ProfileContext";
 
 import Profile from "./Profile";
 
-const ProfilesOverview = ({ mobile }) => {
+const ProfilesOverview = () => {
   const { followedProfiles } = useProfile();
 
   return (

@@ -3,7 +3,10 @@ import React, { useEffect, useState } from "react";
 import Col from "react-bootstrap/Col";
 import Row from "react-bootstrap/Row";
 import Form from "react-bootstrap/Form";
-import { Alert, Container } from "react-bootstrap";
+import Button from "react-bootstrap/Button";
+import Image from "react-bootstrap/Image";
+import Alert from "react-bootstrap/Alert";
+import Container from "react-bootstrap/Container";
 
 import Asset from "../../components/Asset";
 import Instrument from "../instruments/Instrument";
@@ -20,8 +23,6 @@ import { useUser } from "../../contexts/UserContext";
 import { useProfile, useSetProfile } from "../../contexts/ProfileContext";
 import { useParams } from "react-router";
 import { axiosReq } from "../../api/axiosDefaults";
-
-import { Button, Image } from "react-bootstrap";
 import { fetchMore } from "../../utils/utils";
 
 import BackButton from "../../components/BackButton";
