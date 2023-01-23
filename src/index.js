@@ -8,15 +8,13 @@ import { UserProvider } from "./contexts/UserContext";
 import { ProfileProvider } from "./contexts/ProfileContext";
 
 ReactDOM.render(
-  <React.StrictMode>
     <Router>
       <UserProvider>
         <ProfileProvider>
           <App />
         </ProfileProvider>
       </UserProvider>
-    </Router>
-  </React.StrictMode>,
+    </Router>,
   document.getElementById("root")
 );
 
