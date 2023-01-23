@@ -59,10 +59,13 @@ function InstrumentCreateForm() {
 
     formData.append("title", title);
     formData.append("description", description);
-    formData.append("image", imageUpload.current.files[0]);
     formData.append("brand", brand);
     formData.append("price", price);
     formData.append("category", category);
+
+    if (image) {
+      formData.append("image", imageUpload.current.files[0]);
+    }
 
     try {
       const { data } = await axiosReq.post("/instruments/", formData);
