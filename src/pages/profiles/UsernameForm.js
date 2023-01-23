@@ -61,6 +61,7 @@ const UsernameForm = () => {
                 type="text"
                 value={username}
                 className="text-center"
+                maxLength="12"
                 onChange={(event) => setUsername(event.target.value)}
               />
             </Form.Group>

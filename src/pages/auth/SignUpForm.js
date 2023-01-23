@@ -66,6 +66,7 @@ const SignUpForm = () => {
                 placeholder="Username"
                 onChange={handleChange}
                 value={username}
+                maxLength="12"
                 required
               />
             </Form.Group>
