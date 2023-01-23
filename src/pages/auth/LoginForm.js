@@ -17,6 +17,7 @@ import appStyles from "../../App.module.css";
 import axios from "axios";
 import { useSetUser } from "../../contexts/UserContext";
 import { useRedirect } from "../../hooks/useRedirect";
+import { setTokenTimestamp } from "../../utils/utils";
 
 function LoginForm() {
   const setUser = useSetUser();
@@ -43,6 +44,7 @@ function LoginForm() {
     try {
       const {data} = await axios.post("/dj-rest-auth/login/", loginData);
       setUser(data.user);
+      setTokenTimestamp(data);
       history.goBack();
     } catch (err) {
       setErrors(err.response?.data);

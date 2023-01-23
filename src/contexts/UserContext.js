@@ -2,6 +2,7 @@ import { createContext, useContext, useEffect, useMemo, useState } from "react";
 import axios from "axios";
 import { useHistory } from "react-router-dom";
 import { axiosReq, axiosRes } from "../api/axiosDefaults";
+import { removeTokenTimestamp, shouldRefreshToken } from "../utils/utils";
 export const UserContext = createContext();
 export const SetUserContext = createContext();
 
@@ -28,16 +29,19 @@ export const UserProvider = ({ children }) => {
   useMemo(() => {
     axiosReq.interceptors.request.use(
       async (config) => {
-        try {
-          await axios.post("/dj-rest-auth/token/refresh/");
-        } catch (err) {
-          setUser((prevUser) => {
-            if (prevUser) {
-              history.push("/login");
-            }
-            return null;
-          });
-          return config;
+        if (shouldRefreshToken()) {
+          try {
+            await axios.post("/dj-rest-auth/token/refresh/");
+          } catch (err) {
+            setUser((prevUser) => {
+              if (prevUser) {
+                history.push("/login");
+              }
+              return null;
+            });
+            removeTokenTimestamp();
+            return config;
+          }
         }
         return config;
       },
@@ -59,6 +63,7 @@ export const UserProvider = ({ children }) => {
               }
               return null;
             });
+            removeTokenTimestamp();
           }
           return axios(err.config);
         }

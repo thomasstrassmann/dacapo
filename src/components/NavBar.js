@@ -14,6 +14,7 @@ import logout from "../assets/icons/logout.svg";
 import axios from "axios";
 import Avatar from "./Avatar";
 import useToggle from "../hooks/useToggle";
+import { removeTokenTimestamp } from "../utils/utils";
 
 const NavBar = () => {
   const user = useUser();
@@ -25,6 +26,7 @@ const NavBar = () => {
     try {
       await axios.post("dj-rest-auth/logout/");
       setUser(null);
+      removeTokenTimestamp();
     } catch (err) {
       console.log(err);
     }
