@@ -69,6 +69,7 @@ const UserPasswordForm = () => {
                 type="password"
                 value={new_password1}
                 onChange={handleChange}
+                autoComplete="off"
                 className="text-center"
                 name="new_password1"
               />
@@ -85,6 +86,7 @@ const UserPasswordForm = () => {
                 type="password"
                 value={new_password2}
                 onChange={handleChange}
+                autoComplete="off"
                 className="text-center"
                 name="new_password2"
               />
