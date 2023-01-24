@@ -32,7 +32,7 @@ const ProfileEditForm = () => {
     avatar: "",
   });
   const { username, email, phone, avatar } = profile;
-
+  const [show, setShow] = useState(false);
   const [errors, setErrors] = useState({});
 
   useEffect(() => {
@@ -67,8 +67,8 @@ const ProfileEditForm = () => {
     formData.append("username", username);
     formData.append("email", email);
 
-    if (phone){
-    formData.append("phone", phone);
+    if (phone != null) {
+      formData.append("phone", phone);
     }
 
     if (imageFile?.current?.files[0]) {
@@ -81,7 +81,10 @@ const ProfileEditForm = () => {
         ...user,
         profile_avatar: data.avatar,
       }));
-      history.goBack();
+      setShow(true);
+      setTimeout(() => {
+        history.goBack();
+      }, 1500);
     } catch (err) {
       // console.log(err);
       setErrors(err.response?.data);
@@ -128,6 +131,12 @@ const ProfileEditForm = () => {
         </Alert>
       ))}
 
+      {show && (
+        <Alert variant="success" onClose={() => setShow(false)} dismissible>
+          <Alert.Heading>Profile edited successfully!</Alert.Heading>
+        </Alert>
+      )}
+
       <Button
         className={`d-block mx-auto my-2 ${btnStyles.DefaultButton}`}
         onClick={() => history.goBack()}
@@ -146,46 +155,46 @@ const ProfileEditForm = () => {
   return (
     <>
       <Form className={styles.FormContainer} onSubmit={handleSubmit}>
-          <Col>
-            <Container>
-              <Form.Group className={styles.ProfileEditContainer}>
-                {avatar && (
-                  <figure>
-                    <Image src={avatar} fluid />
-                  </figure>
-                )}
-                {errors?.avatar?.map((message, idx) => (
-                  <Alert variant="info" key={idx}>
-                    {message}
-                  </Alert>
-                ))}
-                <div className="mx-auto">
-                  <Form.Label
-                    className={`mx-auto ${btnStyles.DefaultButton} ${btnStyles.ChangeAvatarButton}`}
-                    htmlFor="image-upload"
-                  >
-                    Change the avatar
-                  </Form.Label>
-                </div>
-                <Form.File
-                  id="image-upload"
-                  ref={imageFile}
-                  accept="image/*"
-                  onChange={(e) => {
-                    if (e.target.files.length) {
-                      setProfile({
-                        ...profile,
-                        avatar: URL.createObjectURL(e.target.files[0]),
-                      });
-                    }
-                  }}
-                />
-              </Form.Group>
-              <div className={` ${styles.ProfileEditContainer}`}>
-                {textFields}
+        <Col>
+          <Container>
+            <Form.Group className={styles.ProfileEditContainer}>
+              {avatar && (
+                <figure>
+                  <Image src={avatar} fluid />
+                </figure>
+              )}
+              {errors?.avatar?.map((message, idx) => (
+                <Alert variant="info" key={idx}>
+                  {message}
+                </Alert>
+              ))}
+              <div className="mx-auto">
+                <Form.Label
+                  className={`mx-auto ${btnStyles.DefaultButton} ${btnStyles.ChangeAvatarButton}`}
+                  htmlFor="image-upload"
+                >
+                  Change the avatar
+                </Form.Label>
               </div>
-            </Container>
-          </Col>
+              <Form.File
+                id="image-upload"
+                ref={imageFile}
+                accept="image/*"
+                onChange={(e) => {
+                  if (e.target.files.length) {
+                    setProfile({
+                      ...profile,
+                      avatar: URL.createObjectURL(e.target.files[0]),
+                    });
+                  }
+                }}
+              />
+            </Form.Group>
+            <div className={` ${styles.ProfileEditContainer}`}>
+              {textFields}
+            </div>
+          </Container>
+        </Col>
       </Form>
       <div className={btnStyles.NavButtonsContainer}>
         <BackButton />

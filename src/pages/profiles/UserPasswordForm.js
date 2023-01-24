@@ -28,6 +28,7 @@ const UserPasswordForm = () => {
   const { new_password1, new_password2 } = userData;
 
   const [errors, setErrors] = useState({});
+  const [show, setShow] = useState(false);
 
   const handleChange = (event) => {
     setUserData({
@@ -46,7 +47,10 @@ const UserPasswordForm = () => {
     event.preventDefault();
     try {
       await axiosRes.post("/dj-rest-auth/password/change/", userData);
-      history.goBack();
+      setShow(true);
+      setTimeout(() => {
+        history.goBack();
+      }, 1500);
     } catch (err) {
       // console.log(err);
       setErrors(err.response?.data);
@@ -90,6 +94,17 @@ const UserPasswordForm = () => {
                 {message}
               </Alert>
             ))}
+
+            {show && (
+              <Alert
+                variant="success"
+                onClose={() => setShow(false)}
+                dismissible
+              >
+                <Alert.Heading>Password changed successfully!</Alert.Heading>
+              </Alert>
+            )}
+
             <Button
               className={`d-block my-2 mx-auto ${btnStyles.DefaultButton}`}
               onClick={() => history.goBack()}
@@ -108,7 +123,7 @@ const UserPasswordForm = () => {
       <div className={btnStyles.NavButtonsContainer}>
         <BackButton />
       </div>
-      </>
+    </>
   );
 };
 

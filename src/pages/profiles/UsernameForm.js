@@ -19,6 +19,7 @@ const UsernameForm = () => {
   useRedirect("loggedOut");
   const [username, setUsername] = useState("");
   const [errors, setErrors] = useState({});
+  const [show, setShow] = useState(false);
 
   const history = useHistory();
   const { id } = useParams();
@@ -44,7 +45,10 @@ const UsernameForm = () => {
         ...prevUser,
         username,
       }));
-      history.goBack();
+      setShow(true);
+      setTimeout(() => {
+        history.goBack();
+      }, 1500);
     } catch (err) {
       // console.log(err);
       setErrors(err.response?.data);
@@ -72,6 +76,16 @@ const UsernameForm = () => {
                 {message}
               </Alert>
             ))}
+
+            {show && (
+              <Alert
+                variant="success"
+                onClose={() => setShow(false)}
+                dismissible
+              >
+                <Alert.Heading>Username edited successfully!</Alert.Heading>
+              </Alert>
+            )}
 
             <Button
               className={`d-block my-2 mx-auto ${btnStyles.DefaultButton} ${btnStyles.Blue}`}
