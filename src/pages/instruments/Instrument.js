@@ -137,13 +137,7 @@ const Instrument = (props) => {
       {instrumentPage ? (
         <Card className={`${styles.Card} ${styles.DetailSize}`}>
           <Card.Body>
-            <Media className={styles.HeaderContainer}>
-              <Link to={`/profiles/${profile_id}`}>
-                <Avatar src={profile_avatar} height={144} />
-                <span className={appStyles.Owner}>{owner}</span>
-              </Link>
-
-              {show && (
+          {show && (
                 <Alert
                   variant="success"
                   onClose={() => setShow(false)}
@@ -154,6 +148,12 @@ const Instrument = (props) => {
                   </Alert.Heading>
                 </Alert>
               )}
+            <Media className={styles.HeaderContainer}>
+              <Link to={`/profiles/${profile_id}`}>
+                <Avatar src={profile_avatar} height={144} />
+                <span className={appStyles.Owner}>{owner}</span>
+              </Link>
+
               <div className={styles.HeaderOptions}>
                 <div>Updated:{updated}</div>
                 {is_owner && (
