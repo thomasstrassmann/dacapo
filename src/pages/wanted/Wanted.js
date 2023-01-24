@@ -50,8 +50,12 @@ const Wanted = (props) => {
     history.push(`/wanted/${id}/edit`);
   };
 
-  const handleHover = () => {
-    setIsHovered(!isHovered);
+  const handleInside = () => {
+    setIsHovered(true);
+  };
+
+  const handleOutside = () => {
+    setIsHovered(false);
   };
 
   return (
@@ -61,8 +65,8 @@ const Wanted = (props) => {
           wantedDetailPage ? styles.DetailSize : styles.ListSize
         }
           ${isHovered && !wantedDetailPage ? styles.AnimateBorder : ""}`}
-        onMouseEnter={handleHover}
-        onMouseLeave={handleHover}
+        onMouseEnter={handleInside}
+        onMouseLeave={handleOutside}
       >
         <Card.Body className="p-0">
           <Media className={styles.HeaderContainer}>

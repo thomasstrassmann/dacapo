@@ -33,7 +33,7 @@ function WantedEditForm() {
   useEffect(() => {
     const handleMount = async () => {
       try {
-        const { data } = await axiosReq.get(`/instruments/${id}/`);
+        const { data } = await axiosReq.get(`/wanted/${id}/`);
         const { title, description, category, is_owner } = data;
 
         is_owner

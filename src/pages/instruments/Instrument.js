@@ -98,8 +98,12 @@ const Instrument = (props) => {
     }
   };
 
-  const handleHover = () => {
-    setIsHovered(!isHovered);
+  const handleInside = () => {
+    setIsHovered(true);
+  };
+
+  const handleOutside = () => {
+    setIsHovered(false);
   };
 
   const bookmarkSection = (
@@ -192,8 +196,8 @@ const Instrument = (props) => {
           className={`${styles.Card} ${styles.ListSize} ${
             isHovered ? styles.AnimateBorder : ""
           }`}
-          onMouseEnter={handleHover}
-          onMouseLeave={handleHover}
+          onMouseEnter={handleInside}
+          onMouseLeave={handleOutside}
         >
           <Card.Body className="p-0">
             <Media className={styles.HeaderContainer}>
