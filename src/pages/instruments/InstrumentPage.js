@@ -14,8 +14,10 @@ import BackButton from "../../components/BackButton";
 import Contact from "../../components/Contact";
 import Asset from "../../components/Asset";
 import { useUser } from "../../contexts/UserContext";
+import { useRedirect } from "../../hooks/useRedirect";
 
 function InstrumentPage() {
+  useRedirect("loggedOut");
   const { id } = useParams();
   const [instrument, setInstrument] = useState({ results: [] });
   const [hasLoaded, setHasLoaded] = useState(false);

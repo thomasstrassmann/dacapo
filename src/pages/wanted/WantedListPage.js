@@ -22,8 +22,11 @@ import { Link } from "react-router-dom";
 import { useUser } from "../../contexts/UserContext";
 import TopButton from "../../components/TopButton";
 import BackButton from "../../components/BackButton";
+import { useRedirect } from "../../hooks/useRedirect";
 
 function WantedListPage({ feedback }) {
+  useRedirect("loggedOut");
+  
   const [wanted, setWanted] = useState({ results: [] });
   const [hasLoaded, setHasLoaded] = useState(false);
   const user = useUser();

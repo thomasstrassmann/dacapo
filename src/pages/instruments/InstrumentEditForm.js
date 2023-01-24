@@ -15,8 +15,10 @@ import appStyles from "../../App.module.css";
 import { axiosReq } from "../../api/axiosDefaults";
 import { useHistory } from "react-router";
 import { useParams } from "react-router-dom/cjs/react-router-dom";
+import { useRedirect } from "../../hooks/useRedirect";
 
 function InstrumentEditForm() {
+  useRedirect("loggedOut");
   const [errors, setErrors] = useState({});
 
   const [instrumentData, setInstrumentData] = useState({

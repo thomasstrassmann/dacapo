@@ -103,6 +103,7 @@ const SignUpForm = () => {
                 type="password"
                 name="password1"
                 placeholder="Password"
+                autoComplete="off"
                 onChange={handleChange}
                 value={password1}
                 required
@@ -122,6 +123,7 @@ const SignUpForm = () => {
                 type="password"
                 name="password2"
                 placeholder="Password confirmation"
+                autoComplete="off"
                 onChange={handleChange}
                 value={password2}
                 required

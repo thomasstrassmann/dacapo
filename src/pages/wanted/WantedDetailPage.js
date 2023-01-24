@@ -15,8 +15,10 @@ import BackButton from "../../components/BackButton";
 import { useUser } from "../../contexts/UserContext";
 import Contact from "../../components/Contact";
 import Asset from "../../components/Asset";
+import { useRedirect } from "../../hooks/useRedirect";
 
 function WantedDetailPage() {
+  useRedirect("loggedOut");
   const { id } = useParams();
   const [wanted, setWanted] = useState({ results: [] });
   const [hasLoaded, setHasLoaded] = useState(false);

@@ -28,8 +28,10 @@ import { fetchMore } from "../../utils/utils";
 import BackButton from "../../components/BackButton";
 import InfiniteScroll from "react-infinite-scroll-component";
 import Star from "../../components/Star";
+import { useRedirect } from "../../hooks/useRedirect";
 
 function ProfilePage() {
+  useRedirect("loggedOut");
   const [hasLoaded, setHasLoaded] = useState(false);
   const [profileInstruments, setProfileInstruments] = useState({ results: [] });
   const [errors, setErrors] = useState({});

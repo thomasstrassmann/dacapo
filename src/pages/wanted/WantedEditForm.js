@@ -14,8 +14,11 @@ import { axiosReq } from "../../api/axiosDefaults";
 import { Alert } from "react-bootstrap";
 import { useHistory } from "react-router";
 import { useParams } from "react-router-dom/cjs/react-router-dom";
+import { useRedirect } from "../../hooks/useRedirect";
 
 function WantedEditForm() {
+  useRedirect("loggedOut");
+  
   const [errors, setErrors] = useState({});
 
   const [wanted, setWanted] = useState({

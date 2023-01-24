@@ -14,8 +14,11 @@ import styles from "../../styles/Profile.module.css";
 import btnStyles from "../../styles/Button.module.css";
 import { useUser, useSetUser } from "../../contexts/UserContext";
 import BackButton from "../../components/BackButton";
+import { useRedirect } from "../../hooks/useRedirect";
 
 const ProfileEditForm = () => {
+  useRedirect("loggedOut");
+
   const user = useUser();
   const setUser = useSetUser();
   const { id } = useParams();

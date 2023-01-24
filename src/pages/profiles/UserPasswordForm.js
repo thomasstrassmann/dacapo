@@ -13,8 +13,10 @@ import btnStyles from "../../styles/Button.module.css";
 import appStyles from "../../App.module.css";
 import { useUser } from "../../contexts/UserContext";
 import BackButton from "../../components/BackButton";
+import { useRedirect } from "../../hooks/useRedirect";
 
 const UserPasswordForm = () => {
+  useRedirect("loggedOut");
   const history = useHistory();
   const { id } = useParams();
   const user = useUser();

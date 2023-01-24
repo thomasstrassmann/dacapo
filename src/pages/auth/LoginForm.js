@@ -83,7 +83,7 @@ function LoginForm() {
                 type="password"
                 name="password"
                 placeholder="Password"
-                autocomplete="off"
+                autoComplete="off"
                 onChange={handleChange}
                 value={password}
               />
