@@ -63,7 +63,10 @@ const ProfileEditForm = () => {
     const formData = new FormData();
     formData.append("username", username);
     formData.append("email", email);
+
+    if (phone){
     formData.append("phone", phone);
+    }
 
     if (imageFile?.current?.files[0]) {
       formData.append("avatar", imageFile?.current?.files[0]);
