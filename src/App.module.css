@@ -49,8 +49,9 @@ a:hover {
 }
 
 .Row {
-  margin: 0;
-  padding:0;
+  margin-left: 0;
+  margin-right: 0;
+
 }
 
 .Image {

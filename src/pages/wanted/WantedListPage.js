@@ -92,6 +92,7 @@ function WantedListPage({ feedback }) {
               <InfiniteScroll
                 style={{
                   display: "flex",
+                  overflow: "hidden",
                   flexWrap: "wrap",
                   gap: "80px",
                   width: "100%",

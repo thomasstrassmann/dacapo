@@ -169,7 +169,7 @@ function ProfilePage() {
 
   const mainProfile = (
     <>
-      <Row className={styles.TopMargin}>
+      <Row className={`${styles.TopMargin} ${appStyles.Row}`}>
         <Col className="d-flex justify-content-center">
           <Image
             className={styles.ProfileImage}
@@ -179,12 +179,12 @@ function ProfilePage() {
         </Col>
         {profile?.is_owner && <ProfileEditDropdown id={profile?.id} />}
       </Row>
-      <Row>
+      <Row className={appStyles.Row}>
         <Col className="d-flex justify-content-center">
           <h3>{profile?.owner}</h3>
         </Col>
       </Row>
-      <Row>
+      <Row className={appStyles.Row}>
         <Col className="d-flex justify-content-center">
           {user &&
             !is_owner &&
@@ -206,7 +206,7 @@ function ProfilePage() {
         </Col>
       </Row>
       <Container className={styles.ProfileDetailsContainer}>
-        <Row>
+        <Row className={appStyles.Row}>
           <Col
             className={`d-flex justify-content-center ${styles.ProfileDetails} ${styles.ProfileSpacing}`}
           >
@@ -214,14 +214,14 @@ function ProfilePage() {
             <span>Following: {profile?.following_count}</span>
           </Col>
         </Row>
-        <Row>
+        <Row className={appStyles.Row}>
           <Col
             className={`d-flex justify-content-center ${styles.ProfileDetails}`}
           >
             <span>Instruments: {profile?.instruments_count}</span>
           </Col>
         </Row>
-        <Row>
+        <Row className={appStyles.Row}>
           <Col
             className={`d-flex justify-content-center ${styles.ProfileDetails}`}
           >
@@ -240,7 +240,7 @@ function ProfilePage() {
         </Alert>
       )}
 
-      <Row>
+      <Row className={appStyles.Row}>
         <Col className={`${styles.ProfileRating} ${styles.ProfileDetails}`}>
           Rating:
           {currentRating === 0 ? (
@@ -250,7 +250,7 @@ function ProfilePage() {
           )}
         </Col>
       </Row>
-      <Row className={styles.ProfileInstrumentsMargin}>
+      <Row className={`${styles.ProfileInstrumentsMargin} ${appStyles.Row}`}>
         <Col className="d-flex justify-content-center">
           {!is_owner && ratingField}
         </Col>
@@ -271,6 +271,7 @@ function ProfilePage() {
           <InfiniteScroll
             style={{
               display: "flex",
+              overflow: "hidden",
               flexWrap: "wrap",
               gap: "80px",
               width: "100%",
@@ -301,7 +302,7 @@ function ProfilePage() {
 
   return (
     <>
-      <Container fluid>
+      <Container fluid className={styles.NoPadding}>
         {hasLoaded ? (
           <>
             {mainProfile}

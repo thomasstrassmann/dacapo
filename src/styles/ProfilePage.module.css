@@ -68,3 +68,7 @@
   .Hide {
     display: none;
   }
+
+  .NoPadding {
+    padding: 0;
+  }
