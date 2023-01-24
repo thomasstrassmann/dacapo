@@ -10,7 +10,7 @@ import Container from "react-bootstrap/Container";
 
 import { Link, useHistory } from "react-router-dom";
 
-import login from "../../assets/login.jpg"
+import login from "../../assets/login.jpg";
 import styles from "../../styles/SignInUpForm.module.css";
 import btnStyles from "../../styles/Button.module.css";
 import appStyles from "../../App.module.css";
@@ -29,7 +29,7 @@ function LoginForm() {
   });
 
   const { username, password } = loginData;
-  const [ errors, setErrors ] = useState({});
+  const [errors, setErrors] = useState({});
   const history = useHistory();
 
   const handleChange = (event) => {
@@ -42,7 +42,7 @@ function LoginForm() {
   const handleSubmit = async (event) => {
     event.preventDefault();
     try {
-      const {data} = await axios.post("/dj-rest-auth/login/", loginData);
+      const { data } = await axios.post("/dj-rest-auth/login/", loginData);
       setUser(data.user);
       setTokenTimestamp(data);
       history.goBack();
@@ -50,7 +50,6 @@ function LoginForm() {
       setErrors(err.response?.data);
     }
   };
-
 
   return (
     <Row className={styles.Row}>
@@ -61,8 +60,14 @@ function LoginForm() {
           <Form onSubmit={handleSubmit}>
             <Form.Group controlId="username">
               <Form.Label className="d-none">Username</Form.Label>
-              <Form.Control className={styles.Input} type="text" name="username" value={username} placeholder="Username" 
-              onChange={handleChange} />
+              <Form.Control
+                className={styles.Input}
+                type="text"
+                name="username"
+                value={username}
+                placeholder="Username"
+                onChange={handleChange}
+              />
             </Form.Group>
 
             {errors.username?.map((message, idx) => (
@@ -73,8 +78,15 @@ function LoginForm() {
 
             <Form.Group controlId="password">
               <Form.Label className="d-none">Password</Form.Label>
-              <Form.Control className={styles.Input} type="password" name="password" placeholder="Password" 
-              onChange={handleChange} value= {password} />
+              <Form.Control
+                className={styles.Input}
+                type="password"
+                name="password"
+                placeholder="Password"
+                autocomplete="off"
+                onChange={handleChange}
+                value={password}
+              />
             </Form.Group>
 
             {errors.password?.map((message, idx) => (
@@ -92,7 +104,6 @@ function LoginForm() {
                 {message}
               </Alert>
             ))}
-
           </Form>
         </Container>
 
@@ -103,8 +114,11 @@ function LoginForm() {
         </Container>
       </Col>
 
-      <Col md={6} className={`my-auto d-none d-md-block p-2 ${styles.SignInCol}`}>
-        <Image className={`${appStyles.FillerImage}`} src={login}/>
+      <Col
+        md={6}
+        className={`my-auto d-none d-md-block p-2 ${styles.SignInCol}`}
+      >
+        <Image className={`${appStyles.FillerImage}`} src={login} />
       </Col>
     </Row>
   );
