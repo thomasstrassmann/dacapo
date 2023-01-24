@@ -234,7 +234,7 @@ function ProfilePage() {
         <Alert variant="success" onClose={() => setShow(false)} dismissible>
           <Alert.Heading>Thanks for your feedback!</Alert.Heading>
           <p>
-            Go to the instruments or trending page to find more interesting
+            Go to the instruments or wanted page to find more interesting
             profiles!
           </p>
         </Alert>
