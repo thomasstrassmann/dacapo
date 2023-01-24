@@ -20,6 +20,7 @@ import { useRedirect } from "../../hooks/useRedirect";
 function InstrumentEditForm() {
   useRedirect("loggedOut");
   const [errors, setErrors] = useState({});
+  const [show, setShow] = useState(false);
 
   const [instrumentData, setInstrumentData] = useState({
     title: "",
@@ -92,7 +93,10 @@ function InstrumentEditForm() {
 
     try {
       await axiosReq.put(`/instruments/${id}`, formData);
-      history.push(`/instruments/${id}`);
+      setShow(true);
+      setTimeout(() => {
+        history.push(`/instruments/${id}`);
+      }, 1500);
     } catch (err) {
       // console.log(err);
       if (err.response?.status !== 401) {
@@ -198,6 +202,13 @@ function InstrumentEditForm() {
             {message}
           </Alert>
         ))}
+
+        {show && (
+          <Alert variant="success" onClose={() => setShow(false)} dismissible>
+            <Alert.Heading>Instrument successfully edited!</Alert.Heading>
+          </Alert>
+        )}
+
         <div className={styles.ButtonContainer}>
           <Button
             className={btnStyles.CreateFormButton}
@@ -228,7 +239,12 @@ function InstrumentEditForm() {
                 <Image className={appStyles.Image} src={image} rounded />
               </figure>
               <div>
-                <Form.Label htmlFor="image-upload" className={`${btnStyles.DefaultButton} ${btnStyles.ChangeAvatarButton}`}>Change the image</Form.Label>
+                <Form.Label
+                  htmlFor="image-upload"
+                  className={`${btnStyles.DefaultButton} ${btnStyles.ChangeAvatarButton}`}
+                >
+                  Change the image
+                </Form.Label>
               </div>
 
               <Form.File

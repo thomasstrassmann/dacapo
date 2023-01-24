@@ -3,7 +3,7 @@ import Avatar from "../../components/Avatar";
 import { Link } from "react-router-dom";
 import Card from "react-bootstrap/Card";
 import Media from "react-bootstrap/Media";
-
+import Alert from "react-bootstrap/Alert";
 
 import { useUser } from "../../contexts/UserContext";
 import { axiosRes } from "../../api/axiosDefaults";
@@ -39,12 +39,16 @@ const Instrument = (props) => {
   const user = useUser();
   const history = useHistory();
   const is_owner = user?.username === owner;
+  const [show, setShow] = useState(false);
   const [isHovered, setIsHovered] = useState(false);
 
   const handleDelete = async () => {
     try {
       await axiosRes.delete(`/instruments/${id}/`);
-      history.goBack();
+      setShow(true);
+      setTimeout(() => {
+        history.goBack();
+      }, 1500);
     } catch (err) {
       // console.log(err);
     }
@@ -95,7 +99,7 @@ const Instrument = (props) => {
   };
 
   const handleHover = () => {
-    setIsHovered(!isHovered)
+    setIsHovered(!isHovered);
   };
 
   const bookmarkSection = (
@@ -122,17 +126,25 @@ const Instrument = (props) => {
   return (
     <>
       {instrumentPage ? (
-        <Card
-          className={`${styles.Card} ${styles.DetailSize}`}>
+        <Card className={`${styles.Card} ${styles.DetailSize}`}>
           <Card.Body>
             <Media className={styles.HeaderContainer}>
               <Link to={`/profiles/${profile_id}`}>
-                <Avatar
-                  src={profile_avatar}
-                  height={144}
-                />
+                <Avatar src={profile_avatar} height={144} />
                 <span className={appStyles.Owner}>{owner}</span>
               </Link>
+
+              {show && (
+                <Alert
+                  variant="success"
+                  onClose={() => setShow(false)}
+                  dismissible
+                >
+                  <Alert.Heading>
+                    Instrument successfully deleted!
+                  </Alert.Heading>
+                </Alert>
+              )}
               <div className={styles.HeaderOptions}>
                 <div>Updated:{updated}</div>
                 {is_owner && (
@@ -177,14 +189,16 @@ const Instrument = (props) => {
         </Card>
       ) : (
         <Card
-          className={`${styles.Card} ${styles.ListSize} ${isHovered ? styles.AnimateBorder : ""}`} onMouseEnter={handleHover} onMouseLeave={handleHover}>
+          className={`${styles.Card} ${styles.ListSize} ${
+            isHovered ? styles.AnimateBorder : ""
+          }`}
+          onMouseEnter={handleHover}
+          onMouseLeave={handleHover}
+        >
           <Card.Body className="p-0">
             <Media className={styles.HeaderContainer}>
               <Link to={`/profiles/${profile_id}`}>
-                <Avatar
-                  src={profile_avatar}
-                  height={48}
-                />
+                <Avatar src={profile_avatar} height={48} />
                 <span className={appStyles.Owner}>{owner}</span>
               </Link>
               <div className={styles.HeaderOptions}>

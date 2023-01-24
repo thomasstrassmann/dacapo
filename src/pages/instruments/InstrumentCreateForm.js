@@ -21,6 +21,7 @@ import { useRedirect } from "../../hooks/useRedirect";
 
 function InstrumentCreateForm() {
   useRedirect("loggedOut");
+  const [show, setShow] = useState(false);
 
   const [errors, setErrors] = useState({});
 
@@ -70,7 +71,10 @@ function InstrumentCreateForm() {
 
     try {
       const { data } = await axiosReq.post("/instruments/", formData);
-      history.push(`/instruments/${data.id}`);
+      setShow(true);
+      setTimeout(() => {
+        history.push(`/instruments/${data.id}`);
+      }, 1500);
     } catch (err) {
       // console.log(err);
       if (err.response?.status !== 401) {
@@ -159,40 +163,46 @@ function InstrumentCreateForm() {
 
   const descriptionButtons = (
     <>
-          <Container className={appStyles.Content}>
-            <Form.Group className={styles.FormGroup}>
-              <Form.Label>Description</Form.Label>
-              <Form.Control
-                as="textarea"
-                rows={10}
-                name="description"
-                value={description}
-                onChange={handleChange}
-                required
-              />
-            </Form.Group>
-            {errors?.description?.map((message, idx) => (
-              <Alert variant="warning" key={idx}>
-                {message}
-              </Alert>
-            ))}
-            <div className={styles.ButtonContainer}>
-            <Button
-              className={btnStyles.CreateFormButton}
-              onClick={() => {
-                history.goBack();
-              }}
-            >
-              cancel
-            </Button>
-            <Button className={btnStyles.CreateFormButton} type="submit">
-              create
-            </Button>
-            </div>
-          </Container>
-    </>
+      <Container className={appStyles.Content}>
+        <Form.Group className={styles.FormGroup}>
+          <Form.Label>Description</Form.Label>
+          <Form.Control
+            as="textarea"
+            rows={10}
+            name="description"
+            value={description}
+            onChange={handleChange}
+            required
+          />
+        </Form.Group>
+        {errors?.description?.map((message, idx) => (
+          <Alert variant="warning" key={idx}>
+            {message}
+          </Alert>
+        ))}
 
-  )
+        {show && (
+          <Alert variant="success" onClose={() => setShow(false)} dismissible>
+            <Alert.Heading>Instrument successfully created!</Alert.Heading>
+          </Alert>
+        )}
+
+        <div className={styles.ButtonContainer}>
+          <Button
+            className={btnStyles.CreateFormButton}
+            onClick={() => {
+              history.goBack();
+            }}
+          >
+            cancel
+          </Button>
+          <Button className={btnStyles.CreateFormButton} type="submit">
+            create
+          </Button>
+        </div>
+      </Container>
+    </>
+  );
 
   return (
     <Form onSubmit={handleSubmit}>
@@ -210,7 +220,10 @@ function InstrumentCreateForm() {
                     <Image className={appStyles.Image} src={image} rounded />
                   </figure>
                   <div>
-                    <Form.Label htmlFor="image-upload" className={btnStyles.ImageButton}>
+                    <Form.Label
+                      htmlFor="image-upload"
+                      className={btnStyles.ImageButton}
+                    >
                       Change the image
                     </Form.Label>
                   </div>
@@ -245,9 +258,8 @@ function InstrumentCreateForm() {
           </Container>
         </Col>
         <Col md={6} lg={7} className="d-none d-md-block p-0 p-md-2">
-        <div>{descriptionButtons}</div>
+          <div>{descriptionButtons}</div>
         </Col>
-        
       </Row>
     </Form>
   );
