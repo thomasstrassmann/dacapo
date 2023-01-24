@@ -183,7 +183,7 @@ function InstrumentCreateForm() {
 
         {show && (
           <Alert variant="success" onClose={() => setShow(false)} dismissible>
-            <Alert.Heading>Instrument successfully created!</Alert.Heading>
+            <Alert.Heading>Instrument created successfully!</Alert.Heading>
           </Alert>
         )}
 

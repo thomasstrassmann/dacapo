@@ -5,22 +5,22 @@ import Button from "react-bootstrap/Button";
 import Row from "react-bootstrap/Row";
 import Col from "react-bootstrap/Col";
 import Container from "react-bootstrap/Container";
+import Alert from "react-bootstrap/Alert";
 
-import btnStyles from "../../styles/Button.module.css"
+import btnStyles from "../../styles/Button.module.css";
 import styles from "../../styles/InstrumentCreateEditForm.module.css";
 import appStyles from "../../App.module.css";
 
 import { axiosReq } from "../../api/axiosDefaults";
-import { Alert } from "react-bootstrap";
 import { useHistory } from "react-router";
 import { useParams } from "react-router-dom/cjs/react-router-dom";
 import { useRedirect } from "../../hooks/useRedirect";
 
 function WantedEditForm() {
   useRedirect("loggedOut");
-  
-  const [errors, setErrors] = useState({});
 
+  const [errors, setErrors] = useState({});
+  const [show, setShow] = useState(false);
   const [wanted, setWanted] = useState({
     title: "",
     description: "",
@@ -34,8 +34,7 @@ function WantedEditForm() {
     const handleMount = async () => {
       try {
         const { data } = await axiosReq.get(`/instruments/${id}/`);
-        const { title, description, category, is_owner } =
-          data;
+        const { title, description, category, is_owner } = data;
 
         is_owner
           ? setWanted({
@@ -68,15 +67,18 @@ function WantedEditForm() {
     formData.append("category", category);
 
     try {
-        await axiosReq.put(`/wanted/${id}`, formData);
+      await axiosReq.put(`/wanted/${id}`, formData);
+      setShow(true);
+      setTimeout(() => {
         history.push(`/wanted/${id}`);
-      } catch (err) {
-        // console.log(err);
-        if (err.response?.status !== 401) {
-          setErrors(err.response?.data);
-        }
+      }, 1500);
+    } catch (err) {
+      // console.log(err);
+      if (err.response?.status !== 401) {
+        setErrors(err.response?.data);
       }
-    };
+    }
+  };
 
   const inputFields = (
     <div className="text-center">
@@ -138,7 +140,18 @@ function WantedEditForm() {
         </Alert>
       ))}
 
-      <Button className={btnStyles.CreateFormButton} onClick={() => {history.goBack();}}>
+      {show && (
+        <Alert variant="success" onClose={() => setShow(false)} dismissible>
+          <Alert.Heading>Wanted edited successfully!</Alert.Heading>
+        </Alert>
+      )}
+
+      <Button
+        className={btnStyles.CreateFormButton}
+        onClick={() => {
+          history.goBack();
+        }}
+      >
         cancel
       </Button>
       <Button className={btnStyles.CreateFormButton} type="submit">
@@ -149,7 +162,7 @@ function WantedEditForm() {
 
   return (
     <Form onSubmit={handleSubmit}>
-      <Row>
+      <Row className={appStyles.Row}>
         <Col className="p-0 p-md-2">
           <Container className={appStyles.Content}>{inputFields}</Container>
         </Col>

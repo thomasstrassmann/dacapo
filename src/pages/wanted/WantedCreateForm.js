@@ -5,13 +5,13 @@ import Button from "react-bootstrap/Button";
 import Row from "react-bootstrap/Row";
 import Col from "react-bootstrap/Col";
 import Container from "react-bootstrap/Container";
+import Alert from "react-bootstrap/Alert";
 
-import btnStyles from "../../styles/Button.module.css"
+import btnStyles from "../../styles/Button.module.css";
 import styles from "../../styles/InstrumentCreateEditForm.module.css";
 import appStyles from "../../App.module.css";
 
 import { axiosReq } from "../../api/axiosDefaults";
-import { Alert } from "react-bootstrap";
 import { useHistory } from "react-router";
 import { useRedirect } from "../../hooks/useRedirect";
 
@@ -19,6 +19,7 @@ function WantedCreateForm() {
   useRedirect("loggedOut");
 
   const [errors, setErrors] = useState({});
+  const [show, setShow] = useState(false);
 
   const [wanted, setWanted] = useState({
     title: "",
@@ -46,7 +47,10 @@ function WantedCreateForm() {
 
     try {
       const { data } = await axiosReq.post("/wanted/", formData);
-      history.push(`/wanted/${data.id}`);
+      setShow(true);
+      setTimeout(() => {
+        history.push(`/wanted/${data.id}`);
+      }, 1500);
     } catch (err) {
       // console.log(err);
       if (err.response?.status !== 401) {
@@ -63,6 +67,7 @@ function WantedCreateForm() {
           type="text"
           name="title"
           value={title}
+          required
           onChange={handleChange}
         />
       </Form.Group>
@@ -79,6 +84,7 @@ function WantedCreateForm() {
           name="category"
           value={category}
           onChange={handleChange}
+          required
           aria-label="Select the instrument category"
         >
           <option>Please select a category</option>
@@ -103,6 +109,7 @@ function WantedCreateForm() {
           rows={10}
           name="description"
           value={description}
+          required
           onChange={handleChange}
         />
       </Form.Group>
@@ -112,7 +119,18 @@ function WantedCreateForm() {
         </Alert>
       ))}
 
-      <Button className={btnStyles.CreateFormButton} onClick={() => {history.goBack();}}>
+      {show && (
+        <Alert variant="success" onClose={() => setShow(false)} dismissible>
+          <Alert.Heading>Wanted created successfully!</Alert.Heading>
+        </Alert>
+      )}
+
+      <Button
+        className={btnStyles.CreateFormButton}
+        onClick={() => {
+          history.goBack();
+        }}
+      >
         cancel
       </Button>
       <Button className={btnStyles.CreateFormButton} type="submit">

@@ -141,7 +141,7 @@ const Instrument = (props) => {
                   dismissible
                 >
                   <Alert.Heading>
-                    Instrument successfully deleted!
+                    Instrument deleted successfully!
                   </Alert.Heading>
                 </Alert>
               )}

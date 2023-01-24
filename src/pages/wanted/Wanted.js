@@ -3,6 +3,7 @@ import Avatar from "../../components/Avatar";
 import { Link } from "react-router-dom";
 import Card from "react-bootstrap/Card";
 import Media from "react-bootstrap/Media";
+import Alert from "react-bootstrap/Alert";
 
 import { useUser } from "../../contexts/UserContext";
 import { axiosRes } from "../../api/axiosDefaults";
@@ -30,12 +31,16 @@ const Wanted = (props) => {
   const user = useUser();
   const history = useHistory();
   const [isHovered, setIsHovered] = useState(false);
+  const [show, setShow] = useState(false);
   const is_owner = user?.username === owner;
 
   const handleDelete = async () => {
     try {
       await axiosRes.delete(`/wanted/${id}/`);
-      history.goBack();
+      setShow(true);
+      setTimeout(() => {
+        history.goBack();
+      }, 1500);
     } catch (err) {
       // console.log(err);
     }
@@ -46,29 +51,45 @@ const Wanted = (props) => {
   };
 
   const handleHover = () => {
-    setIsHovered(!isHovered)
+    setIsHovered(!isHovered);
   };
 
   return (
     <>
       <Card
-        className={`${styles.Card} ${wantedDetailPage ? styles.DetailSize : styles.ListSize}
-          ${isHovered && !wantedDetailPage ? styles.AnimateBorder : ""}`} onMouseEnter={handleHover} onMouseLeave={handleHover}>
+        className={`${styles.Card} ${
+          wantedDetailPage ? styles.DetailSize : styles.ListSize
+        }
+          ${isHovered && !wantedDetailPage ? styles.AnimateBorder : ""}`}
+        onMouseEnter={handleHover}
+        onMouseLeave={handleHover}
+      >
         <Card.Body className="p-0">
           <Media className={styles.HeaderContainer}>
             <Link to={`/profiles/${profile_id}`}>
               <Avatar src={profile_avatar} height={144} />
               <span className={appStyles.Owner}>{owner}</span>
             </Link>
+
+            {show && (
+              <Alert
+                variant="success"
+                onClose={() => setShow(false)}
+                dismissible
+              >
+                <Alert.Heading>Wanted deleted successfully!</Alert.Heading>
+              </Alert>
+            )}
+
             <div className={styles.HeaderOptions}>
               <span>Updated:{updated}</span>
               {is_owner && wantedDetailPage && (
                 <div className={styles.Settings}>
-                <EditDropdown
-                  handleEdit={handleEdit}
-                  handleDelete={handleDelete}
-                />
-              </div>
+                  <EditDropdown
+                    handleEdit={handleEdit}
+                    handleDelete={handleDelete}
+                  />
+                </div>
               )}
             </div>
           </Media>
@@ -85,7 +106,7 @@ const Wanted = (props) => {
               <p>
                 <strong>Description:</strong> {description}
               </p>
-          </div>
+            </div>
           </div>
         ) : (
           <Link to={`/wanted/${id}`}>

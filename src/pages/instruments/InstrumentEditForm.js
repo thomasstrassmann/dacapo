@@ -205,7 +205,7 @@ function InstrumentEditForm() {
 
         {show && (
           <Alert variant="success" onClose={() => setShow(false)} dismissible>
-            <Alert.Heading>Instrument successfully edited!</Alert.Heading>
+            <Alert.Heading>Instrument edited successfully!</Alert.Heading>
           </Alert>
         )}
 
