@@ -46,7 +46,7 @@ const Contact = ({ query }) => {
 
   const sendMail = () => {
     window.Email.send({
-      SecureToken: "198f07c9-78f3-4213-bc2c-0c7ab34ed62d",
+      SecureToken: "a04280d3-ba15-44ab-b67c-a9cc7a5dad4b",
       To: `${itemOwnerMail}`,
       From: "dacapo.service@gmail.com",
       Subject: `Interest in ${item.title}`,
