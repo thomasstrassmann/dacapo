@@ -29,6 +29,7 @@ const SignUpForm = () => {
   });
 
   const { username, email, password1, password2 } = signUpData;
+  const [show, setShow] = useState(false);
   const [errors, setErrors] = useState({});
 
   const history = useHistory();
@@ -44,7 +45,10 @@ const SignUpForm = () => {
     event.preventDefault();
     try {
       await axios.post("/dj-rest-auth/registration/", signUpData);
+      setShow(true);
+      setTimeout(() => {
       history.push("/login");
+    }, 1500);
     } catch (err) {
       setErrors(err.response?.data);
     }
@@ -135,6 +139,18 @@ const SignUpForm = () => {
                 {message}
               </Alert>
             ))}
+
+            {show && (
+                <Alert
+                  variant="success"
+                  onClose={() => setShow(false)}
+                  dismissible
+                >
+                  <Alert.Heading>
+                    Account created successfully!
+                  </Alert.Heading>
+                </Alert>
+              )}
 
             <Button className={btnStyles.Button} type="submit">
               Sign up for DaCapo
