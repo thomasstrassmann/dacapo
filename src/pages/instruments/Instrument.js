@@ -40,6 +40,9 @@ const Instrument = (props) => {
   const history = useHistory();
   const is_owner = user?.username === owner;
   const [show, setShow] = useState(false);
+  const [showAdd, setShowAdd] = useState(false);
+  const [showRemove, setShowRemove] = useState(false);
+
   const [isHovered, setIsHovered] = useState(false);
 
   const handleDelete = async () => {
@@ -73,6 +76,7 @@ const Instrument = (props) => {
             : instrument;
         }),
       }));
+      setShowAdd(true);
     } catch (err) {
       // console.log(err);
     }
@@ -93,6 +97,7 @@ const Instrument = (props) => {
             : instrument;
         }),
       }));
+      setShowRemove(true);
     } catch (err) {
       // console.log(err);
     }
@@ -167,6 +172,25 @@ const Instrument = (props) => {
             <Card.Title>{title}</Card.Title>
             <Card.Img src={image} alt={title} className={styles.Image} />
           </div>
+          {showAdd && (
+            <Alert
+              variant="success"
+              onClose={() => setShowAdd(false)}
+              dismissible
+            >
+              <Alert.Heading>Bookmarked successfully!</Alert.Heading>
+            </Alert>
+          )}
+
+          {showRemove && (
+            <Alert
+              variant="success"
+              onClose={() => setShowRemove(false)}
+              dismissible
+            >
+              <Alert.Heading>Bookmark deleted successfully!</Alert.Heading>
+            </Alert>
+          )}
           <div>{bookmarkSection}</div>
           <Card.Body className={styles.SubtextDetail}>
             {category && (
