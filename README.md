@@ -152,6 +152,9 @@ In order to implement the pages safer, faster and more efficiently, wireframe mo
 
 However, the Index, Instruments, Instrument Detail and Profile pages use fundamentally different components, which is why wireframes are more worthwhile here. 
 
+At this point it should be mentioned that the wireframes can deviate from the final product sometimes slightly, sometimes strongly, since not all things are predictable. 
+
+
 ![Wireframe of index page](./src/assets/documentation/wireframe-index.png "Wireframe of index page")
 
 ![Wireframe of instruments page](./src/assets/documentation/wireframe-instruments.png "Wireframe of instruments page")
@@ -227,13 +230,40 @@ The page and its functionality was tested manually as well as automatically. For
 
 **Manual testing**
 
-Manual testing was done primarily using Chrome DevTools (Lighthouse) and validators for HTML, CSS, JavaScript and Python.
+Manual testing was done primarily using Chrome DevTools (Lighthouse), application function tests with the console, and the built-in linter in VScode.
 
-The layout was tested in portrait and landscape mode on the following devices: iPhone SE, iPhone XR, iPhone 12 Pro, Pixel 5, Samsung Galaxy S8+, Surface Pro 7, Surface Duo, Galaxy Fold, Samsung Galaxy A51/71, Nest Hub, Nest Hub Max and common monitors. No display errors were detected. If other devices show any, they would have to be improved afterwards. 
+Manual testing of the application included the following user interactions: 
+* the user can create an account.
+* the user can log in.
+* the user can log out.
+* the user can upload instruments / wanted items.
+* the user can update instruments / wanted items.
+* the user can delete instruments / wanted items.
+* user can search instruments / wanted items by search bar.
+* infinite scroll when scrolling down.
+* the user can bookmark instruments and delete bookmarks.
+* the user can create a list of bookmarks.
+* the user can write directly to sellers and seekers via textarea (via mail).
+* the user can subscribe / unsubscribe profiles.
+* the user can rate other profiles once, not the own profile.
+* the user can view all information on his and other profiles.
+* the own profile can be updated (change username, password, avatar and phone number).
+* the user can access 2 fully functional filter functions on the homepage / dashboard when logged in: top 5 profiles by followers and the profiles he / she follows.
+* All user interactions give direct feedback on success via alert function.
+* Unauthorized users have no access to the content
+
+During manual testing, care was taken that: 
+* the console does not output any hints or errors (except for intended / inevitable errors e.g. 401).
+* No logic errors occur.
+* The data is processed correctly in the backend and the frontend. 
+
+Currently there are no bugs or errors that persist, which stands for a robust code. 
+
+The layout was tested for all devices, which have at least a 300px wide screen. No display errors were detected. If other devices show any, they would have to be improved afterwards. 
 
 To test accessibility and SEO, Lighthouse was used. 
 
-![Lighthouse report](./  "Lighthouse report")
+![Lighthouse report](./src/assets/documentation/lighthouse-dacapo.png  "Lighthouse report")
 
 
 
