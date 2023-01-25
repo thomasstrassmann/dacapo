@@ -52,9 +52,7 @@ const Instrument = (props) => {
       setTimeout(() => {
         history.goBack();
       }, 1500);
-    } catch (err) {
-      // console.log(err);
-    }
+    } catch (err) {}
   };
 
   const handleEdit = () => {
@@ -77,9 +75,7 @@ const Instrument = (props) => {
         }),
       }));
       setShowAdd(true);
-    } catch (err) {
-      // console.log(err);
-    }
+    } catch (err) {}
   };
 
   const handleRemoveBookmark = async () => {
@@ -98,9 +94,7 @@ const Instrument = (props) => {
         }),
       }));
       setShowRemove(true);
-    } catch (err) {
-      // console.log(err);
-    }
+    } catch (err) {}
   };
 
   const handleInside = () => {

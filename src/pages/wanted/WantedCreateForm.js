@@ -52,7 +52,6 @@ function WantedCreateForm() {
         history.push(`/wanted/${data.id}`);
       }, 1500);
     } catch (err) {
-      // console.log(err);
       if (err.response?.status !== 401) {
         setErrors(err.response?.data);
       }

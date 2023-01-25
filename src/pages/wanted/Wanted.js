@@ -42,7 +42,6 @@ const Wanted = (props) => {
         history.goBack();
       }, 1500);
     } catch (err) {
-      // console.log(err);
     }
   };
 

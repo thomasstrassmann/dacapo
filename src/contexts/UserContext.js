@@ -18,7 +18,6 @@ export const UserProvider = ({ children }) => {
       const { data } = await axios.get("dj-rest-auth/user/");
       setUser(data);
     } catch (err) {
-      // console.log(err);
     }
   };
 

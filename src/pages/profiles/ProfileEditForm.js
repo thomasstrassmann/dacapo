@@ -41,7 +41,6 @@ const ProfileEditForm = () => {
           const { phone, avatar } = data;
           setProfile({ phone, avatar });
         } catch (err) {
-          // console.log(err);
           history.push("/");
         }
       } else {
@@ -82,7 +81,6 @@ const ProfileEditForm = () => {
         history.goBack();
       }, 1500);
     } catch (err) {
-      // console.log(err);
       setErrors(err.response?.data);
     }
   };

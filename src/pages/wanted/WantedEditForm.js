@@ -44,7 +44,6 @@ function WantedEditForm() {
             })
           : history.push("/");
       } catch (err) {
-        // console.log(err);
       }
     };
 
@@ -73,7 +72,6 @@ function WantedEditForm() {
         history.push(`/wanted/${id}`);
       }, 1500);
     } catch (err) {
-      // console.log(err);
       if (err.response?.status !== 401) {
         setErrors(err.response?.data);
       }

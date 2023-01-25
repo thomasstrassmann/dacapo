@@ -53,9 +53,7 @@ function InstrumentEditForm() {
               category,
             })
           : history.push("/");
-      } catch (err) {
-        // console.log(err);
-      }
+      } catch (err) {}
     };
 
     handleMount();
@@ -98,7 +96,6 @@ function InstrumentEditForm() {
         history.push(`/instruments/${id}`);
       }, 1500);
     } catch (err) {
-      // console.log(err);
       if (err.response?.status !== 401) {
         setErrors(err.response?.data);
       }
