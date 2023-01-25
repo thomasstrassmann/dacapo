@@ -72,7 +72,7 @@ In the following, the project goals (bold statements) are listed with the corres
 * As a user I can see the avatar of the profiles, so that I can personalize my own account and relate to other users, improving the UX.
 * As a user I can see my own and other profiles, so that I know who the seller is, view their instruments and activity.
 * As a user I can edit my own profile, so that I can keep my details up to date.
-* As a user I want to rate sellers as well as edit my rating so that I can voice my opinion on a shopping experience and get more intel as to how credible a seller is.
+* As a user I want to rate sellers so that I can voice my opinion on a shopping experience and get more intel as to how credible a seller is.
 
 
 
@@ -81,6 +81,7 @@ In the following, the project goals (bold statements) are listed with the corres
 * As a user I can register, sign in and logout, so that I can be a part of the DaCapo community and maintain my online status.
 
 
+All user stories are must-haves for this project, as this is the minimum standard.
 
 
 The **UXD - User Experience Design** includes the 5 panels *strategy, scope, structure, skeleton and surface*. 

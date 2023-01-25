@@ -65,6 +65,7 @@ figure {
 
 .Star {
   width: 50px;
+  padding-bottom: 10px;
   filter: invert(50%) sepia(52%) saturate(6690%) hue-rotate(328deg)
   brightness(94%) contrast(110%);
 }
