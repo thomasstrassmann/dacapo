@@ -26,12 +26,10 @@ const ProfileEditForm = () => {
   const imageFile = useRef();
 
   const [profile, setProfile] = useState({
-    username: "",
-    email: "",
     phone: "",
     avatar: "",
   });
-  const { username, email, phone, avatar } = profile;
+  const { phone, avatar } = profile;
   const [show, setShow] = useState(false);
   const [errors, setErrors] = useState({});
 
@@ -40,8 +38,8 @@ const ProfileEditForm = () => {
       if (user?.profile_id?.toString() === id) {
         try {
           const { data } = await axiosReq.get(`/profiles/${id}/`);
-          const { username, email, phone, avatar } = data;
-          setProfile({ username, email, phone, avatar });
+          const { phone, avatar } = data;
+          setProfile({ phone, avatar });
         } catch (err) {
           // console.log(err);
           history.push("/");
@@ -64,8 +62,6 @@ const ProfileEditForm = () => {
   const handleSubmit = async (event) => {
     event.preventDefault();
     const formData = new FormData();
-    formData.append("username", username);
-    formData.append("email", email);
 
     if (phone != null) {
       formData.append("phone", phone);
@@ -93,23 +89,6 @@ const ProfileEditForm = () => {
 
   const textFields = (
     <>
-      <Form.Group>
-        <Form.Label className="w-100 text-center">Email</Form.Label>
-        <Form.Control
-          type="email"
-          value={email}
-          onChange={handleChange}
-          className={styles.TextFields}
-          name="email"
-        />
-      </Form.Group>
-
-      {errors?.email?.map((message, idx) => (
-        <Alert variant="info" key={idx}>
-          {message}
-        </Alert>
-      ))}
-
       <Form.Group>
         <Form.Label className="w-100 text-center">Phone</Form.Label>
         <p className={styles.PhoneNote}>
