@@ -11,7 +11,9 @@
 }
 
 .SettingsButton {
-  width: 50px;
+  width: 5vw;
+  float: right;
+  max-width: 55px;
 }
 
 .SettingsButton:hover {

@@ -126,10 +126,6 @@
   cursor: pointer;
 }
 
-.Settings {
-  margin-left: 20%;
-}
-
 .HandleBookmark:hover {
   color: #fa3750;
   filter: invert(50%) sepia(52%) saturate(6690%) hue-rotate(328deg)

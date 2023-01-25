@@ -137,17 +137,15 @@ const Instrument = (props) => {
       {instrumentPage ? (
         <Card className={`${styles.Card} ${styles.DetailSize}`}>
           <Card.Body>
-          {show && (
-                <Alert
-                  variant="success"
-                  onClose={() => setShow(false)}
-                  dismissible
-                >
-                  <Alert.Heading>
-                    Instrument deleted successfully!
-                  </Alert.Heading>
-                </Alert>
-              )}
+            {show && (
+              <Alert
+                variant="success"
+                onClose={() => setShow(false)}
+                dismissible
+              >
+                <Alert.Heading>Instrument deleted successfully!</Alert.Heading>
+              </Alert>
+            )}
             <Media className={styles.HeaderContainer}>
               <Link to={`/profiles/${profile_id}`}>
                 <Avatar src={profile_avatar} height={144} />
@@ -156,17 +154,19 @@ const Instrument = (props) => {
 
               <div className={styles.HeaderOptions}>
                 <div>Updated:{updated}</div>
-                {is_owner && (
-                  <div className={styles.Settings}>
-                    <EditDropdown
-                      handleEdit={handleEdit}
-                      handleDelete={handleDelete}
-                    />
-                  </div>
-                )}
               </div>
             </Media>
           </Card.Body>
+
+          {is_owner && (
+            <div className={styles.Settings}>
+              <EditDropdown
+                handleEdit={handleEdit}
+                handleDelete={handleDelete}
+              />
+            </div>
+          )}
+
           <hr className={styles.Line}></hr>
           <div className={styles.TeaserDetail}>
             <Card.Title>{title}</Card.Title>
@@ -212,10 +212,10 @@ const Instrument = (props) => {
             )}
           </Card.Body>
           {description && (
-              <Card.Text className={styles.Description}>
-                <strong>Description:</strong> {description}
-              </Card.Text>
-            )}
+            <Card.Text className={styles.Description}>
+              <strong>Description:</strong> {description}
+            </Card.Text>
+          )}
         </Card>
       ) : (
         <Card

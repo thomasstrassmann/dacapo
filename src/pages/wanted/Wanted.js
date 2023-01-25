@@ -87,17 +87,15 @@ const Wanted = (props) => {
 
             <div className={styles.HeaderOptions}>
               <span>Updated:{updated}</span>
-              {is_owner && wantedDetailPage && (
-                <div className={styles.Settings}>
-                  <EditDropdown
-                    handleEdit={handleEdit}
-                    handleDelete={handleDelete}
-                  />
-                </div>
-              )}
             </div>
           </Media>
         </Card.Body>
+
+        {is_owner && wantedDetailPage && (
+          <div className={styles.Settings}>
+            <EditDropdown handleEdit={handleEdit} handleDelete={handleDelete} />
+          </div>
+        )}
         <hr className={styles.Line}></hr>
 
         {wantedDetailPage ? (
