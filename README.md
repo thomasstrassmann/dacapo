@@ -2,9 +2,9 @@
 ## Let B-stock instruments resound again!
 
 
-![Overview of DaCapo](./  "Overview of DaCapo")
+![Overview of DaCapo](./src/assets/documentation/overview.png  "Overview of DaCapo")
 
-[Click here for the full website access](https://)
+[Click here for the full website access](https://dacapo.herokuapp.com/)
 
 
 ## Backend project of DaCapo
@@ -71,7 +71,6 @@ In the following, the project goals (bold statements) are listed with the corres
 
 * As a user I can see the avatar of the profiles, so that I can personalize my own account and relate to other users, improving the UX.
 * As a user I can see my own and other profiles, so that I know who the seller is, view their instruments and activity.
-* As a user I can edit my own profile, so that I can keep my details up to date.
 * As a user I want to rate sellers so that I can voice my opinion on a shopping experience and get more intel as to how credible a seller is.
 
 
@@ -79,6 +78,7 @@ In the following, the project goals (bold statements) are listed with the corres
 **The project should give the user control over their own account and allow basic settings.** 
 * As a user I can change my credentials, so that I can improve my security and update my username.
 * As a user I can register, sign in and logout, so that I can be a part of the DaCapo community and maintain my online status.
+* As a user I can edit my own profile, so that I can keep my details up to date.
 
 
 All user stories are must-haves for this project, as this is the minimum standard.
@@ -99,17 +99,44 @@ So, in short, the USP is: find the instrument you want, in good condition, at a 
 
 
 What can not be implemented within the project, just because of lack of time? 
-* 
+* An internal message service (messages will be sent via mail)
+* A direct payment option (seller and buyer must coordinate the transaction themselves)
 
-The scope, in terms of content, will stretch over  components.
-* 
+The scope, in terms of content, will stretch over 16 Routes (and one 404 page):
+* Home
+* Login
+* Signup
+* Instruments (list page)
+* Instruments (create / add page)
+* Instruments (edit page)
+* Instrument (detail page)
+* Bookmarks (list page)
+* Wanted (list page)
+* Wanted (create / add page)
+* Wanted (edit page)
+* Wanted (detail page)
+* Profile (detail page)
+* Profile (edit username page)
+* Profile (edit credentials page)
+* Profile (edit profile page)
 
-Here, further pages are omitted too due to time constraints. 
+To what extent which page contributes to the fulfillment of the user stories can be seen in the sprint board. Here, all user stories are linked to the pages by means of labels. 
+
+There are also a lot of components involved in fulfilling the user stories: 
+* Asset
+* Avatar
+* BackButton
+* TopButton
+* Contact
+* EditDropdown
+* NavBar
+* NotFound
+* Star 
+
+To what extent which component contributes to the fulfillment of the user stories can be seen in the sprint board. Here, all user stories are linked to the component by means of labels. 
+
+Here, further pages and components are omitted too due to time constraints. 
 How the individual pages are composed is outlined in the structure section next.
-
-
-components  --> according user story...
-
 
 --- 
 ### Structure 
