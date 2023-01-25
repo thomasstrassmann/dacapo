@@ -49,22 +49,34 @@
 .SubtextDetail {
   font-family: "Cormorant Garamond", serif;
   font-size: 1.5rem;
-  padding: 0 2% 2%;
+  padding: 0;
 }
 
 .SubtextDetail {
   display: flex;
-  justify-content: center;
+  flex-direction: column;
+  align-items: center;
   flex-wrap: wrap;
-  font-size: 2.5vw;
+  font-size: 3.5vw;
 }
 
 .SubtextDetail p {
-  flex: 1 0 33%;
+  flex: 0 1 auto;
+  margin: 1% 0;
 }
 
 .Subtext p {
   margin: 0;
+}
+
+.BulletPointItem {
+  display: block;
+}
+
+.Description {
+  font-family: "Cormorant Garamond", serif;
+  font-size: 3.5vw;
+  margin-top: 5%;
 }
 
 .Image {
@@ -84,7 +96,6 @@
 
 .ListSize {
   width: 400px;
-  max-height: 515px;
 }
 
 .TeaserList:hover {

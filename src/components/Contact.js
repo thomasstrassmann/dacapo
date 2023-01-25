@@ -61,7 +61,7 @@ const Contact = ({ query }) => {
           <Form.Label className="d-none">Your message</Form.Label>
           <Form.Control
             as="textarea"
-            rows={10}
+            rows={5}
             name="text"
             className={styles.Message}
             onChange={handleChange}

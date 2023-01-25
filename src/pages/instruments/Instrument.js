@@ -191,29 +191,31 @@ const Instrument = (props) => {
               <Alert.Heading>Bookmark deleted successfully!</Alert.Heading>
             </Alert>
           )}
+
           <div>{bookmarkSection}</div>
+
           <Card.Body className={styles.SubtextDetail}>
             {category && (
-              <Card.Text>
+              <Card.Text className={styles.BulletPointItem}>
                 <strong>Category:</strong> {capitalize(category)}
               </Card.Text>
             )}
             {brand && (
-              <Card.Text>
+              <Card.Text className={styles.BulletPointItem}>
                 <strong>Brand:</strong> {brand}
               </Card.Text>
             )}
             {price && (
-              <Card.Text>
+              <Card.Text className={styles.BulletPointItem}>
                 <strong>Price:</strong> {price}€
               </Card.Text>
             )}
-            {description && (
-              <Card.Text>
+          </Card.Body>
+          {description && (
+              <Card.Text className={styles.Description}>
                 <strong>Description:</strong> {description}
               </Card.Text>
             )}
-          </Card.Body>
         </Card>
       ) : (
         <Card
