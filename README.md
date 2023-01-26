@@ -232,25 +232,28 @@ The page and its functionality was tested manually as well as automatically. For
 
 Manual testing was done primarily using Chrome DevTools (Lighthouse), application function tests with the console, and the built-in linter in VScode.
 
-Manual testing of the application included the following user interactions: 
-* the user can create an account.
-* the user can log in.
-* the user can log out.
-* the user can upload instruments / wanted items.
-* the user can update instruments / wanted items.
-* the user can delete instruments / wanted items.
-* user can search instruments / wanted items by search bar.
-* infinite scroll when scrolling down.
-* the user can bookmark instruments and delete bookmarks.
-* the user can create a list of bookmarks.
-* the user can write directly to sellers and seekers via textarea (via mail).
-* the user can subscribe / unsubscribe profiles.
-* the user can rate other profiles once, not the own profile.
-* the user can view all information on his and other profiles.
-* the own profile can be updated (change username, password, avatar and phone number).
-* the user can access 2 fully functional filter functions on the homepage / dashboard when logged in: top 5 profiles by followers and the profiles he / she follows.
-* All user interactions give direct feedback on success via alert function.
-* Unauthorized users have no access to the content
+Manual testing of the application included the following user interactions, procedures and outcomes:
+
+| Test case                      | Procedure                                        | Outcome   |
+| ------------------------------ | ------------------------------------------------ | --------- |
+| the user can create an account | click on sign up, fill out the form and data is stored in the backend | passed |
+| the user can log in            | click on log in, fill out the form and get access to the content  | passed |
+| the user can log out           | click on logout and do not have access to content anymore  | passed |
+| the user can upload instruments / wanted items | click on "add button", fill out the form and see the new item in the list view | passed |
+| the user can update instruments / wanted items | click on settings and the edit button, fill out the form and control the updated data | passed |
+| the user can delete instruments / wanted items | when clicking on settings and delete, the item is gone from the frontend and backend | passed |
+| user can search instruments / wanted items by search bar | enter keywords into the searchbar and check the items for the speific keyword | passed |
+| infinite scroll when scrolling down | scroll down instruments or wanted page until loader shows and new content gets loaded | passed |
+| the user can bookmark instruments and delete bookmarks | click on bookmark instrument / remove bookmark and check the result in the bookmark section | passed |
+| the user can create a list of bookmarks | like the test above, but with multiple instruments | passed |
+| the user can write directly to sellers and seekers via textarea (via mail) | write a test message into the textarea (instruments or wanted), submit the message and check the inbox ot the item owner | passed |
+| the user can subscribe / unsubscribe profiles | when clicking on the follow / unfollow button, the according results is shown in realtime on the dashboard / home page | passed |
+| the user can rate other profiles once, not the own profile | click on new, foreign profile and rate. View the feedback in realtime. Come Back to the same foreign profile and the profile is already rated. Go to the own profile and the rating section is not present | passed |
+| the user can view all information on his / her and other profile/s | go the the own and foreign profiles and check the content for correctness | passed |
+| the own profile can be updated (change username, password, avatar and phone number) | Go to all three editing options and check every change after submitting. Deleting the phone number from the form will delete it from the profile as well | passed |
+| the user can access 2 fully functional filter functions on the homepage / dashboard when logged in: top 5 profiles by followers and the profiles he / she follows | the 5 profiles with the highest follower count show up in the first section. A sixth user was created with no followers to confirm, he does not show up in the list at any time. The follow / unfollow actions are reflected in realtime in the second section | passed |
+| All user interactions give direct feedback on success via alert function | The following feedbacks were tested: create an account, login, create / delete / edit an instrument, create / delete / edit a wanted item, bookmark, remove bookmark, write message via contact form, rate profile, go on rated profile, edit profile on three edit pages, follow / unfollow profile | passed |
+| Unauthorized users have no access to the content | Try to access protected content by changing url | passed |
 
 During manual testing, care was taken that: 
 * the console does not output any hints or errors (except for intended / inevitable errors e.g. 401).
