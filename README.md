@@ -205,6 +205,7 @@ The user is capable of...
 * logging in and out of the account
 * creating, reading, editing and deleting instruments
 * creating, reading, editing and deleting wanted items
+* seeing a dynamic carousel on the homepage, depending on the user status: anonymous users see infos about the site in general, logged in users see hints on how to use the page
 * bookmarking an instrument and removing the bookmark
 * following and unfollowing a profile
 * editing his / her profile (avatar, phone number, username, password) 
@@ -213,6 +214,7 @@ The user is capable of...
 * improved navigation with a back button in the UI at the bottom, as well as a "go to the top" bottom on infinite scroll pages. This is especially helpful on mobile devices
 * responsive design on all devices which are larger than 300px
 * accessibility guidelines were taken care off as presented by the lighthouse report further down the documentation. 
+* JSON web tokens to store the authenticated user in the local storage
 * a search function within the list views of instruments and wanted
 * Users also get feedback on all CRUD operations and functions with bootstrap alerts
 * contacting sellers and seekers via mail 
@@ -291,26 +293,34 @@ All tests are passing accordingly.
 
 ## Deployment 
 
-After the Django project and apps were created, the project was deployed directly to Heroku in order to be able to plan ahead and spend less time on it in the end. The individual steps were: 
+The deployment of the frontend was faster and easier than the deployment of the backend. Basically, all we had to do was create a new app on heroku.com (with a unique name) and link it to the git hub repo (under the deploy tab). 
 
+After that, a test page could be deployed directly before the actual development of the frontend to make sure that everything is properly connected. 
 
-
-[You can access the website right here](https://)
-
+Before the actual final deployment, however, a few things had to be done: 
+* reorganizing the bootstrap imports for better build time 
+* removing all console.log and commented out code 
+* adding a prebuild command: "heroku-prebuild": "npm install -g serve" in the package.json file 
+* creating a procfile with the command: web: serve -s build
 
 ## Notes
 
 **Security features**
 
-In the course of the creation attention was paid to security at all times. All sensitive information is stored in environment variables and at no time was the project deployed to Heroku with debug=True. No critical information was made public like this. 
+In the course of the creation attention was paid to security at all times. All sensitive information is hidden like the email server login credentials. No critical information was made public like this. 
 
 **Front-End libraries**
 
+React Bootstrap
+
+React Router
+
+Axios 
+
+jwt-decode 
+
 why chosen?
 improved UX?
-
-**Requirements**
-
 
 ## Credits
 
