@@ -135,6 +135,14 @@ There are also a lot of components involved in fulfilling the user stories:
 
 To what extent which component contributes to the fulfillment of the user stories can be seen in the sprint board. Here, all user stories are linked to the component by means of labels. 
 
+The reusability of the components played a major role during development. For example, it was possible to define frequently occurring components once (namely in the respective component itself) and then conveniently call it where it is needed. Some examples: 
+* The NavBar is displayed on every page through the setup in App.js 
+* The Contact component is defined once, but appears in the instruments and wanted detail page. 
+* The Back and Top buttons are listed on every page (except the Home page), so a component made sense here due to reusability. 
+* The Star component was originally planned on several pages (instruments detail, instruments list, profile page), but in the final version it only made it to the Profile page. Such developments (minimization of a component) are also possible.
+
+However, it must be said at this point that many more features could be written as components: For example, the Bookmark Section. This would be the subject of further developments. 
+
 Here, further pages and components are omitted too due to time constraints. 
 How the individual pages are composed is outlined in the structure section next.
 
@@ -272,10 +280,9 @@ To test accessibility and SEO, Lighthouse was used.
 
 **Automatic testing**
 
+The app has a small test suite that monitors the status of the navigation display. Due to the intensive manual testing, as well as the extensive manual / automatic testing in the backend, further automatic testing in the frontend was not possible. These will be done later. Currently the tests check if the navigation display is rendered correctly and if the authentication status is taken into account in the display. This is done with the fictitious user "Strings22". 
 
-The suite consists of  tests, all of which pass at the time of project release.
-![Test suite](./  "Test suite")
-
+All tests are passing accordingly.
 
 ## Deployment 
 
