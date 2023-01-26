@@ -141,7 +141,7 @@ The reusability of the components played a major role during development. For ex
 * The Back and Top buttons are listed on every page (except the Home page), so a component made sense here due to reusability. 
 * The Star component was originally planned on several pages (instruments detail, instruments list, profile page), but in the final version it only made it to the Profile page. Such developments (minimization of a component) are also possible.
 
-However, it must be said at this point that many more features could be written as components: For example, the Bookmark Section. This would be the subject of further developments. 
+However, it must be said at this point that many more features could be written as components: For example, the Bookmark section or the feedback alerts after a user interaction (messages as props in the feedback component). This would be the subject of further developments. 
 
 Here, further pages and components are omitted too due to time constraints. 
 How the individual pages are composed is outlined in the structure section next.
@@ -187,49 +187,54 @@ Google Fonts was used for the typography. The font "Seymour One" is used for hea
 
 ## Development
 
-The entire project was developed in an agile manner. Particularly noteworthy is the sprint board (git hub project), on which the user stories and their status were recorded. For better traceability, the project was set to public. 
+The entire project was developed in an agile manner. Particularly noteworthy is the sprint board (git hub project), on which the user stories and their status were recorded, as well as the components and pages related to the user stories. For better traceability, the project was set to public. 
+
+[Click here for the agile board](https://github.com/users/thomasstrassmann/projects/4)
 
 
 Down below, you can see the sprint board in action during development.
 ![Agile development](./src/assets/documentation/agile-board.png "Agile development")
 
 
-
-
-
-
 ## Features
 The DaCapo app has many features, which will now be examined in more detail below. 
 
+The user is capable of... 
 
+* creating an account 
+* logging in and out of the account
+* creating, reading, editing and deleting instruments
+* creating, reading, editing and deleting wanted items
+* bookmarking an instrument and removing the bookmark
+* following and unfollowing a profile
+* editing his / her profile (avatar, phone number, username, password) 
+* rating foreign profiles once and seeing the average rating for profile evaluation
+* filter functionalities - retrieve the top 5 profiles by followers and getting a realtime overview of profiles he / she subscribed to on the home page
+* improved navigation with a back button in the UI at the bottom, as well as a "go to the top" bottom on infinite scroll pages. This is especially helpful on mobile devices
+* responsive design on all devices which are larger than 300px
+* accessibility guidelines were taken care off as presented by the lighthouse report further down the documentation. 
+* a search function within the list views of instruments and wanted
+* Users also get feedback on all CRUD operations and functions with bootstrap alerts
+* contacting sellers and seekers via mail 
 
-UX design and accessibility guidelines, and the site is fully responsive.
+The contact component was implemented with the help of https://smtpjs.com/ and an SMTP server. 
+In case a user sends a message with DaCapo, the other user gets an dynamic email notification like this: 
+![Test email](./src/assets/documentation/email-test.png "Test email")
 
+* Email subject with the text: Interest in "title"
+* Message from "user who sent the mail" - (his / her mail address for further communication):
+* Text of the message 
 
+As a security measure, the login credentials to the mail server have been replaced with an encrypted security token. In addition, all mails are encrypted with SSL. 
 
-
-Another feature are the present and working CRUD operations that the user can perform in the frontend.
-These include: 
-
-* the creation
-
-
-
-Users also get feedback on all CRUD operations and database states.
-This includes: Feedback...
-
-
-
-
-
-A special feature is also the sending of emails, 
-
-![Email example](./ "Email example")
-
+With this mail variant, however, it must be pointed out that with some providers it can lead to emails ending up in the spam folder, in rare cases even not getting through at all, which is probably a blacklist issue. For further development, it may be necessary to fall back on another email solution, which can be implemented similarly.
 
 ### Features for the future 
 The following features would be ideas for further development...
 
+* bookmarks for wanted items 
+* more details on the profile page
+* direct payment options (stripe etc.)
 
 
 ## Testing 

@@ -26,7 +26,7 @@ function Home() {
 
   return (
     <>
-      {!user && (
+      {!user?.pk && (
         <>
           <Carousel>
             <Carousel.Item interval={7000}>
@@ -96,7 +96,7 @@ function Home() {
           </Container>
         </>
       )}
-      {user && (
+      {user?.pk && (
         <>
             <Carousel>
               <Carousel.Item interval={7000}>
