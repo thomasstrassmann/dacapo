@@ -207,6 +207,7 @@ The user is capable of...
 * creating, reading, editing and deleting wanted items
 * seeing a dynamic carousel on the homepage, depending on the user status: anonymous users see infos about the site in general, logged in users see hints on how to use the page
 * bookmarking an instrument and removing the bookmark
+* hovering over an instrument or wanted item, creating a little animation in the DaCapo colors
 * following and unfollowing a profile
 * editing his / her profile (avatar, phone number, username, password) 
 * rating foreign profiles once and seeing the average rating for profile evaluation
@@ -311,19 +312,15 @@ In the course of the creation attention was paid to security at all times. All s
 
 **Front-End libraries**
 
-React Bootstrap
-
-React Router
-
-Axios 
-
-jwt-decode 
-
-why chosen?
-improved UX?
+| Library / program   | Why chosen?                                     | Contribution to UX   |
+| ------------------------------ | ------------------------------------------------ | --------- |
+| React Bootstrap | React Bootstrap was included in the project because it can create great UIs relatively quickly and easily. However, it must also be said that Bootstrap tends to mix styling and structure. Therefore, only in rare cases inline styles were assigned, but rather CSS classes. | The use of React Bootstrap leads to an increase in the UI / UX experience. Among other things, the user benefits from attractive content (for example, carousel), direct user feedback (alerts) and a clear structure (rows and cols) |
+| React Router | React Router enables easy client side routing | By react router dom the url is updated by a user action, so no further request has to be sent to the server. This makes the rendering of components transitionless (in real time). The user benefits from faster loading times and he / she has a better user experience |
+| Axios | Axios is a HTTP Client that can run on the server, as well as on the client side. One of the biggest benefits is that Axios can intercept requests and responses | It is only through the use of interceptors that the correct handling of Web Tokens is possible at all. Therefore, the user benefits from simpler access options, since the tokens are stored in the local storage  |
+| jwt-decode | jwt-decode is a browser library that decodes JSON web tokens | Similar to axios, jwt-decode is necessary to implement JSON web tokens into the project. The benefit for the user is the same as before: it is much easier for him/her to identify if not too much time has passed since logging in the last time |
+| react-infinite-scroll-component | This component creates an infinite scroll container | The user can avoid pagination, an old and slow way of listing content. With the infinite scroll option, the content is more dynamic and faster and it leads the user to scroll for even more content |
 
 ## Credits
-
 
 **Code-related**
 
