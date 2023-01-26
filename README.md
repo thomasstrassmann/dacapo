@@ -324,8 +324,16 @@ In the course of the creation attention was paid to security at all times. All s
 
 **Code-related**
 
-At this point I would first like to mention the course content from CodeInstitute.
+At this point I would first like to mention the course content from CodeInstitute. Especially at the beginning of the project, the content of the course was consulted in order to implement the basics, such as authentication, quickly and without errors. 
 
+I would also like to refer to the site https://smtpjs.com/ which provided the code for sending mails in the contact component. 
+
+Apart from that, all code was written by myself an no external sources were used. StackOverflow and other forums were just used for bug fixing.
+
+
+**Content-related**
+
+I do not take credit for the instrument examples in the deployed version. There are pictures and descriptions from ebay.com and their contributors. 
 
 **Images**
 
