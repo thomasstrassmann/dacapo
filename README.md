@@ -129,6 +129,7 @@ There are also a lot of components involved in fulfilling the user stories:
 * TopButton
 * Contact
 * EditDropdown
+* FollowedUsers
 * NavBar
 * NotFound
 * ProfilesOverview
@@ -206,6 +207,7 @@ The user is capable of...
 * logging in and out of the account
 * creating, reading, editing and deleting instruments
 * creating, reading, editing and deleting wanted items
+* creating an instrument without a picture will result in an item with a nice placeholder picture with the DaCapo logo
 * seeing a dynamic carousel on the homepage, depending on the user status: anonymous users see infos about the site in general, logged in users see hints on how to use the page
 * bookmarking an instrument and removing the bookmark
 * hovering over an instrument or wanted item, creating a little animation in the DaCapo colors

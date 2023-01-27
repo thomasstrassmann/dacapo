@@ -4,7 +4,6 @@ import Container from "react-bootstrap/Container";
 import Navbar from "react-bootstrap/Navbar";
 import NavLink from "react-bootstrap/NavLink";
 
-
 import { useUser } from "../../contexts/UserContext";
 
 import carousel1 from "../../assets/carousel1.jpg";
@@ -15,11 +14,11 @@ import hint2 from "../../assets/hint2.jpg";
 import hint3 from "../../assets/hint3.jpg";
 
 import ProfilesOverview from "../../components/ProfilesOverview";
+import FollowedUsers from "../../components/FollowedUsers";
 
 import styles from "../../styles/Home.module.css";
 import logo from "../../assets/dacapo-logo.png";
 import { Link } from "react-router-dom";
-import FollowedUsers from "./FollowedUsers";
 
 function Home() {
   const user = useUser();
@@ -98,48 +97,48 @@ function Home() {
       )}
       {user?.pk && (
         <>
-            <Carousel>
-              <Carousel.Item interval={7000}>
-                <img
-                  className={styles.Carousel}
-                  src={hint1}
-                  alt="Guitar on amplifier"
-                />
-                <Carousel.Caption className={styles.Caption}>
-                  <h2>Find your bargain!</h2>
-                  <p>
-                    Go to the instruments and wanted pages to get hold of your
-                    favorite instrument!
-                  </p>
-                </Carousel.Caption>
-              </Carousel.Item>
-              <Carousel.Item interval={7000}>
-                <img
-                  className={styles.Carousel}
-                  src={hint2}
-                  alt="Trumpet on percussion"
-                />
-                <Carousel.Caption className={styles.Caption}>
-                  <h2>Found what you were looking for?</h2>
-                  <p>Bookmark it for later, or write directly to the seller!</p>
-                </Carousel.Caption>
-              </Carousel.Item>
-              <Carousel.Item interval={7000}>
-                <img
-                  className={styles.Carousel}
-                  src={hint3}
-                  alt="Man playing piano"
-                />
-                <Carousel.Caption className={styles.Caption}>
-                  <h2>Did everything go smoothly?</h2>
-                  <p>Rate profiles and follow them!</p>
-                </Carousel.Caption>
-              </Carousel.Item>
-            </Carousel>
+          <Carousel>
+            <Carousel.Item interval={7000}>
+              <img
+                className={styles.Carousel}
+                src={hint1}
+                alt="Guitar on amplifier"
+              />
+              <Carousel.Caption className={styles.Caption}>
+                <h2>Find your bargain!</h2>
+                <p>
+                  Go to the instruments and wanted pages to get hold of your
+                  favorite instrument!
+                </p>
+              </Carousel.Caption>
+            </Carousel.Item>
+            <Carousel.Item interval={7000}>
+              <img
+                className={styles.Carousel}
+                src={hint2}
+                alt="Trumpet on percussion"
+              />
+              <Carousel.Caption className={styles.Caption}>
+                <h2>Found what you were looking for?</h2>
+                <p>Bookmark it for later, or write directly to the seller!</p>
+              </Carousel.Caption>
+            </Carousel.Item>
+            <Carousel.Item interval={7000}>
+              <img
+                className={styles.Carousel}
+                src={hint3}
+                alt="Man playing piano"
+              />
+              <Carousel.Caption className={styles.Caption}>
+                <h2>Did everything go smoothly?</h2>
+                <p>Rate profiles and follow them!</p>
+              </Carousel.Caption>
+            </Carousel.Item>
+          </Carousel>
 
-            <div>
-              <ProfilesOverview />
-            </div>
+          <div>
+            <ProfilesOverview />
+          </div>
 
           <FollowedUsers />
         </>

@@ -1,11 +1,11 @@
 import React, { useEffect, useState } from "react";
-import styles from "../../styles/Profile.module.css";
-import Asset from "../../components/Asset";
+import styles from "../styles/Profile.module.css";
+import Asset from "./Asset";
 
-import Profile from "../profiles/Profile";
-import { useUser } from "../../contexts/UserContext";
-import { axiosReq } from "../../api/axiosDefaults";
-import { useProfile } from "../../contexts/ProfileContext";
+import Profile from "../pages/profiles/Profile";
+import { useUser } from "../contexts/UserContext";
+import { axiosReq } from "../api/axiosDefaults";
+import { useProfile } from "../contexts/ProfileContext";
 
 const FollowedUsers = () => {
   const user = useUser();
