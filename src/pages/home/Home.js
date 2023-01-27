@@ -14,7 +14,7 @@ import hint1 from "../../assets/hint1.jpg";
 import hint2 from "../../assets/hint2.jpg";
 import hint3 from "../../assets/hint3.jpg";
 
-import ProfilesOverview from "../profiles/ProfilesOverview";
+import ProfilesOverview from "../../components/ProfilesOverview";
 
 import styles from "../../styles/Home.module.css";
 import logo from "../../assets/dacapo-logo.png";

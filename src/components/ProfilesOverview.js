@@ -1,9 +1,9 @@
 import React from "react";
-import styles from "../../styles/Profile.module.css";
-import Asset from "../../components/Asset";
-import { useProfile } from "../../contexts/ProfileContext";
+import styles from "../styles/Profile.module.css";
+import Asset from "./Asset";
+import { useProfile } from "../contexts/ProfileContext";
 
-import Profile from "./Profile";
+import Profile from "../pages/profiles/Profile";
 
 const ProfilesOverview = () => {
   const { followedProfiles } = useProfile();
