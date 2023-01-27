@@ -131,6 +131,7 @@ There are also a lot of components involved in fulfilling the user stories:
 * EditDropdown
 * NavBar
 * NotFound
+* ProfilesOverview
 * Star 
 
 To what extent which component contributes to the fulfillment of the user stories can be seen in the sprint board. Here, all user stories are linked to the component by means of labels. 
