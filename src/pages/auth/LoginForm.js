@@ -16,12 +16,10 @@ import btnStyles from "../../styles/Button.module.css";
 import appStyles from "../../App.module.css";
 import axios from "axios";
 import { useSetUser } from "../../contexts/UserContext";
-import { useRedirect } from "../../hooks/useRedirect";
 import { setTokenTimestamp } from "../../utils/utils";
 
 function LoginForm() {
   const setUser = useSetUser();
-  useRedirect("loggedIn");
 
   const [loginData, setLoginData] = useState({
     username: "",
