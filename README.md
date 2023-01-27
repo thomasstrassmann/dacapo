@@ -330,10 +330,17 @@ I would also like to refer to the site https://smtpjs.com/ which provided the co
 
 Apart from that, all code was written by myself an no external sources were used. StackOverflow and other forums were just used for bug fixing.
 
+The React and React Bootstrap documentations were used often to find solutions or ways to implement my ideas, so I would like to credit these sources as well: 
+
+https://reactjs.org/
+
+https://react-bootstrap.github.io/
+
+
 
 **Content-related**
 
-I do not take credit for the instrument examples in the deployed version. There are pictures and descriptions from ebay.com and their contributors. 
+I do not take credit for the instrument examples in the deployed version. There are pictures and descriptions from ebay.com and their contributors just to demonstrate some. examples
 
 **Images**
 
