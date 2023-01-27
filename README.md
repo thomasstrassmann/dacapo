@@ -307,6 +307,14 @@ Before the actual final deployment, however, a few things had to be done:
 
 ## Notes
 
+**Formatter**
+
+Prettier was used as the auto-formatter. 
+
+**Versions**
+
+The deployed version matches the current dev version.
+
 **Security features**
 
 In the course of the creation attention was paid to security at all times. All sensitive information is hidden like the email server login credentials. No critical information was made public like this. 
@@ -341,7 +349,7 @@ https://react-bootstrap.github.io/
 
 **Content-related**
 
-I do not take credit for the instrument examples in the deployed version. There are pictures and descriptions from ebay.com and their contributors just to demonstrate some. examples
+I do not take credit for the instrument examples in the deployed version. There are pictures and descriptions from ebay.com and their contributors just to demonstrate some examples.
 
 **Images**
 
