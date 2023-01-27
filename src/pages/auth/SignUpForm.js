@@ -18,7 +18,6 @@ import {
 import axios from "axios";
 
 const SignUpForm = () => {
-
   const [signUpData, setSignUpData] = useState({
     username: "",
     email: "",
@@ -45,8 +44,8 @@ const SignUpForm = () => {
       await axios.post("/dj-rest-auth/registration/", signUpData);
       setShow(true);
       setTimeout(() => {
-      history.push("/login");
-    }, 1500);
+        history.push("/login");
+      }, 1500);
     } catch (err) {
       setErrors(err.response?.data);
     }
@@ -139,16 +138,14 @@ const SignUpForm = () => {
             ))}
 
             {show && (
-                <Alert
-                  variant="success"
-                  onClose={() => setShow(false)}
-                  dismissible
-                >
-                  <Alert.Heading>
-                    Account created successfully!
-                  </Alert.Heading>
-                </Alert>
-              )}
+              <Alert
+                variant="success"
+                onClose={() => setShow(false)}
+                dismissible
+              >
+                <Alert.Heading>Account created successfully!</Alert.Heading>
+              </Alert>
+            )}
 
             <Button className={btnStyles.Button} type="submit">
               Sign up for DaCapo
